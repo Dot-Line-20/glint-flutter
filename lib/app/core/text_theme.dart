@@ -19,6 +19,11 @@ abstract class AppTextTheme {
       fontWeight: FontWeight.bold,
       fontSize: 20,
       color: AppColorTheme.mainColor);
+  static const regularBlack = TextStyle(
+      fontFamily: "Pretendard",
+      fontWeight: FontWeight.bold,
+      fontSize: 20,
+      color: AppColorTheme.black);
 
   static const big = TextStyle(
       fontFamily: "Pretendard",
