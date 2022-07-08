@@ -1,16 +1,12 @@
-# firebase_getx_boilerplate
+# Welcome to Firebase_Getx_Boilerplate
 
-A new Flutter project.
+This project was created for faster app development with **Firebase** and **Getx** early setting!
 
-## Getting Started
+# Ready to Start!
+ 1. Change Project Name & Package Name!
+ 2. Do Firebase Initial Settings With Firebase CLI
+ 3. Done!!!
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Issue & PR
+I will continue to update!
+Please show a lot of interest and support!!!
