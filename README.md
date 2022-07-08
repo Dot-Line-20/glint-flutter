@@ -5,6 +5,9 @@ This project was created for faster app development with **Firebase** and **Getx
 # Ready to Start!
  1. Change Project Name & Package Name!
  2. Do Firebase Initial Settings With Firebase CLI
+	`firebase login`	
+	`dart pub global activate flutterfire_cli` Do It Once!
+	`flutterfire configure`
  3. Done!!!
 
 # Issue & PR
