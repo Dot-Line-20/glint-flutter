@@ -4,12 +4,14 @@ This project was created for faster app development with **Firebase** and **Getx
 
 # Ready to Start!
  1. Change Project Name & Package Name!
- 	 
+
 	 **Project Name**
-	
-	For Android
+	 
+	 For Android
 	 
 	```dart
+	android\app\src\main\AndroidManifest.xml
+
 	<application
 	    android:name="io.flutter.app.FlutterApplication"
 	    android:label="New Name"
@@ -17,6 +19,8 @@ This project was created for faster app development with **Firebase** and **Getx
 	```
 	For IOS
 	```dart
+	ios\Runner\Info.plist
+	
 	<key>CFBundleName</key>
 	<string>New Name</string>
 	```
@@ -25,43 +29,48 @@ This project was created for faster app development with **Firebase** and **Getx
 	  
 	  For Android
 	```dart
+	android\app\src\main\AndroidManifest.xml
+	
 	<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	    package="your.package.name">
 	```
 	```dart
+	android\app\build.gradle
+	
 	defaultConfig {
 	    applicationId "your.package.name"
 	    ...
 	    }
 	```
-	```dart
-	    package your.package.name;
 
-	    import android.os.Bundle;
-	    import io.flutter.app.FlutterActivity;
-	    import io.flutter.plugins.GeneratedPluginRegistrant;
-	    public class MainActivity extends FlutterActivity {
+	```dart
+	android\app\src\main\kotlin\com\example\firebase_getx_boilerplate\MainActivity.kt
+	
+	package your.package.name
+	import io.flutter.embedding.android.FlutterActivity
+	class  MainActivity: FlutterActivity() {
 	```
 	Change the directory name:
 
 	From:
 
 	```dart
-	  android\app\src\main\java\com\example\name
+	  android\app\src\main\kotlin\com\example\name
 	```
 
 	To:
 
 	```dart
-	  android\app\src\main\java\your\package\name
+	  android\app\src\main\kotlin\your\package\name
 	```
 	For IOS
 	```dart
+	ios\Runner\Info.plist
+	
 	<key>CFBundleIdentifier</key>
 	<string>com.your.packagename</string>
 	```
-	
-	
+
  
  2. Do Firebase Initial Settings With Firebase CLI
 	
