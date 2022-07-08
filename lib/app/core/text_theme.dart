@@ -1,34 +1,32 @@
-// ignore_for_file: constant_identifier_names
-
 import 'package:firebase_getx_boilerplate/app/core/color_theme.dart';
 import 'package:flutter/material.dart';
 
 abstract class AppTextTheme {
-  static const VERYSMALL = TextStyle(
+  static const verySmall = TextStyle(
       fontFamily: "Pretendard",
       fontWeight: FontWeight.bold,
       fontSize: 10,
       color: AppColorTheme.mainColor);
 
-  static const SMALL = TextStyle(
+  static const small = TextStyle(
       fontFamily: "Pretendard",
       fontWeight: FontWeight.bold,
       fontSize: 16,
       color: AppColorTheme.mainColor);
 
-  static const REGULAR = TextStyle(
+  static const regular = TextStyle(
       fontFamily: "Pretendard",
       fontWeight: FontWeight.bold,
       fontSize: 20,
       color: AppColorTheme.mainColor);
 
-  static const BIG = TextStyle(
+  static const big = TextStyle(
       fontFamily: "Pretendard",
       fontWeight: FontWeight.bold,
       fontSize: 30,
       color: AppColorTheme.mainColor);
 
-  static const MAIN = TextStyle(
+  static const main = TextStyle(
       fontFamily: "Pretendard",
       fontWeight: FontWeight.bold,
       fontSize: 40,
