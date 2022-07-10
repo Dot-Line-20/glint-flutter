@@ -29,7 +29,7 @@ This project was created for faster app development with **Firebase** and **Getx
 	  
 	  For Android
 	```dart
-	android\app\src\main\AndroidManifest.xml
+	android\app\src\main\AndroidManifest.xml and android\app\src\debug\AndroidManifest.xml
 	
 	<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	    package="your.package.name">
