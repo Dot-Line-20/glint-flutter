@@ -14,10 +14,14 @@ class AuthController extends GetxController {
 
   loginWithEmail(String email, String password) async {
     try {
-      _firebaseAuth.signInWithEmailAndPassword(
+      final credentials = _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
     } on FirebaseAuthException catch (e) {
-      print(e);
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      }
     }
   }
 }
