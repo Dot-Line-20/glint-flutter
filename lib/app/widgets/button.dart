@@ -47,12 +47,14 @@ class FGBPTextButton extends StatelessWidget {
     required this.text,
     this.height,
     this.color = AppColorTheme.mainColor,
+    this.radius,
     this.onTap,
   }) : super(key: key);
 
   final String text;
   final double? height;
   final Color? color;
+  final double? radius;
   final Function()? onTap;
 
   @override
@@ -62,10 +64,14 @@ class FGBPTextButton extends StatelessWidget {
       height: height,
       onTap: onTap,
       color: color,
-      child: Center(
-        child: Text(
-          text,
-          style: textColor,
+      radius: radius,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
+          child: Text(
+            text,
+            style: textColor,
+          ),
         ),
       ),
     );
