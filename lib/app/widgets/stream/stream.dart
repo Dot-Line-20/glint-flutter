@@ -19,19 +19,19 @@ class FGBPStreamWidget extends StatelessWidget {
         if (snapshot.hasError) {
           return Text(
             "Error: ${snapshot.error}",
-            style: AppTextTheme.regular,
+            style: AppTextTheme.regular20,
           );
         }
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
-            return const Text("불러오는 중입니다...", style: AppTextTheme.regular);
+            return const Text("불러오는 중입니다...", style: AppTextTheme.regular20);
           default:
             List snapshotData = snapshot.data!.docs;
             if (snapshotData.isEmpty) {
               return const Center(
                   child: Text(
                 "없습니다.",
-                style: AppTextTheme.regular,
+                style: AppTextTheme.regular20,
               ));
             }
             return ListView.builder(
