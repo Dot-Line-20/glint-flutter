@@ -12,16 +12,18 @@ class AuthController extends GetxController {
     return "";
   }
 
-  loginWithEmail(String email, String password) async {
+  Future<UserCredential?> loginWithEmail(String email, String password) async {
     try {
       final credentials = _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
+      return credentials;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
       } else if (e.code == 'wrong-password') {
         print('Wrong password provided for that user.');
       }
+      return null;
     }
   }
 }
