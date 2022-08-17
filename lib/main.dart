@@ -3,10 +3,12 @@ import 'package:firebase_getx_boilerplate/app/routes/pages.dart';
 import 'package:firebase_getx_boilerplate/app/routes/route.dart';
 import 'package:firebase_getx_boilerplate/app/translation/translation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   // Do Firebase Initial Settings With Firebase CLI
   // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await AppInitalizer().init();
