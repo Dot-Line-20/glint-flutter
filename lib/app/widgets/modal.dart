@@ -1,4 +1,4 @@
-import 'package:firebase_getx_boilerplate/app/core/color_theme.dart';
+import 'package:firebase_getx_boilerplate/app/core/theme/color_theme.dart';
 import 'package:flutter/material.dart';
 
 class FGBPDialog extends StatelessWidget {
@@ -61,4 +61,3 @@ class CustomFGBPDialog extends StatelessWidget {
     );
   }
 }
-
