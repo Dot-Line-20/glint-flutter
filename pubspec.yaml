@@ -42,6 +42,17 @@ dependencies:
   flutter_native_splash: ^2.2.4
   flutter_launcher_icons: ^0.9.3
 
+  # 
+  google_sign_in: ^5.4.0
+
+  #
+  dio: ^4.0.6
+
+  #
+  fluttertoast: ^8.0.9
+  intl: ^0.17.0
+  uuid: ^3.0.6
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
