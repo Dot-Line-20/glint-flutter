@@ -53,6 +53,8 @@ dependencies:
   intl: ^0.17.0
   uuid: ^3.0.6
   shimmer: ^2.0.0
+  hive: ^2.2.3
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:

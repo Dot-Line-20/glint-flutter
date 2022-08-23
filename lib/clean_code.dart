@@ -160,3 +160,40 @@ class LocalDataSource implements ILocalDataSource {
     }
   }
 }
+
+abstract class Birds {
+  String name = "";
+  void fly();
+}
+abstract class Fishes {
+  void swim();
+}
+
+mixin CanFly on Birds{
+  @override
+  void fly()=>print("${this.name}");
+}
+mixin CanSwim {
+  void swim();
+}
+
+
+class Figeon implements Birds {
+  @override
+  void fly() {
+    // TODO: implement fly
+  }
+  
+  @override
+  String name;
+}
+class Goose extends Birds with CanSwim {
+  @override
+  void fly() {
+    // TODO: implement fly
+  }
+  @override
+  void swim() {
+    // TODO: implement swim
+  }
+}
