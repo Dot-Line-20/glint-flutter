@@ -52,6 +52,7 @@ dependencies:
   fluttertoast: ^8.0.9
   intl: ^0.17.0
   uuid: ^3.0.6
+  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_test:

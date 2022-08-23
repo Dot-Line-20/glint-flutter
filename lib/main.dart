@@ -15,11 +15,23 @@ void main() async {
   // Do Firebase Initial Settings With Firebase CLI
   // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await AppInitalizer().init();
-  runApp(GetMaterialApp(
-    initialRoute: Routes.home,
-    getPages: AppPages.pages,
-    theme: ThemeData(fontFamily: "Pretendard"),
-    locale: GetCurrentLocale.currentDeviceLocale,
-    fallbackLocale: GetCurrentLocale.fallBackLocale,
-  ));
+  //Get.config();
+  runApp(
+    GetMaterialApp(
+      unknownRoute: GetPage(name: '/notfound', page: () => UnknownRoutePage()),
+      initialRoute: Routes.home,
+      getPages: AppPages.pages,
+      theme: ThemeData(fontFamily: "Pretendard"),
+      locale: GetCurrentLocale.currentDeviceLocale,
+      fallbackLocale: GetCurrentLocale.fallBackLocale,
+      routingCallback: (routing) {
+        if (routing!.current == '/second') {
+          openAds();
+        }
+      },
+      navigatorObservers: [
+        GetObserver(MiddleWare.observer), // 여기 !!!
+      ],
+    ),
+  );
 }
