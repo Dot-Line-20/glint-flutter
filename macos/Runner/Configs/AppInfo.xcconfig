@@ -5,10 +5,10 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = firebase_getx_boilerplate
+PRODUCT_NAME = glint
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.firebaseGetxBoilerplate
+PRODUCT_BUNDLE_IDENTIFIER = com.develop.glint
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2022 com.example. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2022 com.develop. All rights reserved.

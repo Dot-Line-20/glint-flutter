@@ -1,5 +1,5 @@
-name: firebase_getx_boilerplate
-description: firebase_getx_boilerplate Project
+name: glint
+description: glint Project
 
 version: 1.0.0+1
 
@@ -14,15 +14,17 @@ dependencies:
   get: ^4.6.5
 
   # Firebase Plugin
-  firebase_core: ^1.19.1
-  firebase_auth: ^3.4.1   # - Auth
-  firebase_storage: ^10.3.1   # - Storage
-  firebase_messaging: ^11.4.4   # - FCM
-  flutter_local_notifications: ^9.6.1
-  cloud_firestore: ^3.2.1   # - Firebase Document Database
+  # firebase_core: ^1.19.1
+  # firebase_auth: ^3.4.1   # - Auth
+  # firebase_storage: ^10.3.1   # - Storage
+  # firebase_messaging: ^11.4.4   # - FCM
+  # flutter_local_notifications: ^9.6.1
+  # cloud_firestore: ^3.2.1   # - Firebase Document Database
 
   # Local Database
   get_storage: ^2.0.3   
+  hive: ^2.2.3
+  shared_preferences: ^2.0.15
 
   # Image File
   flutter_svg: ^1.1.1+1
@@ -42,19 +44,19 @@ dependencies:
   flutter_native_splash: ^2.2.4
   flutter_launcher_icons: ^0.9.3
 
-  # 
+  # SNS LOGIN
   google_sign_in: ^5.4.0
 
-  #
+  # HTTP
   dio: ^4.0.6
 
-  #
+  # WIDGET
   fluttertoast: ^8.0.9
+  shimmer: ^2.0.0
+
+  # UTILL
   intl: ^0.17.0
   uuid: ^3.0.6
-  shimmer: ^2.0.0
-  hive: ^2.2.3
-  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:

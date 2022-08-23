@@ -1,4 +1,3 @@
-import 'package:firebase_getx_boilerplate/app/pages/home/page.dart';
 import 'package:get/get.dart';
 
 class HomePageController extends GetxController with StateMixin {
@@ -11,17 +10,21 @@ class HomePageController extends GetxController with StateMixin {
     isLogged.toggle();
   }
 
-  Stream<List<Video>> lista() {
-    Stream<QuerySnapshot> stream =
-        Firestore.instance.collection('videos').snapshots();
-
-    return stream.map((qShot) => qShot.documents
-        .map((doc) => Video(
-            title: doc.data['title'],
-            url: doc.data['url'],
-            datum: doc.data['datum']))
-        .toList());
+  Stream<List> lista() {
+    return Stream.empty();
   }
+
+  // Stream<List<Video>> lista() {
+  //   Stream<QuerySnapshot> stream =
+  //       Firestore.instance.collection('videos').snapshots();
+
+  //   return stream.map((qShot) => qShot.documents
+  //       .map((doc) => Video(
+  //           title: doc.data['title'],
+  //           url: doc.data['url'],
+  //           datum: doc.data['datum']))
+  //       .toList());
+  // }
 
   @override
   void onInit() {

@@ -1,6 +1,6 @@
-import 'package:firebase_getx_boilerplate/app/core/theme/color_theme.dart';
-import 'package:firebase_getx_boilerplate/app/core/theme/text_theme.dart';
-import 'package:firebase_getx_boilerplate/app/widgets/button.dart';
+import 'package:glint/app/core/theme/color_theme.dart';
+import 'package:glint/app/core/theme/text_theme.dart';
+import 'package:glint/app/widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,4 +1,4 @@
-package com.example.firebase_getx_boilerplate
+package com.develop.glint
 
 import io.flutter.embedding.android.FlutterActivity
 

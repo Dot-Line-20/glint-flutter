@@ -1,6 +1,4 @@
-import 'package:firebase_getx_boilerplate/app/data/controllers/lifecycle.dart';
-import 'package:firebase_getx_boilerplate/app/firebase/auth.dart';
-import 'package:firebase_getx_boilerplate/app/firebase/data_document.dart';
+import 'package:glint/app/data/controllers/lifecycle.dart';
 import 'package:get/get.dart';
 
 class AppInitalizer {

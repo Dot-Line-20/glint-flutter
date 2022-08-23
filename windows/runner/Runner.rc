@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "firebase_getx_boilerplate" "\0"
+            VALUE "CompanyName", "com.develop" "\0"
+            VALUE "FileDescription", "glint" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "firebase_getx_boilerplate" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2022 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "firebase_getx_boilerplate.exe" "\0"
-            VALUE "ProductName", "firebase_getx_boilerplate" "\0"
+            VALUE "InternalName", "glint" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2022 com.develop. All rights reserved." "\0"
+            VALUE "OriginalFilename", "glint.exe" "\0"
+            VALUE "ProductName", "glint" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

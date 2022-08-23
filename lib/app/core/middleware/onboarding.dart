@@ -1,4 +1,4 @@
-import 'package:firebase_getx_boilerplate/app/routes/route.dart';
+import 'package:glint/app/routes/route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
