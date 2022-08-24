@@ -8,13 +8,12 @@ import 'package:get/get.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  // loading
-  // FlutterNativeSplash.remove(widgetsBinding: widgetsBinding);
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  await AppInitalizer().init();
+  FlutterNativeSplash.remove();
 
   // Do Firebase Initial Settings With Firebase CLI
   // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await AppInitalizer().init();
   //Get.config();
   runApp(
     GetMaterialApp(
