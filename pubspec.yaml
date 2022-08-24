@@ -57,6 +57,7 @@ dependencies:
   # UTILL
   intl: ^0.17.0
   uuid: ^3.0.6
+  flutter_keyboard_visibility: ^5.3.0
 
 dev_dependencies:
   flutter_test:

@@ -1,45 +1,153 @@
+import 'package:flutter/material.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
-import 'package:flutter/material.dart';
 
 class FGBPTextField extends StatelessWidget {
+  final String? label;
+  final String? hintText;
+  final bool autofocus;
+  final bool isPassword;
+  final int? maxLength;
+  final TextInputType? textInputType;
+  final TextEditingController? controller;
+  final void Function(String)? onChanged;
+  final TextInputAction? textInputAction;
+  final void Function()? onEditingComplete;
+  final bool? enableInteractiveSelection;
+
   const FGBPTextField({
     Key? key,
-    required this.textController,
+    this.label,
     this.hintText,
-    this.inputType = TextInputType.none,
-    this.borderColor = AppColorTheme.BUTTON1,
+    this.controller,
+    this.maxLength,
+    this.textInputType,
+    this.onChanged,
+    this.textInputAction,
+    this.onEditingComplete,
+    this.enableInteractiveSelection,
+    this.autofocus = false,
+    this.isPassword = false,
   }) : super(key: key);
-
-  final TextEditingController textController;
-  final String? hintText;
-  final TextInputType? inputType;
-  final Color borderColor;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      keyboardType: inputType,
-      controller: textController,
-      style: AppTextTheme.regularGrey1_12,
-      cursorColor: AppColorTheme.black,
+      enableInteractiveSelection: enableInteractiveSelection,
+      obscureText: isPassword,
+      enableSuggestions: !isPassword,
+      autocorrect: !isPassword,
+      autofocus: autofocus,
+      style: AppTextTheme.boldGray1_18,
+      cursorColor: Colors.black,
+      keyboardType: textInputType,
+      maxLength: maxLength,
+      controller: controller,
+      onChanged: onChanged,
+      onEditingComplete: onEditingComplete,
+      textInputAction: textInputAction,
       decoration: InputDecoration(
-        hintStyle: AppTextTheme.regularGrey1_12,
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: borderColor, width: 3),
-          borderRadius: const BorderRadius.all(Radius.circular(12)),
+        hintText: hintText,
+        labelText: label,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(
+            width: 0,
+            style: BorderStyle.none,
+          ),
         ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: borderColor, width: 3),
-          borderRadius: const BorderRadius.all(Radius.circular(12)),
-        ),
+        counterText: "",
         fillColor: AppColorTheme.white,
         filled: true,
-        hintText: hintText,
-        contentPadding:
-            const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-        focusColor: AppColorTheme.BUTTON1,
+        hintStyle: AppTextTheme.boldBlue_24,
+        floatingLabelStyle: const TextStyle(
+            color: Color.fromRGBO(0, 0, 0, 0.4),
+            fontWeight: FontWeight.w500,
+            fontSize: 12),
       ),
+    );
+  }
+}
+
+class FGBPTextFormField extends StatelessWidget {
+  final String? label;
+  final String? hintText;
+  final bool autofocus;
+  final bool isPassword;
+  final int? maxLength;
+  final TextInputType? textInputType;
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
+  final TextInputAction? textInputAction;
+  final void Function()? onEditingComplete;
+  final bool? enableInteractiveSelection;
+
+  const FGBPTextFormField({
+    Key? key,
+    this.label,
+    this.hintText,
+    this.controller,
+    this.maxLength,
+    this.textInputType,
+    this.validator,
+    this.onChanged,
+    this.textInputAction,
+    this.onEditingComplete,
+    this.enableInteractiveSelection,
+    this.autofocus = false,
+    this.isPassword = false,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      enableInteractiveSelection: enableInteractiveSelection,
+      textInputAction: textInputAction,
+      obscureText: isPassword,
+      enableSuggestions: !isPassword,
+      autocorrect: !isPassword,
+      autofocus: autofocus,
+      style: AppTextTheme.boldGray1_18,
+      onEditingComplete: onEditingComplete,
+      cursorColor: Colors.black,
+      keyboardType: textInputType,
+      maxLength: maxLength,
+      controller: controller,
+      onChanged: onChanged,
+      decoration: InputDecoration(
+        hintText: hintText,
+        labelText: label,
+        labelStyle: AppTextTheme.boldGray3_14,
+        enabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColorTheme.Gray3,
+            width: 3,
+          ),
+        ),
+        focusedBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColorTheme.Gray3,
+            width: 3,
+          ),
+        ),
+        border: UnderlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(
+            color: AppColorTheme.Gray3,
+            width: 3,
+          ),
+        ),
+        counterText: "",
+        fillColor: Colors.transparent,
+        filled: true,
+        hintStyle: AppTextTheme.boldBlue_24,
+        floatingLabelStyle: const TextStyle(
+            color: Color.fromRGBO(0, 0, 0, 0.4),
+            fontWeight: FontWeight.w500,
+            fontSize: 12),
+      ),
+      validator: validator,
     );
   }
 }

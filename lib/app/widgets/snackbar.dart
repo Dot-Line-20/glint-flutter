@@ -27,22 +27,13 @@ class FGBPSnackBar {
 
   static void openOne(String title, String one) {
     Get.rawSnackbar(
-      onTap: (_) {
-        Get.back();
-      },
-      titleText: Text(title, style: AppTextTheme.boldGray1_16),
-      messageText: Text(one, style: AppTextTheme.semiboldGrey1_16),
-      isDismissible: true,
-      backgroundColor: AppColorTheme.white,
-      mainButton: FGBPTextButton(
-        text: "확인",
-        radius: 10,
-        onTap: () {
+        onTap: (_) {
           Get.back();
         },
-      ),
-    );
+        titleText: Text(title, style: AppTextTheme.boldGray1_16),
+        messageText: Text(one, style: AppTextTheme.semiboldGrey1_16),
+        isDismissible: true,
+        backgroundColor: AppColorTheme.white,
+        mainButton: FGBPSmallTextButton(text: "꿋"));
   }
-
-
 }

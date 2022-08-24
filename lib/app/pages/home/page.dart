@@ -20,9 +20,7 @@ class HomePage extends StatelessWidget {
           children: [
             Text("Hello World!!!", style: AppTextTheme.boldBlue_24),
             const SizedBox(height: 8),
-            FGBPTextField(textController: textEditingController),
             const SizedBox(height: 8),
-            FGBPTextButton(text: "Hello", radius: 10),
             ValueBuilder(
               initialValue: false,
               onUpdate: (value) => print("GOOD"),

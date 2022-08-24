@@ -18,7 +18,7 @@ void main() async {
   //Get.config();
   runApp(
     GetMaterialApp(
-      initialRoute: Routes.home,
+      initialRoute: Routes.login,
       getPages: AppPages.pages,
       theme: ThemeData(fontFamily: "Pretendard"),
       locale: GetCurrentLocale.currentDeviceLocale,

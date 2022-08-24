@@ -21,6 +21,7 @@ abstract class AppColorTheme {
 
   /// button style
   static const BUTTON1 = Color(0xff121D56);
+  static const BUTTON2 = Color(0xff484A5E);
 
   /// material
   static const black = Colors.black;
