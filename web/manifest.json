@@ -1,11 +1,11 @@
 {
-    "name": "firebase_getx_boilerplate",
-    "short_name": "firebase_getx_boilerplate",
+    "name": "GLINT",
+    "short_name": "GLINT",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "GLINT Project",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

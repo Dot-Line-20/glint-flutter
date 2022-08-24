@@ -58,3 +58,21 @@ class FileSystem {
   FileSystem._();
   static final instance = FileSystem._();
 }
+
+/*
+    ValueBuilder(
+              initialValue: false,
+              onUpdate: (value) => print("GOOD"),
+              onDispose: () => print("GOOD"),
+              builder: (bool value, Function(bool) updatefn) => Switch(
+                value: value,
+                onChanged: updatefn,
+              ),
+            ),
+            ObxValue(
+                (Rx<bool> data) => Switch(value: data.value, onChanged: data),
+                false.obs),
+            GetX(builder: (controller) {
+              return Text("${controller}");
+            }),
+*/
