@@ -7,7 +7,7 @@ class FGBPButton extends StatelessWidget {
   const FGBPButton({
     Key? key,
     required this.child,
-    this.color = AppColorTheme.mainColor,
+    this.color = AppColorTheme.BUTTON1,
     this.height,
     this.width,
     this.radius,
@@ -46,7 +46,7 @@ class FGBPTextButton extends StatelessWidget {
     Key? key,
     required this.text,
     this.height,
-    this.color = AppColorTheme.mainColor,
+    this.color = AppColorTheme.BUTTON1,
     this.radius,
     this.onTap,
   }) : super(key: key);
@@ -59,7 +59,7 @@ class FGBPTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const textColor = AppTextTheme.regular20;
+    const textColor = AppTextTheme.regularGrey1_12;
     return FGBPButton(
       height: height,
       onTap: onTap,
@@ -83,7 +83,7 @@ class SmallFGBPButton extends StatelessWidget {
       {Key? key,
       required this.child,
       this.height,
-      this.color = AppColorTheme.mainColor,
+      this.color = AppColorTheme.BUTTON1,
       this.onTap})
       : super(key: key);
 

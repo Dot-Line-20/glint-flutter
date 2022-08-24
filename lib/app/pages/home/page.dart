@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text("Hello World!!!", style: AppTextTheme.bold20),
+            Text("Hello World!!!", style: AppTextTheme.boldBlue_24),
             const SizedBox(height: 8),
             FGBPTextField(textController: textEditingController),
             const SizedBox(height: 8),

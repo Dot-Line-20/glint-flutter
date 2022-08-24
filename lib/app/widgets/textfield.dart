@@ -3,13 +3,13 @@ import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:flutter/material.dart';
 
 class FGBPTextField extends StatelessWidget {
-  const FGBPTextField(
-      {Key? key,
-      required this.textController,
-      this.hintText,
-      this.inputType = TextInputType.none,
-      this.borderColor = AppColorTheme.mainColor})
-      : super(key: key);
+  const FGBPTextField({
+    Key? key,
+    required this.textController,
+    this.hintText,
+    this.inputType = TextInputType.none,
+    this.borderColor = AppColorTheme.BUTTON1,
+  }) : super(key: key);
 
   final TextEditingController textController;
   final String? hintText;
@@ -21,10 +21,10 @@ class FGBPTextField extends StatelessWidget {
     return TextField(
       keyboardType: inputType,
       controller: textController,
-      style: AppTextTheme.regular20,
+      style: AppTextTheme.regularGrey1_12,
       cursorColor: AppColorTheme.black,
       decoration: InputDecoration(
-        hintStyle: AppTextTheme.regularGrey14,
+        hintStyle: AppTextTheme.regularGrey1_12,
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: borderColor, width: 3),
           borderRadius: const BorderRadius.all(Radius.circular(12)),
@@ -38,7 +38,7 @@ class FGBPTextField extends StatelessWidget {
         hintText: hintText,
         contentPadding:
             const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-        focusColor: AppColorTheme.mainColor,
+        focusColor: AppColorTheme.BUTTON1,
       ),
     );
   }
