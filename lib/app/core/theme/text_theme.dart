@@ -6,99 +6,193 @@ abstract class AppTextTheme {
   //Name Rule
   //FontWeight + Color + Font Size
 
-  static const extraBold22 = TextStyle(
-      fontFamily: "Pretendard",
-      fontWeight: FontWeight.w800,
-      fontSize: 22,
-      color: AppColorTheme.mainColor);
+  static const boldHGray1_26 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w700,
+    fontSize: 26,
+    color: AppColorTheme.Gray1,
+  );
+  static const boldHGray1_24 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w700,
+    fontSize: 24,
+    color: AppColorTheme.Gray1,
+  );
+  static const boldBlue_24 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w700,
+    fontSize: 24,
+    color: AppColorTheme.Blue,
+  );
+  static const boldGray1_20 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w700,
+    fontSize: 20,
+    color: AppColorTheme.Gray1,
+  );
+  static const boldGray2_20 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w700,
+    fontSize: 20,
+    color: AppColorTheme.Gray2,
+  );
+  static const boldGray1_18 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w700,
+    fontSize: 18,
+    color: AppColorTheme.Gray1,
+  );
+  static const boldGray1_16 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w700,
+    fontSize: 16,
+    color: AppColorTheme.Gray1,
+  );
+  static const boldWhite_18 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w700,
+    fontSize: 18,
+    color: AppColorTheme.white,
+  );
+  static const boldGray3_18 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w700,
+    fontSize: 18,
+    color: AppColorTheme.Gray3,
+  );
+  static const boldWhite_12 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w700,
+    fontSize: 12,
+    color: AppColorTheme.white,
+  );
+  static const boldGray2_14 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w700,
+    fontSize: 14,
+    color: AppColorTheme.Gray2,
+  );
+  static const boldGray3_14 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w700,
+    fontSize: 14,
+    color: AppColorTheme.Gray3,
+  );
+  static const boldWhite_14 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w700,
+    fontSize: 14,
+    color: AppColorTheme.white,
+  );
+  static get boldWhite60_14 => TextStyle(
+        fontFamily: "Pretendard",
+        fontWeight: FontWeight.w700,
+        fontSize: 14,
+        color: AppColorTheme.white_60,
+      );
 
-  static const bold20 = TextStyle(
+  static const regularGrey1_30 = TextStyle(
       fontFamily: "Pretendard",
-      fontWeight: FontWeight.w700,
-      fontSize: 20,
-      color: AppColorTheme.black);
-  static const boldMain20 = TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 30,
+      color: AppColorTheme.Gray1);
+  static const regularGrey1_14 = TextStyle(
       fontFamily: "Pretendard",
-      fontWeight: FontWeight.w700,
-      fontSize: 20,
-      color: AppColorTheme.mainColor);
+      fontWeight: FontWeight.w400,
+      fontSize: 14,
+      color: AppColorTheme.Gray1);
+  static const regularGrey1_12 = TextStyle(
+      fontFamily: "Pretendard",
+      fontWeight: FontWeight.w400,
+      fontSize: 12,
+      color: AppColorTheme.Gray1);
+  static const regularGrey3_14 = TextStyle(
+      fontFamily: "Pretendard",
+      fontWeight: FontWeight.w400,
+      fontSize: 14,
+      color: AppColorTheme.Gray3);
+  static get regularWhite60_14 => TextStyle(
+      fontFamily: "Pretendard",
+      fontWeight: FontWeight.w400,
+      fontSize: 14,
+      color: AppColorTheme.white_60);
 
-  static const boldGray18 = TextStyle(
+  static const semiboldGrey1_16 = TextStyle(
       fontFamily: "Pretendard",
-      fontWeight: FontWeight.w700,
+      fontWeight: FontWeight.w600,
+      fontSize: 16,
+      color: AppColorTheme.Gray1);
+  static const semiboldGrey2_14 = TextStyle(
+      fontFamily: "Pretendard",
+      fontWeight: FontWeight.w600,
+      fontSize: 14,
+      color: AppColorTheme.Gray2);
+  static const semiboldWhite_18 = TextStyle(
+      fontFamily: "Pretendard",
+      fontWeight: FontWeight.w600,
       fontSize: 18,
-      color: AppColorTheme.grey);
-  static const boldWhite14 = TextStyle(
-      fontFamily: "Pretendard",
-      fontWeight: FontWeight.w700,
-      fontSize: 14,
-      color: AppColorTheme.white);
-  static const boldGrey12 = TextStyle(
-      fontFamily: "Pretendard",
-      fontWeight: FontWeight.w700,
-      fontSize: 12,
-      color: AppColorTheme.grey);
-
-  static const regularGrey14 = TextStyle(
-      fontFamily: "Pretendard",
-      fontWeight: FontWeight.w400,
-      fontSize: 14,
-      color: AppColorTheme.grey);
-  static const regular20 = TextStyle(
-      fontFamily: "Pretendard",
-      fontWeight: FontWeight.w400,
-      fontSize: 20,
-      color: AppColorTheme.black);
-  static const regular12 = TextStyle(
-      fontFamily: "Pretendard",
-      fontWeight: FontWeight.w400,
-      fontSize: 12,
-      color: AppColorTheme.black);
-  static const regularWhite12 = TextStyle(
-      fontFamily: "Pretendard",
-      fontWeight: FontWeight.w400,
-      fontSize: 12,
       color: AppColorTheme.white);
 
-  static const semiboldMain14 = TextStyle(
+  static const mediumGray2_14 = TextStyle(
       fontFamily: "Pretendard",
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w500,
       fontSize: 14,
-      color: AppColorTheme.mainColor);
-  static const semiboldMain20 = TextStyle(
+      color: AppColorTheme.Gray2);
+  static const mediumGreen_12 = TextStyle(
       fontFamily: "Pretendard",
-      fontWeight: FontWeight.w600,
-      fontSize: 20,
-      color: AppColorTheme.mainColor);
-  static const semiboldWhite22 = TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: 12,
+      color: AppColorTheme.Sys_Green);
+  static const mediumRed_12 = TextStyle(
       fontFamily: "Pretendard",
-      fontWeight: FontWeight.w600,
-      fontSize: 22,
-      color: AppColorTheme.white);
-  static const semiboldGrey16 = TextStyle(
-      fontFamily: "Pretendard",
-      fontWeight: FontWeight.w600,
-      fontSize: 16,
-      color: AppColorTheme.grey);
-
-  static const medium20 = TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: 12,
+      color: AppColorTheme.Sys_Red);
+  static const mediumGray1_20 = TextStyle(
       fontFamily: "Pretendard",
       fontWeight: FontWeight.w500,
       fontSize: 20,
-      color: AppColorTheme.black);
-  static const medium16 = TextStyle(
+      color: AppColorTheme.Gray1);
+  static const mediumGray2_12 = TextStyle(
       fontFamily: "Pretendard",
       fontWeight: FontWeight.w500,
-      fontSize: 16,
-      color: AppColorTheme.black);
-  static const mediumGrey14 = TextStyle(
-      fontFamily: "Pretendard",
-      fontWeight: FontWeight.w500,
-      fontSize: 14,
-      color: AppColorTheme.grey);
-  static const mediumWhite14 = TextStyle(
-      fontFamily: "Pretendard",
-      fontWeight: FontWeight.w500,
-      fontSize: 14,
-      color: AppColorTheme.white);
+      fontSize: 12,
+      color: AppColorTheme.Gray2);
+  static const mediumGray1_18 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w500,
+    fontSize: 18,
+    color: AppColorTheme.Gray1,
+  );
+  static const mediumGray1_16 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+    color: AppColorTheme.Gray1,
+  );
+  static const mediumGray3_16 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+    color: AppColorTheme.Gray3,
+  );
+  static get mediumBlue50_18 => TextStyle(
+        fontFamily: "Pretendard",
+        fontWeight: FontWeight.w500,
+        fontSize: 18,
+        color: AppColorTheme.Blue_50,
+      );
+
+  static const mediumGray3_10 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w500,
+    fontSize: 10,
+    color: AppColorTheme.Gray3,
+  );
+  static const mediumBlue_10 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w500,
+    fontSize: 10,
+    color: AppColorTheme.Blue,
+  );
 }
