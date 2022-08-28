@@ -14,25 +14,28 @@ class FGBPTextField extends StatelessWidget {
   final TextInputAction? textInputAction;
   final void Function()? onEditingComplete;
   final bool? enableInteractiveSelection;
+  final void Function()? onTap;
 
-  const FGBPTextField({
-    Key? key,
-    this.label,
-    this.hintText,
-    this.controller,
-    this.maxLength,
-    this.textInputType,
-    this.onChanged,
-    this.textInputAction,
-    this.onEditingComplete,
-    this.enableInteractiveSelection,
-    this.autofocus = false,
-    this.isPassword = false,
-  }) : super(key: key);
+  const FGBPTextField(
+      {Key? key,
+      this.label,
+      this.hintText,
+      this.controller,
+      this.maxLength,
+      this.textInputType,
+      this.onChanged,
+      this.textInputAction,
+      this.onEditingComplete,
+      this.enableInteractiveSelection,
+      this.autofocus = false,
+      this.isPassword = false,
+      this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onTap: onTap,
       enableInteractiveSelection: enableInteractiveSelection,
       obscureText: isPassword,
       enableSuggestions: !isPassword,
@@ -82,26 +85,34 @@ class FGBPTextFormField extends StatelessWidget {
   final TextInputAction? textInputAction;
   final void Function()? onEditingComplete;
   final bool? enableInteractiveSelection;
+  final void Function()? onTap;
+  final bool readOnly;
+  final Color color;
 
-  const FGBPTextFormField({
-    Key? key,
-    this.label,
-    this.hintText,
-    this.controller,
-    this.maxLength,
-    this.textInputType,
-    this.validator,
-    this.onChanged,
-    this.textInputAction,
-    this.onEditingComplete,
-    this.enableInteractiveSelection,
-    this.autofocus = false,
-    this.isPassword = false,
-  }) : super(key: key);
+  const FGBPTextFormField(
+      {Key? key,
+      this.label,
+      this.hintText,
+      this.controller,
+      this.maxLength,
+      this.textInputType,
+      this.validator,
+      this.onChanged,
+      this.textInputAction,
+      this.onEditingComplete,
+      this.enableInteractiveSelection,
+      this.autofocus = false,
+      this.isPassword = false,
+      this.onTap,
+      this.readOnly = false,
+      this.color = AppColorTheme.Gray3})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      readOnly: readOnly,
+      onTap: onTap,
       enableInteractiveSelection: enableInteractiveSelection,
       textInputAction: textInputAction,
       obscureText: isPassword,
@@ -119,22 +130,22 @@ class FGBPTextFormField extends StatelessWidget {
         hintText: hintText,
         labelText: label,
         labelStyle: AppTextTheme.boldGray3_14,
-        enabledBorder: const UnderlineInputBorder(
+        enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(
-            color: AppColorTheme.Gray3,
+            color: color,
             width: 3,
           ),
         ),
-        focusedBorder: const UnderlineInputBorder(
+        focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(
-            color: AppColorTheme.Gray3,
+            color: color,
             width: 3,
           ),
         ),
         border: UnderlineInputBorder(
           borderRadius: BorderRadius.circular(8),
-          borderSide: const BorderSide(
-            color: AppColorTheme.Gray3,
+          borderSide: BorderSide(
+            color: color,
             width: 3,
           ),
         ),

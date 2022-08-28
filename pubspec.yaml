@@ -58,6 +58,8 @@ dependencies:
   intl: ^0.17.0
   uuid: ^3.0.6
   flutter_keyboard_visibility: ^5.3.0
+  scroll_date_picker: ^3.6.0
+  pin_code_fields: ^7.4.0
 
 dev_dependencies:
   flutter_test:

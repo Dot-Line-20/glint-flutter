@@ -3,7 +3,7 @@ import 'package:glint/app/pages/home/page.dart';
 import 'package:glint/app/pages/login/binding.dart';
 import 'package:glint/app/pages/login/page.dart';
 import 'package:glint/app/pages/register/binding.dart';
-import 'package:glint/app/pages/register/page.dart';
+import 'package:glint/app/pages/register/view/register_init.dart';
 import 'package:glint/app/routes/route.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +19,7 @@ class AppPages {
         binding: LoginPageBinding()),
     GetPage(
         name: Routes.register,
-        page: () => const RegisterPage(),
+        page: () => const RegisterInitPage(),
         binding: RegisterPageBinding()),
   ];
 }

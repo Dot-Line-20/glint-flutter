@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:glint/app/routes/route.dart';
 
 class LoginPageController extends GetxController with StateMixin {
   final TextEditingController idTextController = TextEditingController();
@@ -32,5 +33,9 @@ class LoginPageController extends GetxController with StateMixin {
   void onPasswordChange() {
     String data = passwordTextController.text;
     passwordText.value = data.isEmpty ? null : data;
+  }
+
+  void moveToRegisterPage() {
+    Get.toNamed(Routes.register);
   }
 }
