@@ -12,16 +12,21 @@ class RegisterPasswordPage extends GetView<RegisterPageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        foregroundColor: AppColorTheme.black,
+        elevation: 0,
+      ),
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(25),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text("회원가입", style: AppTextTheme.boldHGray1_24),
@@ -34,23 +39,25 @@ class RegisterPasswordPage extends GetView<RegisterPageController> {
                     child: FocusScope(
                         node: controller.formFocusScopeNode,
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            const Text("아이디", style: AppTextTheme.boldGray3_14),
                             FGBPTextFormField(
                               enableInteractiveSelection: false,
                               controller: controller.idTextController,
-                              label: "아이디",
                             ),
-                            const SizedBox(height: 20),
+                            const SizedBox(height: 50),
                             Obx(
                               () => Column(
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  const Text("비밀번호",
+                                      style: AppTextTheme.boldGray3_14),
                                   FGBPTextFormField(
                                     enableInteractiveSelection: false,
                                     controller:
                                         controller.passwordTextController,
-                                    label: "비밀번호",
                                     color: controller.passwordAvailableIsNull
                                         ? AppColorTheme.Gray3
                                         : controller.passwordAvailable
@@ -69,12 +76,13 @@ class RegisterPasswordPage extends GetView<RegisterPageController> {
                                 ],
                               ),
                             ),
-                            const SizedBox(height: 20),
+                            const SizedBox(height: 50),
+                            const Text("비밀번호 확인",
+                                style: AppTextTheme.boldGray3_14),
                             FGBPTextFormField(
                               enableInteractiveSelection: false,
                               controller:
                                   controller.passwordCheckTextController,
-                              label: "비밀번호 확인",
                             ),
                           ],
                         )),
@@ -87,18 +95,16 @@ class RegisterPasswordPage extends GetView<RegisterPageController> {
               (_) => Obx(
                 () => FGBPKeyboardReactiveButton(
                   disabled: !controller.passwordInputValidity,
+                  onTap: controller.moveToThirdPage,
                   child: const Text(
                     "다음",
                     style: AppTextTheme.boldWhite_18,
                   ),
-                  onTap: () {
-                    controller.moveToThirdPage();
-                  },
                 ),
               ),
-              onLoading: FGBPKeyboardReactiveButton(
-                disabled: !controller.passwordInputValidity,
-                child: const SizedBox(
+              onLoading: const FGBPKeyboardReactiveButton(
+                disabled: false,
+                child: SizedBox(
                   height: 20,
                   width: 20,
                   child: CircularProgressIndicator(
@@ -106,7 +112,6 @@ class RegisterPasswordPage extends GetView<RegisterPageController> {
                     strokeWidth: 2,
                   ),
                 ),
-                onTap: () {},
               ),
             ),
           ],

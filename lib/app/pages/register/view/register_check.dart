@@ -13,6 +13,13 @@ class RegisterCheckPage extends GetView<RegisterPageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        foregroundColor: AppColorTheme.black,
+        elevation: 0,
+        centerTitle: true,
+        title: const Text("본인 인증", style: AppTextTheme.mediumGray1_18),
+      ),
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(25),
@@ -22,33 +29,32 @@ class RegisterCheckPage extends GetView<RegisterPageController> {
           children: [
             Expanded(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text("본인 인증", style: AppTextTheme.boldHGray1_24),
-                  const SizedBox(height: 8),
-                  const Text("비밀번호는 8자리 이상, 특수문자를 포함해야해요",
-                      style: AppTextTheme.boldGray2_14),
-                  const SizedBox(height: 50),
-                  Text(
-                    controller.emailText.value ?? "",
-                    style: AppTextTheme.boldBlue_24,
-                  ),
-                  PinCodeTextField(
-                    autoFocus: true,
-                    controller: controller.pinController,
-                    appContext: context,
-                    length: 4,
-                    onChanged: (_) {},
-                    onCompleted: (_) {},
-                    pinTheme: PinTheme(
-                        shape: PinCodeFieldShape.box,
-                        borderRadius: BorderRadius.circular(10),
-                        fieldHeight: 50,
-                        fieldWidth: 40,
-                        activeColor: Colors.blue,
-                        inactiveColor: Colors.grey),
-                    keyboardType: TextInputType.number,
+                  const SizedBox(height: 70),
+                  const Text("이메일로 온 4자리 숫자를 입력해주세요.",
+                      style: AppTextTheme.mediumGray1_20),
+                  const SizedBox(height: 40),
+                  SizedBox(
+                    width: 300,
+                    child: PinCodeTextField(
+                      autoFocus: true,
+                      controller: controller.pinController,
+                      appContext: context,
+                      length: 4,
+                      onChanged: (_) {},
+                      onCompleted: (_) {},
+                      pinTheme: PinTheme(
+                          shape: PinCodeFieldShape.box,
+                          borderRadius: BorderRadius.circular(10),
+                          fieldHeight: 60,
+                          fieldWidth: 55,
+                          selectedColor: AppColorTheme.Gray1,
+                          activeColor: AppColorTheme.Gray1,
+                          inactiveColor: AppColorTheme.Gray2),
+                      keyboardType: TextInputType.number,
+                    ),
                   ),
                 ],
               ),

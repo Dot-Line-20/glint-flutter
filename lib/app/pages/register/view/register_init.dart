@@ -12,16 +12,21 @@ class RegisterInitPage extends GetView<RegisterPageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        foregroundColor: AppColorTheme.black,
+        elevation: 0,
+      ),
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(25),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text("회원가입", style: AppTextTheme.boldHGray1_24),
@@ -34,26 +39,29 @@ class RegisterInitPage extends GetView<RegisterPageController> {
                     child: FocusScope(
                         node: controller.formFocusScopeNode,
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            const Text("이름  ",
+                                style: AppTextTheme.boldGray3_14),
                             FGBPTextFormField(
                               enableInteractiveSelection: false,
                               controller: controller.nameTextController,
-                              label: "이름",
                             ),
-                            const SizedBox(height: 20),
+                            const SizedBox(height: 50),
+                            const Text("이메일", style: AppTextTheme.boldGray3_14),
                             FGBPTextFormField(
                               enableInteractiveSelection: false,
                               controller: controller.emailTextController,
-                              label: "이메일",
                             ),
-                            const SizedBox(height: 20),
+                            const SizedBox(height: 50),
+                            const Text("생년월일",
+                                style: AppTextTheme.boldGray3_14),
                             FGBPTextFormField(
                               readOnly: true,
                               onTap: controller.pickDateTime,
                               textInputType: TextInputType.datetime,
                               enableInteractiveSelection: false,
                               controller: controller.birthDayController,
-                              label: "생년월일",
                             ),
                           ],
                         )),
@@ -66,16 +74,18 @@ class RegisterInitPage extends GetView<RegisterPageController> {
               (_) => Obx(
                 () => FGBPKeyboardReactiveButton(
                   disabled: !controller.initInputValidity,
-                  onTap: controller.moveToSecondPage,
+                  onTap: controller.initInputValidity
+                      ? controller.moveToSecondPage
+                      : null,
                   child: const Text(
                     "다음",
                     style: AppTextTheme.boldWhite_18,
                   ),
                 ),
               ),
-              onLoading: FGBPKeyboardReactiveButton(
-                disabled: !controller.initInputValidity,
-                child: const SizedBox(
+              onLoading: const FGBPKeyboardReactiveButton(
+                disabled: false,
+                child: SizedBox(
                   height: 20,
                   width: 20,
                   child: CircularProgressIndicator(
@@ -83,7 +93,6 @@ class RegisterInitPage extends GetView<RegisterPageController> {
                     strokeWidth: 2,
                   ),
                 ),
-                onTap: () {},
               ),
             ),
           ],

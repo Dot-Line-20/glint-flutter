@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/pages/register/view/register_check.dart';
 import 'package:glint/app/pages/register/view/register_password.dart';
@@ -122,37 +123,68 @@ class RegisterPageController extends GetxController with StateMixin {
                 textAlign: TextAlign.start,
               ),
               const SizedBox(height: 15),
-              SizedBox(
-                width: 250,
-                height: 45,
-                child: ScrollDatePicker(
-                  selectedDate: _selectedDate.value,
-                  minimumDate: DateTime(1900),
-                  maximumDate: DateTime(2100),
-                  locale: const Locale('ko'),
-                  scrollViewOptions: const DatePickerScrollViewOptions(
-                      year: ScrollViewDetailOptions(
-                        label: '년',
-                        margin: EdgeInsets.only(right: 16),
-                        textStyle: AppTextTheme.boldGray2_20,
-                        selectedTextStyle: AppTextTheme.boldGray2_20,
-                      ),
-                      month: ScrollViewDetailOptions(
-                        label: '월',
-                        margin: EdgeInsets.only(right: 16),
-                        textStyle: AppTextTheme.boldGray2_20,
-                        selectedTextStyle: AppTextTheme.boldGray2_20,
-                      ),
-                      day: ScrollViewDetailOptions(
-                        label: '일',
-                        textStyle: AppTextTheme.boldGray2_20,
-                        selectedTextStyle: AppTextTheme.boldGray2_20,
-                      )),
-                  onDateTimeChanged: (DateTime value) {
-                    birthDayController.text = value.convertStringFormat;
-                    _selectedDate.value = value;
-                  },
-                ),
+              Stack(
+                children: [
+                  SizedBox(
+                    width: 250,
+                    height: 40,
+                    child: ScrollDatePicker(
+                      selectedDate: _selectedDate.value,
+                      minimumDate: DateTime(1900),
+                      maximumDate: DateTime(DateTime.now().year, 12, 31),
+                      locale: const Locale('ko'),
+                      scrollViewOptions: const DatePickerScrollViewOptions(
+                          year: ScrollViewDetailOptions(
+                            label: '년',
+                            margin: EdgeInsets.only(right: 16),
+                            textStyle: AppTextTheme.boldGray2_20,
+                            selectedTextStyle: AppTextTheme.boldGray2_20,
+                          ),
+                          month: ScrollViewDetailOptions(
+                            label: '월',
+                            margin: EdgeInsets.only(right: 16),
+                            textStyle: AppTextTheme.boldGray2_20,
+                            selectedTextStyle: AppTextTheme.boldGray2_20,
+                          ),
+                          day: ScrollViewDetailOptions(
+                            label: '일',
+                            textStyle: AppTextTheme.boldGray2_20,
+                            selectedTextStyle: AppTextTheme.boldGray2_20,
+                          )),
+                      onDateTimeChanged: (DateTime value) {
+                        birthDayController.text = value.convertStringFormat;
+                        _selectedDate.value = value;
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    width: 250,
+                    height: 40,
+                    child: Row(
+                      children: const [
+                        VerticalDivider(
+                          color: AppColorTheme.white,
+                          thickness: 19,
+                        ),
+                        SizedBox(width: 77),
+                        VerticalDivider(
+                          color: AppColorTheme.white,
+                          thickness: 10,
+                        ),
+                        SizedBox(width: 48),
+                        VerticalDivider(
+                          color: AppColorTheme.white,
+                          thickness: 10,
+                        ),
+                        SizedBox(width: 53),
+                        VerticalDivider(
+                          color: AppColorTheme.white,
+                          thickness: 30,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

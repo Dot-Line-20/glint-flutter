@@ -12,55 +12,59 @@ class LoginPage extends GetView<LoginPageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+      ),
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(25),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text("로그인", style: AppTextTheme.boldHGray1_24),
             const SizedBox(height: 8),
             const Text("홍보용 문구", style: AppTextTheme.boldGray2_14),
-            const SizedBox(height: 50),
+            const SizedBox(height: 70),
             Form(
               key: controller.formKey,
               child: FocusScope(
                   node: controller.formFocusScopeNode,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const Text("아이디", style: AppTextTheme.boldGray3_14),
                       FGBPTextFormField(
                         enableInteractiveSelection: false,
                         controller: controller.idTextController,
-                        label: "아이디",
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 50),
+                      const Text("비밀번호", style: AppTextTheme.boldGray3_14),
                       FGBPTextFormField(
                         isPassword: true,
                         enableInteractiveSelection: false,
                         controller: controller.passwordTextController,
-                        label: "비밀번호",
                       ),
                     ],
                   )),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 50),
             controller.obx(
               (_) => Obx(
                 () => FGBPKeyboardReactiveButton(
                   disabled: !controller.inputValidity,
+                  onTap: controller.inputValidity ? null : null,
                   child: const Text(
                     "로그인하기",
                     style: AppTextTheme.boldWhite_18,
                   ),
-                  onTap: () {
-                    print("GPPD");
-                  },
                 ),
               ),
-              onLoading: FGBPKeyboardReactiveButton(
-                disabled: !controller.inputValidity,
-                child: const SizedBox(
+              onLoading: const FGBPKeyboardReactiveButton(
+                disabled: false,
+                child: SizedBox(
                   height: 20,
                   width: 20,
                   child: CircularProgressIndicator(
@@ -68,7 +72,6 @@ class LoginPage extends GetView<LoginPageController> {
                     strokeWidth: 2,
                   ),
                 ),
-                onTap: () {},
               ),
             ),
             const SizedBox(height: 30),
@@ -83,7 +86,7 @@ class LoginPage extends GetView<LoginPageController> {
                     onTap: controller.moveToRegisterPage, content: "회원가입하기"),
               ],
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 50),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
