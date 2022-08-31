@@ -27,7 +27,7 @@ class LoginPageController extends GetxController with StateMixin {
   void onIdChange() {
     String data = idTextController.text;
     idText.value = data.isEmpty ? null : data;
-    print(idText.value);
+    //print(idText.value);
   }
 
   void onPasswordChange() {

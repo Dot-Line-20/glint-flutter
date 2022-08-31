@@ -13,10 +13,10 @@ class FullScreenPage extends StatefulWidget {
   final bool dark;
 
   @override
-  _FullScreenPageState createState() => _FullScreenPageState();
+  FullScreenPageState createState() => FullScreenPageState();
 }
 
-class _FullScreenPageState extends State<FullScreenPage> {
+class FullScreenPageState extends State<FullScreenPage> {
   @override
   void initState() {
     var brightness = widget.dark ? Brightness.light : Brightness.dark;

@@ -8,7 +8,7 @@ class MiddleWare {
     if (routing.current == '/second' && !routing.isDialog!) {
       Get.snackbar("Hi", "You are on second route");
     } else if (routing.current == '/third') {
-      print('last route called');
+      //print('last route called');
     }
   }
 }

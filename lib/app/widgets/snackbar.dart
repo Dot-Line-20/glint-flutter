@@ -1,6 +1,4 @@
 import 'package:glint/app/core/theme/color_theme.dart';
-import 'package:glint/app/core/theme/text_theme.dart';
-import 'package:glint/app/widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,17 +21,5 @@ class FGBPSnackBar {
       margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
       animationDuration: const Duration(milliseconds: 800),
     );
-  }
-
-  static void openOne(String title, String one) {
-    Get.rawSnackbar(
-        onTap: (_) {
-          Get.back();
-        },
-        titleText: Text(title, style: AppTextTheme.boldGray1_16),
-        messageText: Text(one, style: AppTextTheme.semiboldGrey1_16),
-        isDismissible: true,
-        backgroundColor: AppColorTheme.white,
-        mainButton: FGBPSmallTextButton(text: "꿋"));
   }
 }

@@ -22,37 +22,37 @@
 //https://medium.com/flutter-community/flutter-memory-optimization-series-8c4a73f3ea81
 
 //CONCUREEN
-Future<void> test() async {
-  final result = await Future.wait([
-    Future.value(100),
-    Future.value(200),
-  ]);
-}
+// Future<void> test() async {
+//   final result = await Future.wait([
+//     Future.value(100),
+//     Future.value(200),
+//   ]);
+// }
 
-class Validator {
-  bool call(String text) {
-    return text.length > 10;
-  }
-}
+// class Validator {
+//   bool call(String text) {
+//     return text.length > 10;
+//   }
+// }
 
-validatorTest() {
-  final Validator validator = Validator();
-  validator("");
-  validator("");
-  validator("");
-  validator("");
-}
+// validatorTest() {
+//   final Validator validator = Validator();
+//   validator("");
+//   validator("");
+//   validator("");
+//   validator("");
+// }
 
-mapTest() {
-  const bool flag = true;
-  const mapping = {
-    "name": "Marrio",
-    "age": "10",
-    if (flag) ...{
-      "avgRating": 45,
-    }
-  };
-}
+// mapTest() {
+//   const bool flag = true;
+//   const mapping = {
+//     "name": "Marrio",
+//     "age": "10",
+//     if (flag) ...{
+//       "avgRating": 45,
+//     }
+//   };
+// }
 
 class FileSystem {
   FileSystem._();
