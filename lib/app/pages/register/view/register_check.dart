@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/pages/register/controller.dart';
 import 'package:glint/app/widgets/button.dart';
-import 'package:glint/app/widgets/textfield.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class RegisterCheckPage extends GetView<RegisterPageController> {
@@ -63,7 +62,7 @@ class RegisterCheckPage extends GetView<RegisterPageController> {
               (_) => Obx(
                 () => FGBPKeyboardReactiveButton(
                   disabled: !controller.passwordInputValidity,
-                  onTap: controller.moveToThirdPage,
+                  onTap: controller.moveToForthPage,
                   child: const Text(
                     "다음",
                     style: AppTextTheme.boldWhite_18,
@@ -83,9 +82,12 @@ class RegisterCheckPage extends GetView<RegisterPageController> {
               ),
             ),
             const SizedBox(height: 18),
-            const Text(
-              "이메일이 오지 않았어요 > ",
-              style: AppTextTheme.mediumGray2_14,
+            GestureDetector(
+              onTap: controller.moveToChangeEmail,
+              child: const Text(
+                "이메일이 오지 않았어요 > ",
+                style: AppTextTheme.mediumGray2_14,
+              ),
             )
           ],
         ),

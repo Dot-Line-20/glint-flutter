@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
+import 'package:glint/app/pages/register/view/email_check.dart';
 import 'package:glint/app/pages/register/view/register_check.dart';
+import 'package:glint/app/pages/register/view/register_create.dart';
 import 'package:glint/app/pages/register/view/register_password.dart';
 import 'package:scroll_date_picker/scroll_date_picker.dart';
 
@@ -14,19 +16,26 @@ class RegisterPageController extends GetxController with StateMixin {
   final TextEditingController passwordTextController = TextEditingController();
   final TextEditingController passwordCheckTextController =
       TextEditingController();
+  final TextEditingController nicknameTextController = TextEditingController();
+  final TextEditingController userIdTextController = TextEditingController();
   final TextEditingController pinController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
   final secondFormKey = GlobalKey<FormState>();
+  final thirdFormKey = GlobalKey<FormState>();
   final FocusScopeNode formFocusScopeNode = FocusScopeNode();
   final Rx<DateTime> _selectedDate = DateTime.now().obs;
 
   final Rx<String?> nameText = Rx(null);
   final Rx<String?> emailText = Rx(null);
   final Rx<String?> birthday = Rx(null);
+
   final Rx<String?> idText = Rx(null);
   final Rx<String?> passwordText = Rx(null);
   final Rx<String?> passwordCheckText = Rx(null);
+
+  final Rx<String?> nicknameText = Rx(null);
+  final Rx<String?> userIdText = Rx(null);
 
   final RegExp isLeast8 = RegExp(r'.{8,}');
   final RegExp isContainSpecial = RegExp(r'(?=.*?[!@#\$&*~])');
@@ -60,6 +69,8 @@ class RegisterPageController extends GetxController with StateMixin {
     emailTextController.addListener(onEmailChange);
     birthDayController.addListener(onBirthdayChange);
     passwordTextController.addListener(onPasswordChange);
+    nicknameTextController.addListener(onNicknameChange);
+    userIdTextController.addListener(onUserIdChange);
     super.onInit();
   }
 
@@ -90,12 +101,34 @@ class RegisterPageController extends GetxController with StateMixin {
     }
   }
 
+  void onNicknameChange() {
+    String data = nicknameTextController.text;
+    nicknameText.value = data.isEmpty ? null : data;
+  }
+
+  void onUserIdChange() {
+    String data = userIdTextController.text;
+    userIdText.value = data.isEmpty ? null : data;
+  }
+
   void moveToSecondPage() {
     Get.to(() => const RegisterPasswordPage());
   }
 
+  void moveToReSecondPage() {
+    Get.back();
+  }
+
   void moveToThirdPage() {
     Get.to(() => const RegisterCheckPage());
+  }
+
+  void moveToForthPage() {
+    Get.to(() => const RegisterCreatePage());
+  }
+
+  void moveToChangeEmail() {
+    Get.to(() => const EmailCheckPage());
   }
 
   void pickDateTime() async {
