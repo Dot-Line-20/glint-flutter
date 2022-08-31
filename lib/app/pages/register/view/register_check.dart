@@ -59,7 +59,34 @@ class RegisterCheckPage extends GetView<RegisterPageController> {
                 ],
               ),
             ),
-            const SizedBox(height: 16),
+            controller.obx(
+              (_) => Obx(
+                () => FGBPKeyboardReactiveButton(
+                  disabled: !controller.passwordInputValidity,
+                  onTap: controller.moveToThirdPage,
+                  child: const Text(
+                    "다음",
+                    style: AppTextTheme.boldWhite_18,
+                  ),
+                ),
+              ),
+              onLoading: const FGBPKeyboardReactiveButton(
+                disabled: false,
+                child: SizedBox(
+                  height: 20,
+                  width: 20,
+                  child: CircularProgressIndicator(
+                    color: AppColorTheme.white,
+                    strokeWidth: 2,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 18),
+            const Text(
+              "이메일이 오지 않았어요 > ",
+              style: AppTextTheme.mediumGray2_14,
+            )
           ],
         ),
       )),
