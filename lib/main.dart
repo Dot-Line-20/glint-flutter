@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:glint/app/data/initalize.dart';
 import 'package:glint/app/routes/pages.dart';
 import 'package:glint/app/routes/route.dart';
