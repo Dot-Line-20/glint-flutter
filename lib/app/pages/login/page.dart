@@ -83,6 +83,9 @@ class LoginPage extends GetView<LoginPageController> {
                 LoginHelper(onTap: () {}, content: "비밀번호 찾기"),
                 const SizedBox(width: 30),
                 LoginHelper(
+                    onTap: controller.moveToSchedulePage, content: "일정 보기"),
+                const SizedBox(width: 30),
+                LoginHelper(
                     onTap: controller.moveToRegisterPage, content: "회원가입하기"),
               ],
             ),

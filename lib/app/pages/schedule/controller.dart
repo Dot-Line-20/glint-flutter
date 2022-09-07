@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/routes/route.dart';
 
-class LoginPageController extends GetxController with StateMixin {
+class SchedulePageController extends GetxController with StateMixin {
   final TextEditingController idTextController = TextEditingController();
   final TextEditingController passwordTextController = TextEditingController();
 
@@ -37,9 +37,5 @@ class LoginPageController extends GetxController with StateMixin {
 
   void moveToRegisterPage() {
     Get.toNamed(Routes.register);
-  }
-
-  void moveToSchedulePage() {
-    Get.toNamed(Routes.schedule);
   }
 }
