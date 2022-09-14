@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 class FGBPSnackBar {
   static void open(String title,
       {Color backgroundColor = AppColorTheme.black,
-      Color textColor = AppColorTheme.black}) {
+      Color textColor = AppColorTheme.white}) {
     Get.rawSnackbar(
       titleText: Text(title,
           style: TextStyle(

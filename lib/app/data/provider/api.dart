@@ -18,7 +18,8 @@ class FGBPInterceptor extends Interceptor {
 
 class FGBPApiProvider implements FGBPApiInterface {
   final Dio dio = Dio();
-  final baseUrl = "https:...";
+  final baseUrl = "https://h2o.vg";
+  final followRedirects = false;
 
   FGBPApiProvider() {
     dio.options.baseUrl = baseUrl;
@@ -26,8 +27,27 @@ class FGBPApiProvider implements FGBPApiInterface {
   }
 
   @override
-  Future<void> getInfo() async {
-    String url = "/test";
-    dio.post(url);
+  Future<Map> login(String email, String password) async {
+    String url = '/auth/login';
+    Map<String, String> body = {
+      "email": email,
+      "password": password,
+    };
+    Response response = await dio.post(url, data: body);
+    return response.data;
+  }
+
+  @override
+  Future<Map> registerUser(
+      String email, String password, String name, String birth) async {
+    String url = '/users';
+    Map<String, String> body = {
+      "email": email,
+      "password": password,
+      "name": name,
+      "birth": birth,
+    };
+    Response response = await dio.post(url, data: body);
+    return response.data;
   }
 }

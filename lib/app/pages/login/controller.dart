@@ -1,6 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:glint/app/data/service/auth/service.dart';
 import 'package:glint/app/routes/route.dart';
+import 'package:glint/app/widgets/snackbar.dart';
 
 class LoginPageController extends GetxController with StateMixin {
   final TextEditingController idTextController = TextEditingController();
@@ -11,6 +14,8 @@ class LoginPageController extends GetxController with StateMixin {
 
   final Rx<String?> idText = Rx(null);
   final Rx<String?> passwordText = Rx(null);
+
+  final AuthService authService = Get.find<AuthService>();
 
   bool get inputValidity {
     return idText.value != null && passwordText.value != null;
@@ -41,5 +46,17 @@ class LoginPageController extends GetxController with StateMixin {
 
   void moveToSchedulePage() {
     Get.toNamed(Routes.schedule);
+  }
+
+  void login() async {
+    try {
+      await authService.login(idText.value!, passwordText.value!);
+      if (authService.isAuthenticated) {
+        FGBPSnackBar.open(authService.accessToken!);
+      }
+    } on DioError catch (e) {
+      print(e.response!.data);
+      FGBPSnackBar.open(e.response!.data["data"][0]["title"]);
+    }
   }
 }

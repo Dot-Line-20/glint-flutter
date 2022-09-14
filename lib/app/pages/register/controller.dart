@@ -1,11 +1,14 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
+import 'package:glint/app/data/service/auth/service.dart';
 import 'package:glint/app/pages/register/view/email_check.dart';
 import 'package:glint/app/pages/register/view/register_check.dart';
 import 'package:glint/app/pages/register/view/register_create.dart';
 import 'package:glint/app/pages/register/view/register_password.dart';
+import 'package:glint/app/widgets/snackbar.dart';
 import 'package:scroll_date_picker/scroll_date_picker.dart';
 
 class RegisterPageController extends GetxController with StateMixin {
@@ -42,8 +45,11 @@ class RegisterPageController extends GetxController with StateMixin {
   final Rx<String?> guideText = Rx(null);
   final Rx<bool?> _passwordAvailable = Rx(null);
 
+  AuthService authService = Get.find<AuthService>();
+
   bool get initInputValidity {
     return nameText.value != null &&
+        passwordText.value != null &&
         emailText.value != null &&
         birthday.value != null;
   }
@@ -67,7 +73,6 @@ class RegisterPageController extends GetxController with StateMixin {
     change(null, status: RxStatus.success());
     nameTextController.addListener(onNameChange);
     emailTextController.addListener(onEmailChange);
-    birthDayController.addListener(onBirthdayChange);
     passwordTextController.addListener(onPasswordChange);
     nicknameTextController.addListener(onNicknameChange);
     userIdTextController.addListener(onUserIdChange);
@@ -84,13 +89,9 @@ class RegisterPageController extends GetxController with StateMixin {
     emailText.value = data.isEmpty ? null : data;
   }
 
-  void onBirthdayChange() {
-    String data = birthDayController.text;
-    birthday.value = data.isEmpty ? null : data;
-  }
-
   void onPasswordChange() {
     String data = passwordTextController.text;
+    passwordText.value = data.isEmpty ? null : data;
 
     if (isLeast8.hasMatch(data) && isContainSpecial.hasMatch(data)) {
       guideText.value = "사용 가능한 비밀번호입니다";
@@ -186,6 +187,7 @@ class RegisterPageController extends GetxController with StateMixin {
                           )),
                       onDateTimeChanged: (DateTime value) {
                         birthDayController.text = value.convertStringFormat;
+                        birthday.value = value.toIso8601String().split("T")[0];
                         _selectedDate.value = value;
                       },
                     ),
@@ -224,6 +226,18 @@ class RegisterPageController extends GetxController with StateMixin {
         ),
       ),
     );
+  }
+
+  void registerUser() async {
+    try {
+      String result = await authService.registerUser(emailText.value!,
+          passwordText.value!, nameText.value!, birthday.value!);
+      FGBPSnackBar.open(result);
+      Get.back();
+    } on DioError catch (e) {
+      print(e);
+      FGBPSnackBar.open(e.response!.data["data"][0]["title"]);
+    }
   }
 }
 

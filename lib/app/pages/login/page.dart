@@ -55,7 +55,7 @@ class LoginPage extends GetView<LoginPageController> {
               (_) => Obx(
                 () => FGBPKeyboardReactiveButton(
                   disabled: !controller.inputValidity,
-                  onTap: controller.inputValidity ? null : null,
+                  onTap: controller.inputValidity ? controller.login : null,
                   child: const Text(
                     "로그인하기",
                     style: AppTextTheme.boldWhite_18,
@@ -82,9 +82,9 @@ class LoginPage extends GetView<LoginPageController> {
                 const SizedBox(width: 30),
                 LoginHelper(onTap: () {}, content: "비밀번호 찾기"),
                 const SizedBox(width: 30),
-                LoginHelper(
-                    onTap: controller.moveToSchedulePage, content: "일정 보기"),
-                const SizedBox(width: 30),
+                // LoginHelper(
+                //     onTap: controller.moveToSchedulePage, content: "일정 보기"),
+                // const SizedBox(width: 30),
                 LoginHelper(
                     onTap: controller.moveToRegisterPage, content: "회원가입하기"),
               ],

@@ -1,3 +1,5 @@
 abstract class FGBPApiInterface {
-  Future<void> getInfo();
+  Future<Map> login(String email, String password);
+  Future<Map> registerUser(
+      String email, String password, String name, String birth);
 }

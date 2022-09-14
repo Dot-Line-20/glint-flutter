@@ -38,32 +38,42 @@ class RegisterInitPage extends GetView<RegisterPageController> {
                     key: controller.formKey,
                     child: FocusScope(
                         node: controller.formFocusScopeNode,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text("이름  ",
-                                style: AppTextTheme.boldGray3_14),
-                            FGBPTextFormField(
-                              enableInteractiveSelection: false,
-                              controller: controller.nameTextController,
-                            ),
-                            const SizedBox(height: 50),
-                            const Text("이메일", style: AppTextTheme.boldGray3_14),
-                            FGBPTextFormField(
-                              enableInteractiveSelection: false,
-                              controller: controller.emailTextController,
-                            ),
-                            const SizedBox(height: 50),
-                            const Text("생년월일",
-                                style: AppTextTheme.boldGray3_14),
-                            FGBPTextFormField(
-                              readOnly: true,
-                              onTap: controller.pickDateTime,
-                              textInputType: TextInputType.datetime,
-                              enableInteractiveSelection: false,
-                              controller: controller.birthDayController,
-                            ),
-                          ],
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("이메일",
+                                  style: AppTextTheme.boldGray3_14),
+                              FGBPTextFormField(
+                                enableInteractiveSelection: false,
+                                controller: controller.emailTextController,
+                              ),
+                              const SizedBox(height: 50),
+                              const Text("비밀번호",
+                                  style: AppTextTheme.boldGray3_14),
+                              FGBPTextFormField(
+                                enableInteractiveSelection: false,
+                                controller: controller.passwordTextController,
+                              ),
+                              const SizedBox(height: 50),
+                              const Text("이름  ",
+                                  style: AppTextTheme.boldGray3_14),
+                              FGBPTextFormField(
+                                enableInteractiveSelection: false,
+                                controller: controller.nameTextController,
+                              ),
+                              const SizedBox(height: 50),
+                              const Text("생년월일",
+                                  style: AppTextTheme.boldGray3_14),
+                              FGBPTextFormField(
+                                readOnly: true,
+                                onTap: controller.pickDateTime,
+                                textInputType: TextInputType.datetime,
+                                enableInteractiveSelection: false,
+                                controller: controller.birthDayController,
+                              ),
+                            ],
+                          ),
                         )),
                   ),
                 ],
@@ -75,7 +85,7 @@ class RegisterInitPage extends GetView<RegisterPageController> {
                 () => FGBPKeyboardReactiveButton(
                   disabled: !controller.initInputValidity,
                   onTap: controller.initInputValidity
-                      ? controller.moveToSecondPage
+                      ? controller.registerUser
                       : null,
                   child: const Text(
                     "다음",
