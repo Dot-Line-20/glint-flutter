@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:glint/app/core/theme/text_theme.dart';
+import 'package:glint/app/routes/route.dart';
+import 'package:glint/app/widgets/button.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -9,30 +12,57 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.all(44),
+        padding: const EdgeInsets.all(20),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            //Text("Hello World!!!", style: AppTextTheme.boldBlue_24),
-            const SizedBox(height: 8),
-            const SizedBox(height: 8),
-            ValueBuilder(
-              initialValue: false,
-              builder: (bool value, Function(bool) updatefn) => Switch(
-                value: value,
-                onChanged: updatefn,
-              ),
-            ),
-            ObxValue(
-                (Rx<bool> data) => Switch(value: data.value, onChanged: data),
-                false.obs),
-            GetX(builder: (controller) {
-              return Text("$controller");
-            }),
+            header(),
+            GestureDetector(
+                onTap: () {
+                  Get.toNamed(Routes.schedule);
+                },
+                child: const Text("Hello World!!!",
+                    style: AppTextTheme.boldBlue_24)),
           ],
         ),
       )),
+    );
+  }
+
+  Widget header() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            color: Colors.red,
+          ),
+          height: 44,
+          width: 44,
+        ),
+        Row(
+          children: [
+            FGBPIconButton("assets/icons/post.svg", onTap: () {}),
+            const SizedBox(width: 18),
+            FGBPIconButton("assets/icons/post.svg", onTap: () {}),
+            const SizedBox(width: 18),
+            FGBPIconButton("assets/icons/post.svg", onTap: () {}),
+          ],
+        )
+      ],
+    );
+  }
+
+  Widget story() {
+    return Container(
+      height: 100,
+      width: 100,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(100),
+        color: Colors.red,
+      ),
     );
   }
 }
