@@ -56,10 +56,8 @@ class AuthService extends GetxService {
     try {
       Map loginResult = await repository.login(email, password);
       print(loginResult);
-      if (loginResult["status"] == "success") {
-        _setAccessToken(loginResult["data"]["accessToken"]);
-        _setRefreshToken(loginResult["data"]["refreshToken"]);
-      }
+      _setAccessToken(loginResult["data"]["accessToken"]);
+      _setRefreshToken(loginResult["data"]["refreshToken"]);
     } on DioError catch (e) {
       print(e.response!.statusCode.toString());
       rethrow;
