@@ -22,12 +22,12 @@ class SchedulePage extends GetView<SchedulePageController> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text("일정", style: AppTextTheme.boldHGray1_24),
-            const SizedBox(height: 8),
-            const Text("홍보용 문구", style: AppTextTheme.boldGray2_14),
-            const SizedBox(height: 70),
-            const TransactionCalendarViewer(),
+          children: const [
+            Text("일정", style: AppTextTheme.boldHGray1_24),
+            SizedBox(height: 8),
+            Text("홍보용 문구", style: AppTextTheme.boldGray2_14),
+            SizedBox(height: 70),
+            Expanded(child: TransactionCalendarViewer()),
           ],
         ),
       )),
@@ -43,8 +43,30 @@ class TransactionCalendarViewer extends StatelessWidget {
     final weekdays = ['월', '화', '수', '목', '금', '토', '일'];
 
     final DateTime now = DateTime.now();
-    int startDay = 1;
-    DateTime beforeMonth = DateTime(now.year, now.month, 0);
+
+    final startDay = DateTime(now.year, now.month, 0);
+    final prevDate = startDay.day;
+    final prevDay = startDay.weekday;
+
+    final endDay = DateTime(now.year, now.month + 1, 0);
+    final nextDate = endDay.day;
+    final nextDay = endDay.weekday;
+
+    List<Widget> dates = [];
+
+    // 지난달
+    for (int i = prevDate - prevDay + 1; i <= prevDate; i++) {
+      dates.add(TransactionCalendarViewerDateItem(
+          date: i, lastday: true, isHighlighted: false));
+    }
+    for (int i = 1; i <= nextDate; i++) {
+      dates.add(
+          TransactionCalendarViewerDateItem(date: i, isHighlighted: false));
+    }
+    for (int i = 1; i <= (7 - nextDay == 7 ? 0 : 7 - nextDay); i++) {
+      dates.add(TransactionCalendarViewerDateItem(
+          date: i, lastday: true, isHighlighted: false));
+    }
 
     return Container(
       width: double.infinity,
@@ -77,27 +99,13 @@ class TransactionCalendarViewer extends StatelessWidget {
           Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 28.0),
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: weekdays.map((e) => Text("$e")).toList(),
                 ),
               ),
-              for (int i = ((beforeMonth.day + 1) % 7); i > 0; i--)
-                TransactionCalendarViewerDateItem(
-                  date: DateTime(now.year, now.month, beforeMonth.day - i + 1),
-                  now: now,
-                ),
-              for (int i = 0; i < 6; i++)
-                Row(
-                  children: [
-                    for (int j = 0; j < 7; j++)
-                      TransactionCalendarViewerDateItem(
-                        date: DateTime(now.year, now.month, i * 7 + j),
-                        now: now,
-                      ),
-                  ],
-                ),
+              CalenderSetViewer(dates: dates)
             ],
           )
         ],
@@ -106,48 +114,59 @@ class TransactionCalendarViewer extends StatelessWidget {
   }
 }
 
+class CalenderSetViewer extends StatelessWidget {
+  final List<Widget> dates;
+
+  const CalenderSetViewer({Key? key, required this.dates}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(
+      physics: const ScrollPhysics(),
+      shrinkWrap: true,
+      crossAxisCount: 7,
+      children: dates,
+    );
+  }
+}
+
 class TransactionCalendarViewerDateItem extends StatelessWidget {
-  final DateTime date;
-  final DateTime now;
+  final int date;
+  final bool lastday;
   final bool isHighlighted;
   const TransactionCalendarViewerDateItem({
-    Key? key,
     required this.date,
-    required this.now,
+    this.lastday = false,
     this.isHighlighted = false,
+    Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final notSame = date.month != now.month;
-
-    return Flexible(
-      child: Column(
-        children: [
-          const SizedBox(height: 6),
-          AspectRatio(
-            aspectRatio: 1,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: isHighlighted
-                    ? AppColorTheme.BUTTON1
-                    : const Color(0xFFF9F9F9),
-              ),
-              child: Center(
-                child: Text(
-                  date.day.toString(),
-                  style: TextStyle(
-                      color: notSame
-                          ? Colors.grey
-                          : Colors
-                              .black), //isHighlighted ? Colors.white : Colors.black
-                ),
+    return Column(
+      children: [
+        AspectRatio(
+          aspectRatio: 1,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: isHighlighted
+                  ? AppColorTheme.BUTTON1
+                  : const Color(0xFFF9F9F9),
+            ),
+            child: Center(
+              child: Text(
+                date.toString(),
+                style: TextStyle(
+                    color: lastday
+                        ? Colors.grey
+                        : Colors
+                            .black), //isHighlighted ? Colors.white : Colors.black
               ),
             ),
-          )
-        ],
-      ),
+          ),
+        )
+      ],
     );
   }
 }
