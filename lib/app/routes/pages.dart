@@ -1,3 +1,4 @@
+import 'package:glint/app/core/middleware/login.dart';
 import 'package:glint/app/pages/home/binding.dart';
 import 'package:glint/app/pages/home/page.dart';
 import 'package:glint/app/pages/login/binding.dart';
@@ -12,9 +13,11 @@ import 'package:get/get.dart';
 class AppPages {
   static final pages = [
     GetPage(
-        name: Routes.home,
-        page: () => const HomePage(),
-        binding: HomePageBinding()),
+      name: Routes.home,
+      page: () => const HomePage(),
+      binding: HomePageBinding(),
+      middlewares: [LoginMiddleware()],
+    ),
     GetPage(
         name: Routes.login,
         page: () => const LoginPage(),
@@ -24,8 +27,10 @@ class AppPages {
         page: () => const RegisterInitPage(),
         binding: RegisterPageBinding()),
     GetPage(
-        name: Routes.schedule,
-        page: () => const SchedulePage(),
-        binding: SchedulePageBinding()),
+      name: Routes.schedule,
+      page: () => const SchedulePage(),
+      binding: SchedulePageBinding(),
+      middlewares: [LoginMiddleware()],
+    ),
   ];
 }

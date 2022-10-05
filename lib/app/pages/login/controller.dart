@@ -6,6 +6,8 @@ import 'package:glint/app/routes/route.dart';
 import 'package:glint/app/widgets/snackbar.dart';
 
 class LoginPageController extends GetxController with StateMixin {
+  final String? redirect = Get.arguments?['redirect'];
+
   final TextEditingController idTextController = TextEditingController();
   final TextEditingController passwordTextController = TextEditingController();
 
@@ -52,7 +54,8 @@ class LoginPageController extends GetxController with StateMixin {
     try {
       await authService.login(idText.value!, passwordText.value!);
       if (authService.isAuthenticated) {
-        FGBPSnackBar.open(authService.accessToken!);
+        final String nextRoute = redirect ?? Routes.home;
+        Get.offNamed(nextRoute);
       }
     } on DioError catch (e) {
       print(e.response!.data);
