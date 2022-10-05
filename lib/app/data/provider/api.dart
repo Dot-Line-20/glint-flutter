@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:glint/app/data/provider/api_interface.dart';
 
@@ -16,6 +18,24 @@ class FGBPInterceptor extends Interceptor {
   // }
 }
 
+class LogInterceptor extends Interceptor {
+  @override
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    log('${response.requestOptions.method}[${response.statusCode}] => PATH: ${response.requestOptions.path}',
+        name: 'DIO');
+    handler.next(response);
+  }
+
+  @override
+  void onError(DioError err, ErrorInterceptorHandler handler) {
+    if (err.response != null) {
+      log('${err.response!.requestOptions.method}[${err.response!.statusCode}] => PATH: ${err.response!.requestOptions.path}',
+          name: 'DIO');
+    }
+    handler.next(err);
+  }
+}
+
 class FGBPApiProvider implements FGBPApiInterface {
   final Dio dio = Dio();
   final baseUrl = "https://h2o.vg";
@@ -24,6 +44,7 @@ class FGBPApiProvider implements FGBPApiInterface {
   FGBPApiProvider() {
     dio.options.baseUrl = baseUrl;
     dio.interceptors.add(FGBPInterceptor(dio));
+    dio.interceptors.add(LogInterceptor());
   }
 
   @override
