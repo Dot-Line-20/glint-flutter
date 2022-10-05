@@ -5,7 +5,10 @@ import 'package:glint/app/data/service/auth/service.dart';
 
 class AppInitalizer {
   Future<void> init() async {
-    Get.put(AuthService(AuthRepository(FGBPApiProvider())));
+    await Future.wait([
+      Get.putAsync(() => AuthService(AuthRepository(FGBPApiProvider())).init())
+    ]);
+
     //Get.put<LifeCycleController>(LifeCycleController());
     // await Get.putAsync<DatabaseController>(() => DatabaseController().init());
     // await Get.putAsync<AuthController>(() => AuthController().init());
