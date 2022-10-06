@@ -45,7 +45,7 @@ class EmailCheckPage extends GetView<RegisterPageController> {
                   ),
                 ),
                 controller.obx(
-                  (_) => FGBPKeyboardReactiveButton(
+                  (_) => GTKeyboardReactiveButton(
                     disabled: true,
                     onTap: controller.moveToThirdPage,
                     child: const Text(
@@ -53,7 +53,7 @@ class EmailCheckPage extends GetView<RegisterPageController> {
                       style: AppTextTheme.boldWhite_18,
                     ),
                   ),
-                  onLoading: const FGBPKeyboardReactiveButton(
+                  onLoading: const GTKeyboardReactiveButton(
                     disabled: false,
                     child: SizedBox(
                       height: 20,

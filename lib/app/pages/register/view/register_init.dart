@@ -44,14 +44,14 @@ class RegisterInitPage extends GetView<RegisterPageController> {
                             children: [
                               const Text("이메일",
                                   style: AppTextTheme.boldGray3_14),
-                              FGBPTextFormField(
+                              GTTextFormField(
                                 enableInteractiveSelection: false,
                                 controller: controller.emailTextController,
                               ),
                               const SizedBox(height: 50),
                               const Text("비밀번호",
                                   style: AppTextTheme.boldGray3_14),
-                              FGBPTextFormField(
+                              GTTextFormField(
                                 enableInteractiveSelection: false,
                                 isPassword: true,
                                 controller: controller.passwordTextController,
@@ -59,14 +59,14 @@ class RegisterInitPage extends GetView<RegisterPageController> {
                               const SizedBox(height: 50),
                               const Text("이름  ",
                                   style: AppTextTheme.boldGray3_14),
-                              FGBPTextFormField(
+                              GTTextFormField(
                                 enableInteractiveSelection: false,
                                 controller: controller.nameTextController,
                               ),
                               const SizedBox(height: 50),
                               const Text("생년월일",
                                   style: AppTextTheme.boldGray3_14),
-                              FGBPTextFormField(
+                              GTTextFormField(
                                 readOnly: true,
                                 onTap: controller.pickDateTime,
                                 textInputType: TextInputType.datetime,
@@ -83,7 +83,7 @@ class RegisterInitPage extends GetView<RegisterPageController> {
             const SizedBox(height: 16),
             controller.obx(
               (_) => Obx(
-                () => FGBPKeyboardReactiveButton(
+                () => GTKeyboardReactiveButton(
                   disabled: !controller.initInputValidity,
                   onTap: controller.initInputValidity
                       ? controller.registerUser
@@ -94,7 +94,7 @@ class RegisterInitPage extends GetView<RegisterPageController> {
                   ),
                 ),
               ),
-              onLoading: const FGBPKeyboardReactiveButton(
+              onLoading: const GTKeyboardReactiveButton(
                 disabled: false,
                 child: SizedBox(
                   height: 20,

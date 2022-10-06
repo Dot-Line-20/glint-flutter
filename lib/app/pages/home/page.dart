@@ -44,11 +44,11 @@ class HomePage extends StatelessWidget {
         ),
         Row(
           children: [
-            FGBPIconButton("assets/icons/post.svg", onTap: () {}),
+            GTIconButton("assets/icons/post.svg", onTap: () {}),
             const SizedBox(width: 18),
-            FGBPIconButton("assets/icons/post.svg", onTap: () {}),
+            GTIconButton("assets/icons/post.svg", onTap: () {}),
             const SizedBox(width: 18),
-            FGBPIconButton("assets/icons/post.svg", onTap: () {}),
+            GTIconButton("assets/icons/post.svg", onTap: () {}),
           ],
         )
       ],

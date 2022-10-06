@@ -60,7 +60,7 @@ class RegisterCheckPage extends GetView<RegisterPageController> {
             ),
             controller.obx(
               (_) => Obx(
-                () => FGBPKeyboardReactiveButton(
+                () => GTKeyboardReactiveButton(
                   disabled: !controller.passwordInputValidity,
                   onTap: controller.moveToForthPage,
                   child: const Text(
@@ -69,7 +69,7 @@ class RegisterCheckPage extends GetView<RegisterPageController> {
                   ),
                 ),
               ),
-              onLoading: const FGBPKeyboardReactiveButton(
+              onLoading: const GTKeyboardReactiveButton(
                 disabled: false,
                 child: SizedBox(
                   height: 20,

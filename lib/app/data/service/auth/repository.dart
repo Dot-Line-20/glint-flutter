@@ -1,10 +1,9 @@
 import 'package:glint/app/data/provider/api_interface.dart';
 
 class AuthRepository {
-  final FGBPApiInterface api;
+  final GTApiInterface api;
 
   AuthRepository(this.api);
-
 
   Future<Map> login(String email, String password) async {
     return await api.login(email, password);

@@ -62,14 +62,14 @@ class RegisterCreatePage extends GetView<RegisterPageController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text("닉네임", style: AppTextTheme.boldGray3_14),
-                            FGBPTextFormField(
+                            GTTextFormField(
                               enableInteractiveSelection: false,
                               controller: controller.nicknameTextController,
                             ),
                             const SizedBox(height: 50),
                             const Text("사용자 아이디",
                                 style: AppTextTheme.boldGray3_14),
-                            FGBPTextFormField(
+                            GTTextFormField(
                               isPassword: true,
                               enableInteractiveSelection: false,
                               controller: controller.userIdTextController,
@@ -82,7 +82,7 @@ class RegisterCreatePage extends GetView<RegisterPageController> {
             ),
             controller.obx(
               (_) => Obx(
-                () => FGBPKeyboardReactiveButton(
+                () => GTKeyboardReactiveButton(
                   disabled: !controller.passwordInputValidity,
                   child: const Text(
                     "확인",
@@ -90,7 +90,7 @@ class RegisterCreatePage extends GetView<RegisterPageController> {
                   ),
                 ),
               ),
-              onLoading: const FGBPKeyboardReactiveButton(
+              onLoading: const GTKeyboardReactiveButton(
                 disabled: false,
                 child: SizedBox(
                   height: 20,

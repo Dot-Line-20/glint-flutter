@@ -232,11 +232,11 @@ class RegisterPageController extends GetxController with StateMixin {
     try {
       String result = await authService.registerUser(emailText.value!,
           passwordText.value!, nameText.value!, birthday.value!);
-      FGBPSnackBar.open(result);
+      GTSnackBar.open(result);
       Get.back();
     } on DioError catch (e) {
       print(e);
-      FGBPSnackBar.open(e.response!.data["data"][0]["title"]);
+      GTSnackBar.open(e.response!.data["data"][0]["title"]);
     }
   }
 }

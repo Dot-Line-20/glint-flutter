@@ -1,8 +1,8 @@
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:flutter/material.dart';
 
-class FGBPDialog extends StatelessWidget {
-  const FGBPDialog(
+class GTDialog extends StatelessWidget {
+  const GTDialog(
       {Key? key, required this.child, this.borderColor = AppColorTheme.white})
       : super(key: key);
 
@@ -26,8 +26,8 @@ class FGBPDialog extends StatelessWidget {
   }
 }
 
-class CustomFGBPDialog extends StatelessWidget {
-  const CustomFGBPDialog(
+class CustomGTDialog extends StatelessWidget {
+  const CustomGTDialog(
       {Key? key,
       required this.title,
       required this.content,
@@ -42,7 +42,7 @@ class CustomFGBPDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FGBPDialog(
+    return GTDialog(
       borderColor: borderColor,
       child: SingleChildScrollView(
         child: Column(

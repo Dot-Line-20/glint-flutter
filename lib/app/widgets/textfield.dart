@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 
-class FGBPTextField extends StatelessWidget {
+class GTTextField extends StatelessWidget {
   final String? label;
   final String? hintText;
   final bool autofocus;
@@ -16,7 +16,7 @@ class FGBPTextField extends StatelessWidget {
   final bool? enableInteractiveSelection;
   final void Function()? onTap;
 
-  const FGBPTextField(
+  const GTTextField(
       {Key? key,
       this.label,
       this.hintText,
@@ -72,7 +72,7 @@ class FGBPTextField extends StatelessWidget {
   }
 }
 
-class FGBPTextFormField extends StatelessWidget {
+class GTTextFormField extends StatelessWidget {
   final String? label;
   final String? hintText;
   final bool autofocus;
@@ -89,7 +89,7 @@ class FGBPTextFormField extends StatelessWidget {
   final bool readOnly;
   final Color color;
 
-  const FGBPTextFormField(
+  const GTTextFormField(
       {Key? key,
       this.label,
       this.hintText,

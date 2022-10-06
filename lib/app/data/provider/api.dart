@@ -6,9 +6,9 @@ import 'package:glint/app/data/provider/api_interface.dart';
 import 'package:glint/app/data/service/auth/service.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
-class FGBPInterceptor extends Interceptor {
+class GTInterceptor extends Interceptor {
   final Dio _dioInstance;
-  FGBPInterceptor(this._dioInstance);
+  GTInterceptor(this._dioInstance);
 
   // @override
   // void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
@@ -92,14 +92,14 @@ class LogInterceptor extends Interceptor {
   }
 }
 
-class FGBPApiProvider implements FGBPApiInterface {
+class GTApiProvider implements GTApiInterface {
   final Dio dio = Dio();
   final baseUrl = "https://h2o.vg";
   final followRedirects = false;
 
-  FGBPApiProvider() {
+  GTApiProvider() {
     dio.options.baseUrl = baseUrl;
-    dio.interceptors.add(FGBPInterceptor(dio));
+    dio.interceptors.add(GTInterceptor(dio));
     dio.interceptors.add(LogInterceptor());
   }
 

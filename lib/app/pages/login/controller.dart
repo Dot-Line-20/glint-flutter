@@ -59,7 +59,7 @@ class LoginPageController extends GetxController with StateMixin {
       }
     } on DioError catch (e) {
       print(e.response!.data);
-      FGBPSnackBar.open(e.response!.data["data"][0]["title"]);
+      GTSnackBar.open(e.response!.data["data"][0]["title"]);
     }
   }
 }

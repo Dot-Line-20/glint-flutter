@@ -3,11 +3,11 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 
-class FGBPIconButton extends StatelessWidget {
+class GTIconButton extends StatelessWidget {
   final String iconPath;
   final int? badgeNumber;
   final void Function()? onTap;
-  const FGBPIconButton(this.iconPath, {this.badgeNumber, this.onTap, Key? key})
+  const GTIconButton(this.iconPath, {this.badgeNumber, this.onTap, Key? key})
       : super(key: key);
 
   Widget _badge() {
@@ -70,7 +70,7 @@ class FGBPIconButton extends StatelessWidget {
   }
 }
 
-class FGBPKeyboardReactiveButton extends StatelessWidget {
+class GTKeyboardReactiveButton extends StatelessWidget {
   final Widget child;
   final double? width;
   final EdgeInsets innerPadding;
@@ -78,7 +78,7 @@ class FGBPKeyboardReactiveButton extends StatelessWidget {
   final void Function()? onTap;
   final Color color;
   final bool disabled;
-  const FGBPKeyboardReactiveButton({
+  const GTKeyboardReactiveButton({
     Key? key,
     required this.child,
     this.width,
@@ -151,14 +151,14 @@ class FGBPKeyboardReactiveButton extends StatelessWidget {
   }
 }
 
-class FGBPBaseButton extends StatelessWidget {
+class GTBaseButton extends StatelessWidget {
   final Widget child;
   final double? width;
   final EdgeInsets padding;
   final void Function()? onTap;
   final Color color;
   final bool disabled;
-  const FGBPBaseButton(
+  const GTBaseButton(
       {Key? key,
       required this.child,
       required this.padding,
@@ -203,13 +203,13 @@ class FGBPBaseButton extends StatelessWidget {
   }
 }
 
-class FGBPLargeButton extends StatelessWidget {
+class GTLargeButton extends StatelessWidget {
   final Widget child;
   final double? width;
   final void Function()? onTap;
   final Color color;
   final bool disabled;
-  const FGBPLargeButton({
+  const GTLargeButton({
     Key? key,
     required this.child,
     this.onTap,
@@ -220,7 +220,7 @@ class FGBPLargeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FGBPBaseButton(
+    return GTBaseButton(
       padding: const EdgeInsets.all(24),
       width: width,
       onTap: onTap,
@@ -231,14 +231,14 @@ class FGBPLargeButton extends StatelessWidget {
   }
 }
 
-class FGBPLargeTextButton extends StatelessWidget {
+class GTLargeTextButton extends StatelessWidget {
   final String text;
   final double? width;
   final void Function()? onTap;
   final Color color;
   final Color textColor;
   final bool disabled;
-  const FGBPLargeTextButton({
+  const GTLargeTextButton({
     Key? key,
     required this.text,
     this.onTap,
@@ -250,7 +250,7 @@ class FGBPLargeTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FGBPLargeButton(
+    return GTLargeButton(
       width: width,
       onTap: onTap,
       color: color,
@@ -262,13 +262,13 @@ class FGBPLargeTextButton extends StatelessWidget {
   }
 }
 
-class FGBPMediumButton extends StatelessWidget {
+class GTMediumButton extends StatelessWidget {
   final Widget child;
   final double? width;
   final void Function()? onTap;
   final Color color;
   final bool disabled;
-  const FGBPMediumButton({
+  const GTMediumButton({
     Key? key,
     required this.child,
     this.onTap,
@@ -279,7 +279,7 @@ class FGBPMediumButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FGBPBaseButton(
+    return GTBaseButton(
       padding: const EdgeInsets.all(16),
       width: width,
       onTap: onTap,
@@ -290,14 +290,14 @@ class FGBPMediumButton extends StatelessWidget {
   }
 }
 
-class FGBPMediumTextButton extends StatelessWidget {
+class GTMediumTextButton extends StatelessWidget {
   final String text;
   final double? width;
   final void Function()? onTap;
   final Color color;
   final Color textColor;
   final bool disabled;
-  const FGBPMediumTextButton({
+  const GTMediumTextButton({
     Key? key,
     required this.text,
     this.onTap,
@@ -309,7 +309,7 @@ class FGBPMediumTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FGBPMediumButton(
+    return GTMediumButton(
       width: width,
       onTap: onTap,
       color: color,
@@ -321,13 +321,13 @@ class FGBPMediumTextButton extends StatelessWidget {
   }
 }
 
-class FGBPSmallButton extends StatelessWidget {
+class GTSmallButton extends StatelessWidget {
   final Widget child;
   final double? width;
   final void Function()? onTap;
   final Color color;
   final bool disabled;
-  const FGBPSmallButton({
+  const GTSmallButton({
     Key? key,
     required this.child,
     this.onTap,
@@ -338,7 +338,7 @@ class FGBPSmallButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FGBPBaseButton(
+    return GTBaseButton(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       width: width,
       onTap: onTap,
@@ -349,14 +349,14 @@ class FGBPSmallButton extends StatelessWidget {
   }
 }
 
-class FGBPSmallTextButton extends StatelessWidget {
+class GTSmallTextButton extends StatelessWidget {
   final String text;
   final double? width;
   final void Function()? onTap;
   final Color color;
   final Color textColor;
   final bool disabled;
-  const FGBPSmallTextButton({
+  const GTSmallTextButton({
     Key? key,
     required this.text,
     this.onTap,
@@ -368,7 +368,7 @@ class FGBPSmallTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FGBPSmallButton(
+    return GTSmallButton(
       width: width,
       onTap: onTap,
       color: color,

@@ -37,13 +37,13 @@ class LoginPage extends GetView<LoginPageController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text("아이디", style: AppTextTheme.boldGray3_14),
-                        FGBPTextFormField(
+                        GTTextFormField(
                           enableInteractiveSelection: false,
                           controller: controller.idTextController,
                         ),
                         const SizedBox(height: 50),
                         const Text("비밀번호", style: AppTextTheme.boldGray3_14),
-                        FGBPTextFormField(
+                        GTTextFormField(
                           isPassword: true,
                           enableInteractiveSelection: false,
                           controller: controller.passwordTextController,
@@ -54,7 +54,7 @@ class LoginPage extends GetView<LoginPageController> {
               const SizedBox(height: 50),
               controller.obx(
                 (_) => Obx(
-                  () => FGBPKeyboardReactiveButton(
+                  () => GTKeyboardReactiveButton(
                     disabled: !controller.inputValidity,
                     onTap: controller.inputValidity ? controller.login : null,
                     child: const Text(
@@ -63,7 +63,7 @@ class LoginPage extends GetView<LoginPageController> {
                     ),
                   ),
                 ),
-                onLoading: const FGBPKeyboardReactiveButton(
+                onLoading: const GTKeyboardReactiveButton(
                   disabled: false,
                   child: SizedBox(
                     height: 20,

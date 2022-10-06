@@ -2,7 +2,7 @@ import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class FGBPSnackBar {
+class GTSnackBar {
   static void open(String title,
       {Color backgroundColor = AppColorTheme.black,
       Color textColor = AppColorTheme.white}) {
