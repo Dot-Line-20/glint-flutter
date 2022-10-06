@@ -32,11 +32,17 @@ class JWTInterceptor extends Interceptor {
     if (options.path == '/auth/refresh') {
       return handler.next(options);
     }
-
     AuthService authService = Get.find<AuthService>();
-
     if (authService.isAuthenticated) {
       options.headers['Authorization'] = 'Bearer ${authService.accessToken}';
+    }
+
+    if (options.path == "/users" && options.method != "POST") {
+      options.path = "/users/${authService.userId}";
+    }
+
+    if (options.path.startsWith("/schedules")) {
+      options.path = "/users/${authService.userId}${options.path}";
     }
 
     return handler.next(options);
@@ -109,6 +115,16 @@ class FGBPApiProvider implements FGBPApiInterface {
   }
 
   @override
+  Future<Map> refreshToken(String refreshToken) async {
+    String url = '/auth/token';
+    Map<String, String> body = {
+      "refreshToken": refreshToken,
+    };
+    Response response = await dio.post(url, data: body);
+    return response.data;
+  }
+
+  @override
   Future<Map> registerUser(
       String email, String password, String name, String birth) async {
     String url = '/users';
@@ -119,6 +135,87 @@ class FGBPApiProvider implements FGBPApiInterface {
       "birth": birth,
     };
     Response response = await dio.post(url, data: body);
+    return response.data;
+  }
+
+  @override
+  Future<Map> getUser() async {
+    String url = '/users';
+    Response response = await dio.get(url);
+    return response.data;
+  }
+
+  @override
+  Future<Map> updateUser(String email, String password, String name,
+      String birth, String image) async {
+    String url = '/users';
+    Map<String, String> body = {
+      "name": name,
+      "birth": birth,
+    };
+    Response response = await dio.patch(url, data: body);
+    return response.data;
+  }
+
+  @override
+  Future<void> deleteUser(String userId) async {
+    String url = '/users/$userId';
+    await dio.delete(url);
+  }
+
+  @override
+  Future<Map> makeSchedule(
+      String name, String startingAt, String endingAt) async {
+    String url = '/schedules';
+    Map<String, dynamic> body = {
+      "parentScheduleId": null,
+      "name": name,
+      "startingAt": startingAt,
+      "endingAt": endingAt,
+    };
+    Response response = await dio.post(url, data: body);
+    return response.data;
+  }
+
+  @override
+  Future<Map> getScheduleList() async {
+    String url = '/schedules';
+    Response response = await dio.get(url);
+    return response.data;
+  }
+
+  @override
+  Future<Map> getSchedule(String scheduleId) async {
+    String url = '/schedules/$scheduleId';
+    Response response = await dio.get(url);
+    return response.data;
+  }
+
+  @override
+  Future<Map> updateSchedule(String scheduleId, String name, String startingAt,
+      String endingAt, bool isSuccess) async {
+    String url = '/schedules$scheduleId';
+    Map<String, dynamic> body = {
+      "parentScheduleId": null,
+      "name": name,
+      "startingAt": startingAt,
+      "endingAt": endingAt,
+      "isSuccess": isSuccess,
+    };
+    Response response = await dio.patch(url, data: body);
+    return response.data;
+  }
+
+  @override
+  Future<void> deleteSchedule(String scheduleId) async {
+    String url = '/schedules/$scheduleId';
+    await dio.delete(url);
+  }
+
+  @override
+  Future<Map> getSuccessRate() async {
+    String url = "/schedules/successRate";
+    Response response = await dio.get(url);
     return response.data;
   }
 }

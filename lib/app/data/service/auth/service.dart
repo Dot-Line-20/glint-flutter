@@ -9,21 +9,29 @@ class AuthService extends GetxService {
   final AuthRepository repository;
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
 
+  final Rx<String?> _userId = Rx(null);
   final Rx<String?> _accessToken = Rx(null);
   final Rx<String?> _refreshToken = Rx(null);
 
   /// google sign-in과 onboarding 과정이 완료되었을 경우 true
   bool get isAuthenticated => _accessToken.value != null;
 
+  String? get userId => _userId.value;
   String? get accessToken => _accessToken.value;
   String? get refreshToken => _refreshToken.value;
 
   AuthService(this.repository);
 
   Future<AuthService> init() async {
+    _userId.value = await _storage.read(key: 'userId');
     _accessToken.value = await _storage.read(key: 'accessToken');
     _refreshToken.value = await _storage.read(key: 'refreshToken');
     return this;
+  }
+
+  Future<void> _setUserId(String token) async {
+    await _storage.write(key: 'userId', value: token);
+    _userId.value = token;
   }
 
   Future<void> _setAccessToken(String token) async {
@@ -56,6 +64,7 @@ class AuthService extends GetxService {
     try {
       Map loginResult = await repository.login(email, password);
       print(loginResult);
+      _setUserId(loginResult["data"]["userId"]);
       _setAccessToken(loginResult["data"]["accessToken"]);
       _setRefreshToken(loginResult["data"]["refreshToken"]);
     } on DioError catch (e) {
@@ -67,8 +76,10 @@ class AuthService extends GetxService {
   Future<void> refreshAcessToken() async {}
 
   Future<void> logout() async {
+    _userId.value = null;
     _accessToken.value = null;
     _refreshToken.value = null;
+    await _storage.delete(key: "userId");
     await _storage.delete(key: 'accessToken');
     await _storage.delete(key: 'refreshToken');
   }
