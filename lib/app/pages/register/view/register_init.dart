@@ -53,6 +53,7 @@ class RegisterInitPage extends GetView<RegisterPageController> {
                                   style: AppTextTheme.boldGray3_14),
                               FGBPTextFormField(
                                 enableInteractiveSelection: false,
+                                isPassword: true,
                                 controller: controller.passwordTextController,
                               ),
                               const SizedBox(height: 50),
