@@ -1,4 +1,6 @@
 import 'package:glint/app/core/middleware/login.dart';
+import 'package:glint/app/pages/home/binding.dart';
+import 'package:glint/app/pages/home/page.dart';
 import 'package:glint/app/pages/sns/binding.dart';
 import 'package:glint/app/pages/sns/page.dart';
 import 'package:glint/app/pages/login/binding.dart';
@@ -14,8 +16,8 @@ class AppPages {
   static final pages = [
     GetPage(
       name: Routes.home,
-      page: () => const SnsPage(),
-      binding: SnsPageBinding(),
+      page: () => const HomePage(),
+      binding: HomePageBinding(),
       middlewares: [LoginMiddleware()],
     ),
     GetPage(

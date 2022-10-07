@@ -5,6 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/pages/schedule/controller.dart';
 
+//BottomNav + 끌어올리기
+
+//타임라인 만들기
+
 class SchedulePage extends GetView<SchedulePageController> {
   const SchedulePage({Key? key}) : super(key: key);
 
@@ -95,6 +99,7 @@ class TransactionCalendarViewer extends StatelessWidget {
               SvgPicture.asset('asset/images/right_arrow.svg'),
             ],
           ),
+          //TabBarView(children: children)
           const SizedBox(height: 12),
           Column(
             children: [
