@@ -3,13 +3,47 @@ import 'package:flutter_svg/svg.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 
 class ScheduleList extends StatelessWidget {
-  final List<Map> scheduleList;
+  final List<dynamic> scheduleList;
 
   const ScheduleList({Key? key, required this.scheduleList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return _notExist();
+    return scheduleList.isNotEmpty ? _exist() : _notExist();
+  }
+
+  Widget _exist() {
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: scheduleList.length,
+      itemBuilder: (BuildContext context, int index) {
+        return _item(scheduleList[index]);
+      },
+    );
+  }
+
+  Widget _item(scheduleList) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                scheduleList['startingAt'],
+                style: AppTextTheme.mediumBlue_10,
+              ),
+              Text(
+                scheduleList['name'],
+                style: AppTextTheme.boldGray1_18,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 
   Column _notExist() {

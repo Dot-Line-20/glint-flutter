@@ -41,10 +41,16 @@ class SchedulePage extends GetView<SchedulePageController> {
                     const SizedBox(height: 16),
                     Row(
                       children: [
-                        GTSmallTextButton(text: "추가하기"),
+                        GTSmallTextButton(
+                          text: "추가하기",
+                          onTap: controller.pickSchedule,
+                        ),
                       ],
                     ),
-                    ScheduleList(scheduleList: []),
+                    const SizedBox(height: 16),
+                    Obx(() => ScheduleList(
+                          scheduleList: controller.scheduleList,
+                        )),
                   ],
                 ),
               ),
