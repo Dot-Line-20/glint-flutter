@@ -51,8 +51,10 @@ class LoginPageController extends GetxController with StateMixin {
   }
 
   void login() async {
+    change(null, status: RxStatus.loading());
     try {
       await authService.login(idText.value!, passwordText.value!);
+      await Future.delayed(const Duration(seconds: 2));
       if (authService.isAuthenticated) {
         final String nextRoute = redirect ?? Routes.home;
         Get.offNamed(nextRoute);
@@ -60,6 +62,8 @@ class LoginPageController extends GetxController with StateMixin {
     } on DioError catch (e) {
       print(e.response!.data);
       GTSnackBar.open(e.response!.data["data"][0]["title"]);
+    } finally {
+      change(null, status: RxStatus.success());
     }
   }
 }
