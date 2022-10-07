@@ -29,14 +29,20 @@ class JWTInterceptor extends Interceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    print("GGGOODOD");
     if (options.path == '/auth/token') {
       return handler.next(options);
     }
     AuthService authService = Get.find<AuthService>();
     if (authService.isAuthenticated) {
-      print(authService.accessToken);
       options.headers['Authorization'] = 'Bearer ${authService.accessToken}';
+    }
+
+    if (options.path == "/users" && options.method != "POST") {
+      options.path = "/users/${authService.userId}";
+    }
+
+    if (options.path.startsWith("/schedules")) {
+      options.path = "/users/${authService.userId}${options.path}";
     }
 
     return handler.next(options);
@@ -44,8 +50,6 @@ class JWTInterceptor extends Interceptor {
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) async {
-    print("GGGOODOD");
-
     AuthService authService = Get.find<AuthService>();
     //refresh api가 401시 무한 루프 방지
     if (err.response?.requestOptions.path == '/auth/token') {
@@ -162,7 +166,7 @@ class GTApiProvider implements GTApiInterface {
   @override
   Future<Map> makeSchedule(
       String name, String startingAt, String endingAt) async {
-    String url = '/users/14/schedules';
+    String url = '/schedules';
     Map<String, dynamic> body = {
       "parentScheduleId": null,
       "name": name,
@@ -175,7 +179,7 @@ class GTApiProvider implements GTApiInterface {
 
   @override
   Future<Map> getScheduleList() async {
-    String url = '/users/14/schedules';
+    String url = '/schedules';
     Response response = await dio.get(url);
     return response.data;
   }
