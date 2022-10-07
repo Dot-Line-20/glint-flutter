@@ -82,7 +82,7 @@ class TransactionCalendarViewer extends StatelessWidget {
         children: [
           Row(
             children: [
-              SvgPicture.asset('asset/images/left_arrow.svg'),
+              SvgPicture.asset('assets/images/left_arrow.svg'),
               const SizedBox(width: 10),
               Text(
                 "${now.year}년",
@@ -96,7 +96,7 @@ class TransactionCalendarViewer extends StatelessWidget {
                     const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
               const SizedBox(width: 10),
-              SvgPicture.asset('asset/images/right_arrow.svg'),
+              SvgPicture.asset('assets/images/right_arrow.svg'),
             ],
           ),
           //TabBarView(children: children)
