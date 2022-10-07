@@ -4,8 +4,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/data/service/auth/repository.dart';
+import 'package:glint/app/routes/route.dart';
 
 class AuthService extends GetxService {
+  Completer<void>? _refreshTokenApiCompleter;
+
   final AuthRepository repository;
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
 
@@ -73,7 +76,27 @@ class AuthService extends GetxService {
     }
   }
 
-  Future<void> refreshAcessToken() async {}
+  Future<void> refreshAcessToken() async {
+     // refreshTokenApi의 동시 다발적인 호출을 방지하기 위해 completer를 사용함. 동시 다발적으로 이 함수를 호출해도 api는 1번만 호출 됨.
+    if (_refreshTokenApiCompleter == null || _refreshTokenApiCompleter!.isCompleted) {
+      //첫 호출(null)이거나 이미 완료된 호출(completed completer)일 경우 새 객체 할당
+      _refreshTokenApiCompleter = Completer();
+      try {
+        if (_refreshToken.value == null) {
+          //throw RefreshTokenException();
+        }
+        String newAccessToken = await repository.refreshAccessToken(_refreshToken.value!);
+        await _setAccessToken(newAccessToken);
+        _refreshTokenApiCompleter!.complete();
+      } catch (_) {
+        await logout();
+        Get.offAllNamed(Routes.login);
+        //throw RefreshTokenException();
+      }
+    }
+
+    return _refreshTokenApiCompleter?.future;
+  }
 
   Future<void> logout() async {
     _userId.value = null;
