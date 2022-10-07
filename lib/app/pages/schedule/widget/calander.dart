@@ -43,7 +43,6 @@ class CalendarViewer extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         //TabBarView(children: children)
-        const SizedBox(height: 12),
         Column(
           children: [
             Padding(

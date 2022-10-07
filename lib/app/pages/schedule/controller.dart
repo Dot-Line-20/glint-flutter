@@ -2,7 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/routes/route.dart';
 
+enum PAGE {
+  SNS,
+  SCHEDULE,
+}
+
 class SchedulePageController extends GetxController with StateMixin {
+  final DateTime now = DateTime.now();
+
   final TextEditingController idTextController = TextEditingController();
   final TextEditingController passwordTextController = TextEditingController();
 

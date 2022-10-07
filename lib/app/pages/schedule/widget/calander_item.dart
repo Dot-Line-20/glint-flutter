@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
+import 'package:glint/app/core/theme/text_theme.dart';
 
 class CalendarViewerDateItem extends StatelessWidget {
   final int date;
@@ -12,6 +13,16 @@ class CalendarViewerDateItem extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  TextStyle get _textStyle {
+    if (isHighlighted) {
+      return AppTextTheme.boldWhite_14;
+    } else if (lastday) {
+      return AppTextTheme.boldGray3_14;
+    } else {
+      return AppTextTheme.boldGray2_14;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,19 +31,13 @@ class CalendarViewerDateItem extends StatelessWidget {
           aspectRatio: 1,
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: isHighlighted
-                  ? AppColorTheme.BUTTON1
-                  : const Color(0xFFF9F9F9),
+              borderRadius: BorderRadius.circular(100),
+              color: isHighlighted ? AppColorTheme.Blue : Colors.transparent,
             ),
             child: Center(
               child: Text(
                 date.toString(),
-                style: TextStyle(
-                    color: lastday
-                        ? Colors.grey
-                        : Colors
-                            .black), //isHighlighted ? Colors.white : Colors.black
+                style: _textStyle, //isHighlighted ? Colors.white : Colors.black
               ),
             ),
           ),
