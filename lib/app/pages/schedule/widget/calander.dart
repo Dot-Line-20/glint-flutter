@@ -51,7 +51,7 @@ class CalendarViewer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: weekdays
                     .map((e) => Text(
-                          "$e",
+                          e,
                           style: AppTextTheme.semiboldGrey2_14,
                         ))
                     .toList(),
