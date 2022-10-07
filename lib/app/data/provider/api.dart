@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:get/instance_manager.dart';
+import 'package:glint/app/data/models/schedule.dart';
 import 'package:glint/app/data/provider/api_interface.dart';
 import 'package:glint/app/data/service/auth/service.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -163,10 +164,12 @@ class GTApiProvider implements GTApiInterface {
   }
 
   @override
-  Future<Map> getScheduleList() async {
+  Future<List<Schedule>> getScheduleList() async {
     String url = '/schedules';
     Response response = await dio.get(url);
-    return response.data;
+    return (response.data["data"] as List)
+        .map<Schedule>((e) => Schedule.fromJson(e))
+        .toList();
   }
 
   @override

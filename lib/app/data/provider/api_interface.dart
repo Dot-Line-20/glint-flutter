@@ -1,3 +1,5 @@
+import 'package:glint/app/data/models/schedule.dart';
+
 abstract class GTApiInterface {
   Future<Map> login(String email, String password);
   Future<Map> registerUser(
@@ -8,7 +10,7 @@ abstract class GTApiInterface {
       String email, String password, String name, String birth, String image);
   Future<void> deleteUser(String userId);
   Future<Map> makeSchedule(String name, String startingAt, String endingAt);
-  Future<Map> getScheduleList();
+  Future<List<Schedule>> getScheduleList();
   Future<Map> getSchedule(String scheduleId);
   Future<Map> updateSchedule(String scheduleId, String name, String startingAt,
       String endingAt, bool isSuccess);

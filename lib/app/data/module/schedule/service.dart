@@ -1,13 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:glint/app/data/models/schedule.dart';
 import 'package:glint/app/data/module/schedule/repository.dart';
 
 class ScheduleController extends GetxController with StateMixin<List<Map>> {
   final ScheduleRepository repository;
   ScheduleController(this.repository);
 
-  final Rx<List<dynamic>> _scheduleList = Rx<List<dynamic>>([]);
-  List<dynamic> get scheduleList => _scheduleList.value;
+  final Rx<List<Schedule>> _scheduleList = Rx<List<Schedule>>([]);
+  List<Schedule> get scheduleList => _scheduleList.value;
 
   @override
   void onInit() {
@@ -17,8 +18,7 @@ class ScheduleController extends GetxController with StateMixin<List<Map>> {
 
   Future fetchScheduleList() async {
     try {
-      Map result = await repository.getScheduleList();
-      _scheduleList.value = result["data"];
+      _scheduleList.value = await repository.getScheduleList();
     } on DioError {
       rethrow;
     }

@@ -7,21 +7,25 @@ part of 'schedule.dart';
 // **************************************************************************
 
 Schedule _$ScheduleFromJson(Map<String, dynamic> json) => Schedule(
-      user_id: json['user_id'] as String,
-      parent_schedule_id: json['parent_schedule_id'] as String?,
+      id: json['id'] as int,
+      userId: json['userId'] as int,
+      parentScheduleId: json['parentScheduleId'] as String?,
       name: json['name'] as String,
-      starting_at: DateTime.parse(json['starting_at'] as String),
-      ending_at: DateTime.parse(json['ending_at'] as String),
-      is_success: json['is_success'] as bool,
-      created_at: DateTime.parse(json['created_at'] as String),
+      startingAt: DateTime.parse(json['startingAt'] as String),
+      endingAt: DateTime.parse(json['endingAt'] as String),
+      isSuccess: json['isSuccess'] as bool,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      categories: json['categories'] as List<dynamic>,
     );
 
 Map<String, dynamic> _$ScheduleToJson(Schedule instance) => <String, dynamic>{
-      'user_id': instance.user_id,
-      'parent_schedule_id': instance.parent_schedule_id,
+      'id': instance.id,
+      'userId': instance.userId,
+      'parentScheduleId': instance.parentScheduleId,
       'name': instance.name,
-      'starting_at': instance.starting_at.toIso8601String(),
-      'ending_at': instance.ending_at.toIso8601String(),
-      'is_success': instance.is_success,
-      'created_at': instance.created_at.toIso8601String(),
+      'startingAt': instance.startingAt.toIso8601String(),
+      'endingAt': instance.endingAt.toIso8601String(),
+      'isSuccess': instance.isSuccess,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'categories': instance.categories,
     };

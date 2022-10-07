@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
+import 'package:glint/app/data/models/schedule.dart';
 
 class ScheduleList extends StatelessWidget {
-  final List<dynamic> scheduleList;
+  final List<Schedule> scheduleList;
 
   const ScheduleList({Key? key, required this.scheduleList}) : super(key: key);
 
@@ -22,7 +23,7 @@ class ScheduleList extends StatelessWidget {
     );
   }
 
-  Widget _item(scheduleList) {
+  Widget _item(Schedule scheduleList) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
@@ -32,11 +33,11 @@ class ScheduleList extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                scheduleList['startingAt'],
+                scheduleList.startingAt.toString(),
                 style: AppTextTheme.mediumBlue_10,
               ),
               Text(
-                scheduleList['name'],
+                scheduleList.name,
                 style: AppTextTheme.boldGray1_18,
               ),
             ],

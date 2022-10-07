@@ -1,13 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:glint/app/data/models/schedule.dart';
 import 'package:glint/app/data/module/schedule/service.dart';
 import 'package:glint/app/pages/schedule/widget/add.dart';
 import 'package:glint/app/widgets/snackbar.dart';
 
 class SchedulePageController extends GetxController with StateMixin {
   final ScheduleController scheduleController = Get.find<ScheduleController>();
-  List<dynamic> get scheduleList => scheduleController.scheduleList;
+  List<Schedule> get scheduleList => scheduleController.scheduleList;
 
   final DateTime now = DateTime.now();
 

@@ -7,21 +7,25 @@ part 'schedule.g.dart';
 
 @JsonSerializable()
 class Schedule {
-  String user_id;
-  String? parent_schedule_id;
+  int id;
+  int userId;
+  String? parentScheduleId;
   String name;
-  DateTime starting_at;
-  DateTime ending_at;
-  bool is_success;
-  DateTime created_at;
+  DateTime startingAt;
+  DateTime endingAt;
+  bool isSuccess;
+  DateTime createdAt;
+  List<dynamic> categories;
   Schedule({
-    required this.user_id,
-    required this.parent_schedule_id,
+    required this.id,
+    required this.userId,
+    required this.parentScheduleId,
     required this.name,
-    required this.starting_at,
-    required this.ending_at,
-    required this.is_success,
-    required this.created_at,
+    required this.startingAt,
+    required this.endingAt,
+    required this.isSuccess,
+    required this.createdAt,
+    required this.categories,
   });
 
   factory Schedule.fromJson(Map<String, dynamic> json) =>

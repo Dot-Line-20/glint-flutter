@@ -1,3 +1,4 @@
+import 'package:glint/app/data/models/schedule.dart';
 import 'package:glint/app/data/provider/api_interface.dart';
 
 class ScheduleRepository {
@@ -5,10 +6,7 @@ class ScheduleRepository {
   ScheduleRepository(this.api);
 
   // getScheduleList
-  Future<Map> getScheduleList() async {
-    Map result = await api.getScheduleList();
-    return result;
-  }
+  Future<List<Schedule>> getScheduleList() => api.getScheduleList();
 
   // makeSchedule
   Future<Map> makeSchedule(
