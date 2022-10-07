@@ -2,6 +2,7 @@
 
 abstract class Routes {
   static const home = "/";
+  static const sns = "/sns";
   static const login = "/login";
   static const register = "/register";
   static const schedule = "/schedule";

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:glint/app/widgets/button.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class SnsPage extends StatelessWidget {
+  const SnsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
