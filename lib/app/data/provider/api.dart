@@ -6,21 +6,6 @@ import 'package:glint/app/data/provider/api_interface.dart';
 import 'package:glint/app/data/service/auth/service.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
-class GTInterceptor extends Interceptor {
-  final Dio _dioInstance;
-  GTInterceptor(this._dioInstance);
-
-  // @override
-  // void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-  //   super.onRequest(options, handler);
-  // }
-
-  // @override
-  // void onError(DioError err, ErrorInterceptorHandler handler) {
-  //   super.onError(err, handler);
-  // }
-}
-
 class JWTInterceptor extends Interceptor {
   final Dio _dioInstance;
 

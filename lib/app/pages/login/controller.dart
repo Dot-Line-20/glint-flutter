@@ -60,7 +60,7 @@ class LoginPageController extends GetxController with StateMixin {
         Get.offNamed(nextRoute);
       }
     } on DioError catch (e) {
-      print(e.response!.data);
+      //print(e.response!.data);
       GTSnackBar.open(e.response!.data["data"][0]["title"]);
     } finally {
       change(null, status: RxStatus.success());

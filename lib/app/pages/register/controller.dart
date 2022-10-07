@@ -235,7 +235,7 @@ class RegisterPageController extends GetxController with StateMixin {
       GTSnackBar.open(result);
       Get.back();
     } on DioError catch (e) {
-      print(e);
+      //print(e);
       GTSnackBar.open(e.response!.data["data"][0]["title"]);
     }
   }

@@ -52,13 +52,13 @@ class AuthService extends GetxService {
     try {
       Map registerResult =
           await repository.registerUser(email, password, name, birth);
-      print(registerResult);
+      //print(registerResult);
       if (registerResult["status"] == "success") {
         return "회원가입에 성공했습니다. 메일을 확인해주세요.";
       } else {
         return "fail";
       }
-    } on DioError catch (e) {
+    } on DioError {
       rethrow;
     }
   }
@@ -66,26 +66,28 @@ class AuthService extends GetxService {
   Future<void> login(String email, String password) async {
     try {
       Map loginResult = await repository.login(email, password);
-      print(loginResult);
+      //print(loginResult);
       _setUserId(loginResult["data"]["id"].toString());
       _setAccessToken(loginResult["data"]["accessToken"]);
       _setRefreshToken(loginResult["data"]["refreshToken"]);
-    } on DioError catch (e) {
-      print(e.response!.statusCode.toString());
+    } on DioError {
+      //print(e.response!.statusCode.toString());
       rethrow;
     }
   }
 
   Future<void> refreshAcessToken() async {
-     // refreshTokenApi의 동시 다발적인 호출을 방지하기 위해 completer를 사용함. 동시 다발적으로 이 함수를 호출해도 api는 1번만 호출 됨.
-    if (_refreshTokenApiCompleter == null || _refreshTokenApiCompleter!.isCompleted) {
+    // refreshTokenApi의 동시 다발적인 호출을 방지하기 위해 completer를 사용함. 동시 다발적으로 이 함수를 호출해도 api는 1번만 호출 됨.
+    if (_refreshTokenApiCompleter == null ||
+        _refreshTokenApiCompleter!.isCompleted) {
       //첫 호출(null)이거나 이미 완료된 호출(completed completer)일 경우 새 객체 할당
       _refreshTokenApiCompleter = Completer();
       try {
         if (_refreshToken.value == null) {
           //throw RefreshTokenException();
         }
-        String newAccessToken = await repository.refreshAccessToken(_refreshToken.value!);
+        String newAccessToken =
+            await repository.refreshAccessToken(_refreshToken.value!);
         await _setAccessToken(newAccessToken);
         _refreshTokenApiCompleter!.complete();
       } catch (_) {

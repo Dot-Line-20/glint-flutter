@@ -1,16 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/data/module/schedule/service.dart';
 import 'package:glint/app/pages/schedule/widget/add.dart';
-import 'package:glint/app/routes/route.dart';
 import 'package:glint/app/widgets/snackbar.dart';
-
-enum PAGE {
-  SNS,
-  SCHEDULE,
-}
 
 class SchedulePageController extends GetxController with StateMixin {
   final ScheduleController scheduleController = Get.find<ScheduleController>();

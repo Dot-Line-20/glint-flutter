@@ -6,7 +6,7 @@ class ScheduleController extends GetxController with StateMixin<List<Map>> {
   final ScheduleRepository repository;
   ScheduleController(this.repository);
 
-  Rx<List<dynamic>> _scheduleList = Rx<List<dynamic>>([]);
+  final Rx<List<dynamic>> _scheduleList = Rx<List<dynamic>>([]);
   List<dynamic> get scheduleList => _scheduleList.value;
 
   @override
@@ -19,7 +19,7 @@ class ScheduleController extends GetxController with StateMixin<List<Map>> {
     try {
       Map result = await repository.getScheduleList();
       _scheduleList.value = result["data"];
-    } on DioError catch (e) {
+    } on DioError {
       rethrow;
     }
   }
@@ -31,7 +31,7 @@ class ScheduleController extends GetxController with StateMixin<List<Map>> {
       if (result["status"] == "success") {
         fetchScheduleList();
       }
-    } on DioError catch (e) {
+    } on DioError {
       rethrow;
     }
   }
