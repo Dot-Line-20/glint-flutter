@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
-import 'package:glint/app/core/theme/text_theme.dart';
-import 'package:glint/app/routes/route.dart';
 import 'package:glint/app/widgets/button.dart';
 
 class HomePage extends StatelessWidget {
@@ -19,7 +16,10 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             header(),
+            const SizedBox(height: 10),
             stories(),
+            const SizedBox(height: 10),
+            Expanded(child: body()),
           ],
         ),
       )),
@@ -40,11 +40,9 @@ class HomePage extends StatelessWidget {
         ),
         Row(
           children: [
-            GTIconButton("assets/icons/post.svg", onTap: () {}),
-            const SizedBox(width: 18),
-            GTIconButton("assets/icons/post.svg", onTap: () {}),
-            const SizedBox(width: 18),
-            GTIconButton("assets/icons/post.svg", onTap: () {}),
+            GTIconButton("assets/images/post.svg", onTap: () {}),
+            GTIconButton("assets/images/search.svg", onTap: () {}),
+            GTIconButton("assets/images/message.svg", onTap: () {}),
           ],
         )
       ],
@@ -52,28 +50,34 @@ class HomePage extends StatelessWidget {
   }
 
   Widget stories() {
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      shrinkWrap: true,
-      itemCount: 10,
-      itemBuilder: (context, index) => _storyItem(),
+    return SizedBox(
+      height: 100,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        shrinkWrap: true,
+        itemCount: 10,
+        itemBuilder: (context, index) => _storyItem(),
+      ),
     );
   }
 
   Widget _storyItem() {
-    return Column(
-      children: [
-        Container(
-          height: 64,
-          width: 64,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
-            color: Colors.red,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 9),
+      child: Column(
+        children: [
+          Container(
+            height: 64,
+            width: 64,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100),
+              color: Colors.red,
+            ),
           ),
-        ),
-        const SizedBox(height: 8),
-        const Text("EXAMPLE")
-      ],
+          const SizedBox(height: 8),
+          const Text("EXAMPLE")
+        ],
+      ),
     );
   }
 
@@ -90,9 +94,9 @@ class HomePage extends StatelessWidget {
       children: [
         Container(
           height: 350,
-          width: 350,
+          width: double.infinity,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
+            borderRadius: BorderRadius.circular(20),
             color: Colors.red,
           ),
         ),
@@ -123,11 +127,11 @@ class HomePage extends StatelessWidget {
             ),
             Row(
               children: [
-                SvgPicture.asset("assets/image/"),
+                SvgPicture.asset("assets/images/like.svg"),
                 const SizedBox(width: 16),
-                SvgPicture.asset("assets/image/"),
+                SvgPicture.asset("assets/images/small_message.svg"),
                 const SizedBox(width: 16),
-                SvgPicture.asset("assets/image/"),
+                SvgPicture.asset("assets/images/share.svg"),
               ],
             )
           ],
@@ -135,6 +139,7 @@ class HomePage extends StatelessWidget {
         const SizedBox(height: 16),
         const Text(
             "오는 피어나듯이 가슴속에 아이들의 이런 딴은 이름과, 내일 내 까닭입니다. 가득 추억과 위에 하나에 덮어 피어나듯이... 더보기"),
+        const SizedBox(height: 16),
       ],
     );
   }

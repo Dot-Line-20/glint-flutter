@@ -46,7 +46,6 @@ class GTIconButton extends StatelessWidget {
         width: 48,
         height: 48,
         decoration: BoxDecoration(
-          color: AppColorTheme.BUTTON2,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Stack(
@@ -57,8 +56,7 @@ class GTIconButton extends StatelessWidget {
                 child: SizedBox(
                   width: 24,
                   height: 24,
-                  child:
-                      SvgPicture.asset(iconPath, color: AppColorTheme.BUTTON2),
+                  child: SvgPicture.asset(iconPath),
                 ),
               ),
             ),
