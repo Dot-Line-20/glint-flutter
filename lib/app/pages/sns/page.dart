@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/widgets/button.dart';
 
 class SnsPage extends StatelessWidget {
@@ -33,7 +34,7 @@ class SnsPage extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100),
-            color: Colors.red,
+            color: AppColorTheme.BUTTON1,
           ),
           height: 44,
           width: 44,
@@ -71,7 +72,7 @@ class SnsPage extends StatelessWidget {
             width: 64,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100),
-              color: Colors.red,
+              color: AppColorTheme.BUTTON1,
             ),
           ),
           const SizedBox(height: 8),
@@ -97,7 +98,7 @@ class SnsPage extends StatelessWidget {
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: Colors.red,
+            color: AppColorTheme.BUTTON1,
           ),
         ),
         const SizedBox(height: 16),
@@ -111,7 +112,7 @@ class SnsPage extends StatelessWidget {
                   width: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
-                    color: Colors.red,
+                    color: AppColorTheme.BUTTON1,
                   ),
                 ),
                 const SizedBox(width: 12),
