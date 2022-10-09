@@ -18,6 +18,12 @@ abstract class AppTextTheme {
     fontSize: 24,
     color: AppColorTheme.Gray1,
   );
+  static const boldBlue_12 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w700,
+    fontSize: 12,
+    color: AppColorTheme.Blue,
+  );
   static const boldBlue_24 = TextStyle(
     fontFamily: "Pretendard",
     fontWeight: FontWeight.w700,
@@ -53,6 +59,12 @@ abstract class AppTextTheme {
     fontWeight: FontWeight.w700,
     fontSize: 18,
     color: AppColorTheme.white,
+  );
+  static const boldGray3_12 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w700,
+    fontSize: 12,
+    color: AppColorTheme.Gray3,
   );
   static const boldGray3_18 = TextStyle(
     fontFamily: "Pretendard",
