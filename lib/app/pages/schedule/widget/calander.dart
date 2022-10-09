@@ -39,37 +39,37 @@ class CalendarViewer extends StatelessWidget {
           CalendarViewerDateItem(date: i, lastday: true, isHighlighted: false));
     }
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        //TabBarView(children: children)
-        Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: weekdays
-                    .map((e) => Text(
-                          e,
-                          style: AppTextTheme.semiboldGrey2_14,
-                        ))
-                    .toList(),
+    return SizedBox(
+      height: 350,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          //TabBarView(children: children)
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: weekdays
+                      .map((e) => Text(
+                            e,
+                            style: AppTextTheme.semiboldGrey2_14,
+                          ))
+                      .toList(),
+                ),
               ),
-            ),
-            SizedBox(
-              width: double.infinity,
-              child: GridView.count(
+              GridView.count(
                 padding: EdgeInsets.zero,
                 physics: const ScrollPhysics(),
                 shrinkWrap: true,
                 crossAxisCount: 7,
                 children: dates,
-              ),
-            )
-          ],
-        )
-      ],
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 }

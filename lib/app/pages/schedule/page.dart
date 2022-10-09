@@ -12,45 +12,31 @@ class SchedulePage extends GetView<SchedulePageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        automaticallyImplyLeading: false,
-      ),
       body: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text("일정",
                 textAlign: TextAlign.start, style: AppTextTheme.boldHGray1_24),
             const SizedBox(height: 32),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    CalendarViewer(
-                      now: controller.now,
-                    ),
-                    const SizedBox(height: 16),
-                    Row(
-                      children: [
-                        GTSmallTextButton(
-                          text: "추가하기",
-                          onTap: controller.pickSchedule,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    Obx(() => ScheduleList(
-                          scheduleList: controller.scheduleList,
-                        )),
-                  ],
+            CalendarViewer(
+              now: controller.now,
+            ),
+            Row(
+              children: [
+                GTSmallTextButton(
+                  text: "추가하기",
+                  onTap: controller.pickSchedule,
                 ),
-              ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Expanded(
+              child: Obx(() => ScheduleList(
+                    scheduleList: controller.scheduleList,
+                  )),
             ),
           ],
         ),
