@@ -31,6 +31,7 @@ class HomePage extends GetView<HomePageController> {
             items: [
               _bottomNavItem("assets/images/main", "홈"),
               _bottomNavItem("assets/images/main", "일정"),
+              _bottomNavItem("assets/images/user", "마이"),
             ],
           ),
         ));

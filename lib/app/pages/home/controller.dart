@@ -6,6 +6,8 @@ import 'package:glint/app/pages/schedule/binding.dart';
 import 'package:glint/app/pages/schedule/page.dart';
 import 'package:glint/app/pages/sns/binding.dart';
 import 'package:glint/app/pages/sns/page.dart';
+import 'package:glint/app/pages/user/binding.dart';
+import 'package:glint/app/pages/user/page.dart';
 import 'package:glint/app/routes/route.dart';
 
 class HomePageController extends GetxController {
@@ -16,6 +18,7 @@ class HomePageController extends GetxController {
   final _pages = [
     Routes.sns,
     Routes.schedule,
+    Routes.user,
   ];
 
   Route? onGenerateRoute(RouteSettings settings) {
@@ -33,6 +36,13 @@ class HomePageController extends GetxController {
           settings: settings,
           page: () => const SchedulePage(),
           binding: SchedulePageBinding(),
+        );
+      case Routes.user:
+        return GetPageRoute(
+          transition: Transition.noTransition,
+          settings: settings,
+          page: () => UserPage(),
+          binding: UserPageBinding(),
         );
 
       default:

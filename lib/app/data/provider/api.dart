@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:get/instance_manager.dart';
 import 'package:glint/app/data/models/schedule.dart';
+import 'package:glint/app/data/models/user.dart';
 import 'package:glint/app/data/provider/api_interface.dart';
 import 'package:glint/app/data/service/auth/service.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -125,10 +126,10 @@ class GTApiProvider implements GTApiInterface {
   }
 
   @override
-  Future<Map> getUser() async {
+  Future<User> getUser() async {
     String url = '/users';
     Response response = await dio.get(url);
-    return response.data;
+    return User.fromJson(response.data["data"]);
   }
 
   @override
@@ -201,9 +202,9 @@ class GTApiProvider implements GTApiInterface {
   }
 
   @override
-  Future<Map> getSuccessRate() async {
+  Future<int> getSuccessRate() async {
     String url = "/schedules/successRate";
     Response response = await dio.get(url);
-    return response.data;
+    return response.data["data"]["successRate"];
   }
 }

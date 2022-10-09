@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:glint/app/data/models/schedule.dart';
 import 'package:glint/app/data/module/schedule/repository.dart';
 
-class ScheduleController extends GetxController with StateMixin<List<Map>> {
+class ScheduleController extends GetxController
+    with StateMixin<List<Schedule>> {
   final ScheduleRepository repository;
   ScheduleController(this.repository);
 

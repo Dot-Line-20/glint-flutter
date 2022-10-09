@@ -88,9 +88,6 @@ class AuthService extends GetxService {
         }
         Map newToken =
             await repository.refreshAccessToken(_refreshToken.value!);
-
-        print(newToken);
-
         _setAccessToken(newToken["data"]["accessToken"]);
         _setRefreshToken(newToken["data"]["refreshToken"]);
         _refreshTokenApiCompleter!.complete();
