@@ -86,9 +86,13 @@ class AuthService extends GetxService {
         if (_refreshToken.value == null) {
           //throw RefreshTokenException();
         }
-        String newAccessToken =
+        Map newToken =
             await repository.refreshAccessToken(_refreshToken.value!);
-        await _setAccessToken(newAccessToken);
+
+        print(newToken);
+
+        _setAccessToken(newToken["data"]["accessToken"]);
+        _setRefreshToken(newToken["data"]["refreshToken"]);
         _refreshTokenApiCompleter!.complete();
       } catch (_) {
         await logout();
