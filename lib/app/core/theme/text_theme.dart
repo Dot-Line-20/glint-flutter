@@ -129,16 +129,31 @@ abstract class AppTextTheme {
       fontSize: 14,
       color: AppColorTheme.white_60);
 
+  static const semiboldBlue_14 = TextStyle(
+      fontFamily: "Pretendard",
+      fontWeight: FontWeight.w600,
+      fontSize: 14,
+      color: AppColorTheme.Blue);
   static const semiboldGrey1_16 = TextStyle(
       fontFamily: "Pretendard",
       fontWeight: FontWeight.w600,
       fontSize: 16,
+      color: AppColorTheme.Gray1);
+  static const semiboldGrey1_14 = TextStyle(
+      fontFamily: "Pretendard",
+      fontWeight: FontWeight.w600,
+      fontSize: 14,
       color: AppColorTheme.Gray1);
   static const semiboldGrey2_14 = TextStyle(
       fontFamily: "Pretendard",
       fontWeight: FontWeight.w600,
       fontSize: 14,
       color: AppColorTheme.Gray2);
+  static const semiboldGrey3_14 = TextStyle(
+      fontFamily: "Pretendard",
+      fontWeight: FontWeight.w600,
+      fontSize: 14,
+      color: AppColorTheme.Gray3);
   static const semiboldWhite_18 = TextStyle(
       fontFamily: "Pretendard",
       fontWeight: FontWeight.w600,
@@ -164,6 +179,11 @@ abstract class AppTextTheme {
       fontFamily: "Pretendard",
       fontWeight: FontWeight.w500,
       fontSize: 20,
+      color: AppColorTheme.Gray1);
+  static const mediumGray1_12 = TextStyle(
+      fontFamily: "Pretendard",
+      fontWeight: FontWeight.w500,
+      fontSize: 12,
       color: AppColorTheme.Gray1);
   static const mediumGray2_12 = TextStyle(
       fontFamily: "Pretendard",
@@ -206,5 +226,25 @@ abstract class AppTextTheme {
     fontWeight: FontWeight.w500,
     fontSize: 10,
     color: AppColorTheme.Blue,
+  );
+
+  static const lightGray1_14 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+    color: AppColorTheme.Gray1,
+  );
+  static const lightGray1Height_14 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+    color: AppColorTheme.Gray1,
+    height: 1.5,
+  );
+  static const lightGray3_14 = TextStyle(
+    fontFamily: "Pretendard",
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+    color: AppColorTheme.Gray3,
   );
 }

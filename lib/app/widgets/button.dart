@@ -43,8 +43,8 @@ class GTIconButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 48,
-        height: 48,
+        width: 50,
+        height: 30,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
         ),
@@ -54,8 +54,8 @@ class GTIconButton extends StatelessWidget {
               child: Align(
                 alignment: Alignment.center,
                 child: SizedBox(
-                  width: 24,
-                  height: 24,
+                  width: 30,
+                  height: 30,
                   child: SvgPicture.asset(iconPath),
                 ),
               ),

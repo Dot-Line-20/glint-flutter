@@ -14,16 +14,19 @@ class SchedulePage extends GetView<SchedulePageController> {
     return Scaffold(
       body: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 16),
             const Text("일정",
                 textAlign: TextAlign.start, style: AppTextTheme.boldHGray1_24),
             const SizedBox(height: 32),
             CalendarViewer(
               now: controller.now,
+              scheduleList: [],
             ),
+            const SizedBox(height: 8),
             Row(
               children: [
                 GTSmallTextButton(

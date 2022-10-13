@@ -17,22 +17,42 @@ class HomePage extends GetView<HomePageController> {
           initialRoute: Routes.sns,
           onGenerateRoute: controller.onGenerateRoute,
         ),
-        bottomNavigationBar: Obx(
-          () => BottomNavigationBar(
-            elevation: 8,
-            backgroundColor: AppColorTheme.white,
-            type: BottomNavigationBarType.fixed,
-            currentIndex: controller.pageIndex,
-            showSelectedLabels: true,
-            selectedLabelStyle: AppTextTheme.boldBlue_12,
-            unselectedLabelStyle: AppTextTheme.boldGray3_12,
-            selectedItemColor: AppColorTheme.BUTTON1,
-            onTap: controller.changePage,
-            items: [
-              _bottomNavItem("assets/images/main", "홈"),
-              _bottomNavItem("assets/images/main", "일정"),
-              _bottomNavItem("assets/images/user", "마이"),
+        bottomNavigationBar: Container(
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(40),
+              topLeft: Radius.circular(40),
+            ),
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                  color: Colors.black.withAlpha(50),
+                  blurRadius: 10.0,
+                  offset: Offset(0.0, 0.75))
             ],
+          ),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(40),
+              topLeft: Radius.circular(40),
+            ),
+            child: Obx(
+              () => BottomNavigationBar(
+                elevation: 10,
+                backgroundColor: AppColorTheme.white,
+                type: BottomNavigationBarType.fixed,
+                currentIndex: controller.pageIndex,
+                showSelectedLabels: true,
+                selectedLabelStyle: AppTextTheme.boldBlue_12,
+                unselectedLabelStyle: AppTextTheme.boldGray3_12,
+                selectedItemColor: AppColorTheme.BUTTON1,
+                onTap: controller.changePage,
+                items: [
+                  _bottomNavItem("assets/images/main", "홈"),
+                  _bottomNavItem("assets/images/main", "일정"),
+                  _bottomNavItem("assets/images/user", "마이"),
+                ],
+              ),
+            ),
           ),
         ));
   }

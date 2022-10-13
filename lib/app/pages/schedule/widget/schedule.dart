@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/data/models/schedule.dart';
 
@@ -25,6 +26,8 @@ class ScheduleList extends StatelessWidget {
 
   Widget _item(Schedule scheduleList) {
     return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      decoration: const BoxDecoration(color: AppColorTheme.white),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,8 +36,8 @@ class ScheduleList extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                scheduleList.startingAt.toString(),
-                style: AppTextTheme.mediumBlue_10,
+                "${scheduleList.startingAt.format} ~ ${scheduleList.endingAt.format}",
+                style: AppTextTheme.semiboldBlue_14,
               ),
               Text(
                 scheduleList.name,
@@ -71,5 +74,11 @@ class ScheduleList extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+extension FormatString on DateTime {
+  String get format {
+    return "$month월 $day일";
   }
 }
