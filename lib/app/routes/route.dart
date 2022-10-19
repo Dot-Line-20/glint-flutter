@@ -3,6 +3,8 @@
 abstract class Routes {
   static const home = "/";
   static const sns = "/sns";
+  static const story = "/story";
+  static const comment = "/sns/comment";
   static const login = "/login";
   static const register = "/register";
   static const schedule = "/schedule";

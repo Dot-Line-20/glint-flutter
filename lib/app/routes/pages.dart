@@ -1,4 +1,5 @@
 import 'package:glint/app/core/middleware/login.dart';
+import 'package:glint/app/pages/comment/page.dart';
 import 'package:glint/app/pages/home/binding.dart';
 import 'package:glint/app/pages/home/page.dart';
 import 'package:glint/app/pages/sns/binding.dart';
@@ -9,6 +10,8 @@ import 'package:glint/app/pages/register/binding.dart';
 import 'package:glint/app/pages/register/view/register_init.dart';
 import 'package:glint/app/pages/schedule/binding.dart';
 import 'package:glint/app/pages/schedule/page.dart';
+import 'package:glint/app/pages/story/binding.dart';
+import 'package:glint/app/pages/story/page.dart';
 import 'package:glint/app/pages/user/binding.dart';
 import 'package:glint/app/pages/user/page.dart';
 import 'package:glint/app/routes/route.dart';
@@ -31,10 +34,15 @@ class AppPages {
     ),
     GetPage(
       name: Routes.sns,
-      page: () => const SnsPage(),
+      page: () => SnsPage(),
       binding: SnsPageBinding(),
       middlewares: [LoginMiddleware()],
     ),
+    GetPage(name: Routes.comment, page: () => CommentPage()),
+    GetPage(
+        name: Routes.story,
+        page: () => StoryPage(),
+        binding: StoryPageBinding()),
     GetPage(
         name: Routes.login,
         page: () => const LoginPage(),
