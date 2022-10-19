@@ -27,7 +27,7 @@ class HomePageController extends GetxController {
         return GetPageRoute(
           transition: Transition.noTransition,
           settings: settings,
-          page: () => const SnsPage(),
+          page: () => SnsPage(),
           binding: SnsPageBinding(),
         );
       case Routes.schedule:
