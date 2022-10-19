@@ -22,12 +22,12 @@ class StoryPageController extends GetxController with StateMixin {
   @override
   void onInit() async {
     await getImage();
-    Timer.run(() {
-      // Timer.run() is used to avoid the error "setState() or markNeedsBuild() called during build."
-      timer = Timer.periodic(const Duration(seconds: 10), (timer) async {
-        nextStory();
-      });
-    });
+    // Timer.run(() {
+    //   // Timer.run() is used to avoid the error "setState() or markNeedsBuild() called during build."
+    //   timer = Timer.periodic(const Duration(seconds: 10), (timer) async {
+    //     nextStory();
+    //   });
+    // });
   }
 
   getImage() async {
