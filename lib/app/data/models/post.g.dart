@@ -6,20 +6,38 @@ part of 'post.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+Medias _$MediasFromJson(Map<String, dynamic> json) => Medias(
+      postId: json['postId'] as int,
+      id: json['id'] as String,
+      type: json['type'] as String,
+    );
+
+Map<String, dynamic> _$MediasToJson(Medias instance) => <String, dynamic>{
+      'postId': instance.postId,
+      'id': instance.id,
+      'type': instance.type,
+    };
+
+Counts _$CountsFromJson(Map<String, dynamic> json) => Counts(
+      likes: json['likes'] as int,
+    );
+
+Map<String, dynamic> _$CountsToJson(Counts instance) => <String, dynamic>{
+      'likes': instance.likes,
+    };
+
 Post _$PostFromJson(Map<String, dynamic> json) => Post(
-      user_id: json['user_id'] as String,
+      userId: json['userId'] as int,
       title: json['title'] as String,
       content: json['content'] as String,
       meias: json['meias'] as String,
-      is_deleted: json['is_deleted'] as bool,
-      created_at: DateTime.parse(json['created_at'] as String),
+      createdAt: DateTime.parse(json['createdAt'] as String),
     );
 
 Map<String, dynamic> _$PostToJson(Post instance) => <String, dynamic>{
-      'user_id': instance.user_id,
+      'userId': instance.userId,
       'title': instance.title,
       'content': instance.content,
       'meias': instance.meias,
-      'is_deleted': instance.is_deleted,
-      'created_at': instance.created_at.toIso8601String(),
+      'createdAt': instance.createdAt.toIso8601String(),
     };

@@ -7,17 +7,17 @@ part 'comment.g.dart';
 
 @JsonSerializable()
 class Comment {
-  String user_id;
-  String post_id;
+  int id;
+  int userId;
+  int postId;
   String content;
-  bool is_deleted;
-  DateTime created_at;
+  DateTime createdAt;
   Comment({
-    required this.user_id,
-    required this.post_id,
+    required this.id,
+    required this.userId,
+    required this.postId,
     required this.content,
-    required this.is_deleted,
-    required this.created_at,
+    required this.createdAt,
   });
 
   factory Comment.fromJson(Map<String, dynamic> json) =>

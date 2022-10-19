@@ -6,20 +6,42 @@ part 'post.g.dart';
 // g.dart file generator : flutter pub run build_runner build
 
 @JsonSerializable()
+class Medias {
+  int postId;
+  String id;
+  String type;
+  Medias({
+    required this.postId,
+    required this.id,
+    required this.type,
+  });
+  factory Medias.fromJson(Map<String, dynamic> json) => _$MediasFromJson(json);
+  Map<String, dynamic> toJson() => _$MediasToJson(this);
+}
+
+@JsonSerializable()
+class Counts {
+  int likes;
+  Counts({
+    required this.likes,
+  });
+  factory Counts.fromJson(Map<String, dynamic> json) => _$CountsFromJson(json);
+  Map<String, dynamic> toJson() => _$CountsToJson(this);
+}
+
+@JsonSerializable()
 class Post {
-  String user_id;
+  int userId;
   String title;
   String content;
   String meias;
-  bool is_deleted;
-  DateTime created_at;
+  DateTime createdAt;
   Post({
-    required this.user_id,
+    required this.userId,
     required this.title,
     required this.content,
     required this.meias,
-    required this.is_deleted,
-    required this.created_at,
+    required this.createdAt,
   });
 
   factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);

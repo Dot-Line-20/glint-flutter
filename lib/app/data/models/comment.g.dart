@@ -7,17 +7,17 @@ part of 'comment.dart';
 // **************************************************************************
 
 Comment _$CommentFromJson(Map<String, dynamic> json) => Comment(
-      user_id: json['user_id'] as String,
-      post_id: json['post_id'] as String,
+      id: json['id'] as int,
+      userId: json['userId'] as int,
+      postId: json['postId'] as int,
       content: json['content'] as String,
-      is_deleted: json['is_deleted'] as bool,
-      created_at: DateTime.parse(json['created_at'] as String),
+      createdAt: DateTime.parse(json['createdAt'] as String),
     );
 
 Map<String, dynamic> _$CommentToJson(Comment instance) => <String, dynamic>{
-      'user_id': instance.user_id,
-      'post_id': instance.post_id,
+      'id': instance.id,
+      'userId': instance.userId,
+      'postId': instance.postId,
       'content': instance.content,
-      'is_deleted': instance.is_deleted,
-      'created_at': instance.created_at.toIso8601String(),
+      'createdAt': instance.createdAt.toIso8601String(),
     };
