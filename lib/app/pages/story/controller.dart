@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:get/get.dart';
 import 'package:glint/app/test/test_api.dart';
@@ -6,7 +7,7 @@ import 'package:glint/app/test/test_api.dart';
 class StoryPageController extends GetxController with StateMixin {
   ImageApi imageApi = ImageApi();
   Rx<String?> imgUrl = Rx(null);
-  int count = 5;
+  int count = Random().nextInt(45643123);
   Rx<int> index = 0.obs;
   Rx<double> width = ((Get.width - 48) / 6).obs;
 
