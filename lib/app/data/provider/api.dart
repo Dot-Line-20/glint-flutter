@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:get/instance_manager.dart';
+import 'package:glint/app/data/models/comment.dart';
+import 'package:glint/app/data/models/post.dart';
 import 'package:glint/app/data/models/schedule.dart';
 import 'package:glint/app/data/models/user.dart';
 import 'package:glint/app/data/provider/api_interface.dart';
@@ -90,6 +92,7 @@ class GTApiProvider implements GTApiInterface {
     dio.interceptors.add(JWTInterceptor(dio));
   }
 
+  // AUTH
   @override
   Future<Map> login(String email, String password) async {
     String url = '/auth/login';
@@ -125,6 +128,7 @@ class GTApiProvider implements GTApiInterface {
     return response.data;
   }
 
+  // USER
   @override
   Future<User> getUser() async {
     String url = '/users';
@@ -150,6 +154,19 @@ class GTApiProvider implements GTApiInterface {
     await dio.delete(url);
   }
 
+  @override
+  Future<int> getSuccessRate() async {
+    String url = "/schedules/successRate";
+    try {
+      Response response = await dio.get(url);
+      return response.data["data"]["successRate"];
+    } on DioError catch (e) {
+      print(e.response!.data);
+      return 0;
+    }
+  }
+
+  // SCHEDULE
   @override
   Future<Map> makeSchedule(
       String name, String startingAt, String endingAt) async {
@@ -183,7 +200,7 @@ class GTApiProvider implements GTApiInterface {
   @override
   Future<Map> updateSchedule(String scheduleId, String name, String startingAt,
       String endingAt, bool isSuccess) async {
-    String url = '/schedules$scheduleId';
+    String url = '/schedules/$scheduleId';
     Map<String, dynamic> body = {
       "parentScheduleId": null,
       "name": name,
@@ -201,10 +218,87 @@ class GTApiProvider implements GTApiInterface {
     await dio.delete(url);
   }
 
+  // POST
+
   @override
-  Future<int> getSuccessRate() async {
-    String url = "/schedules/successRate";
+  Future<void> createPost(String title, String content) async {
+    String url = "/posts";
+    Map<String, dynamic> body = {
+      "title": title,
+      "content": content,
+    };
+    await dio.post(url, data: body);
+  }
+
+  @override
+  Future<void> deletePost(int postId) async {
+    String url = "/posts/$postId";
+    await dio.delete(url);
+  }
+
+  @override
+  Future<List<Post>> getPosts() async {
+    String url = "/posts";
     Response response = await dio.get(url);
-    return response.data["data"]["successRate"];
+    return (response.data["data"] as List)
+        .map<Post>((e) => Post.fromJson(e))
+        .toList();
+  }
+
+  @override
+  Future<void> updatePost(int postId, String title, String content) async {
+    String url = "/posts/$postId";
+    Map<String, dynamic> body = {
+      "title": title,
+      "content": content,
+    };
+    await dio.patch(url, data: body);
+  }
+
+  // COMMENT
+  @override
+  Future<void> createComment(int postId, String content) async {
+    String url = "/posts/$postId/comments";
+    Map<String, dynamic> body = {
+      "content": content,
+    };
+    await dio.post(url, data: body);
+  }
+
+  @override
+  Future<void> deleteComment(int postId, int commentId) async {
+    String url = "/posts/$postId/comments/$commentId";
+    await dio.delete(url);
+  }
+
+  @override
+  Future<void> updateComment(int postId, int commentId, String content) async {
+    String url = "/posts/$postId/comments/$commentId";
+    Map<String, dynamic> body = {
+      "content": content,
+    };
+    await dio.patch(url, data: body);
+  }
+
+  @override
+  Future<List<Comment>> getComments(int postId) async {
+    String url = "/posts/$postId/comments";
+    Response response = await dio.get(url);
+    return (response.data["data"] as List)
+        .map<Comment>((e) => Comment.fromJson(e))
+        .toList();
+  }
+
+  // LIKE
+  @override
+  Future<void> likePost(int postId) async {
+    String url = "/posts/$postId/like";
+    await dio.post(url);
+  }
+
+  @override
+  Future<void> unlikePost(int postId) async {
+    String url = "/posts/$postId/like";
+    await dio.delete(url);
   }
 }
