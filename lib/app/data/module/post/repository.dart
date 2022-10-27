@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:glint/app/data/models/post.dart';
 import 'package:glint/app/data/provider/api_interface.dart';
 
@@ -29,5 +30,13 @@ class PostRepository {
 
   Future<void> unlikePost(int postId) async {
     await api.unlikePost(postId);
+  }
+
+  Future<void> uploadFile(FilePickerResult result) async {
+    await api.uploadFile(result);
+  }
+
+  Future<void> uploadManyFile(FilePickerResult result) async {
+    await api.uploadManyFiles(result);
   }
 }
