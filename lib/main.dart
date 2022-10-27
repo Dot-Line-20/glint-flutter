@@ -19,7 +19,7 @@ void main() async {
     GetMaterialApp(
       initialRoute: Routes.home,
       getPages: AppPages.pages,
-      theme: ThemeData(fontFamily: "Pretendard", accentColor: Colors.white),
+      theme: ThemeData(fontFamily: "Pretendard"),
       locale: GetCurrentLocale.currentDeviceLocale,
       fallbackLocale: GetCurrentLocale.fallBackLocale,
     ),
