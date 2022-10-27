@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/pages/sns/controller.dart';
 import 'package:glint/app/pages/sns/widget/post.dart';
 import 'package:glint/app/routes/route.dart';
-import 'package:glint/app/test/test_model.dart';
 import 'package:glint/app/widgets/button.dart';
 
 class SnsPage extends StatelessWidget {

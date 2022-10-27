@@ -27,7 +27,7 @@ class HomePage extends GetView<HomePageController> {
               BoxShadow(
                   color: Colors.black.withAlpha(50),
                   blurRadius: 10.0,
-                  offset: Offset(0.0, 0.75))
+                  offset: const Offset(0.0, 0.75))
             ],
           ),
           child: ClipRRect(

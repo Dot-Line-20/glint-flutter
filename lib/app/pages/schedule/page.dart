@@ -24,7 +24,7 @@ class SchedulePage extends GetView<SchedulePageController> {
             const SizedBox(height: 32),
             CalendarViewer(
               now: controller.now,
-              scheduleList: [],
+              scheduleList: const [],
             ),
             const SizedBox(height: 8),
             Row(

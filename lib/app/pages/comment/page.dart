@@ -5,7 +5,6 @@ import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/pages/comment/widget/bottomsheet.dart';
 import 'package:glint/app/widgets/button.dart';
-import 'package:glint/app/widgets/textfield.dart';
 
 class CommentPage extends StatelessWidget {
   const CommentPage({Key? key}) : super(key: key);
@@ -84,7 +83,7 @@ class CommentPage extends StatelessWidget {
                   Container(
                     width: 40,
                     height: 40,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.grey,
                     ),
@@ -113,7 +112,7 @@ class CommentPage extends StatelessWidget {
                   CommentBottomSheet().bottomSheet();
                 },
                 child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       color: AppColorTheme.Gray4,
                     ),
@@ -124,7 +123,7 @@ class CommentPage extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 16),
-          Text(
+          const Text(
             "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
             style: AppTextTheme.regularGrey1_14,
           ),

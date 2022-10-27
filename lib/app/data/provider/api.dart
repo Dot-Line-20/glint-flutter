@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:file_picker/src/file_picker_result.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:get/instance_manager.dart';
 import 'package:glint/app/data/models/comment.dart';
 import 'package:glint/app/data/models/post.dart';
@@ -155,14 +155,15 @@ class GTApiProvider implements GTApiInterface {
     await dio.delete(url);
   }
 
+  // TODO : 고치기
   @override
   Future<int> getSuccessRate() async {
     String url = "/schedules/successRate";
     try {
       Response response = await dio.get(url);
       return response.data["data"]["successRate"];
-    } on DioError catch (e) {
-      print(e.response!.data);
+    } on DioError catch (_) {
+      //print(e.response!.data);
       return 0;
     }
   }

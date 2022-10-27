@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
-import 'package:glint/app/pages/sns/widget/bottomSheet.dart';
+import 'package:glint/app/pages/sns/widget/bottomsheet.dart';
 import 'package:glint/app/routes/route.dart';
 import 'package:glint/app/test/test_model.dart';
 import 'package:glint/app/widgets/button.dart';
@@ -110,7 +110,7 @@ class PostItem extends StatelessWidget {
           () => GestureDetector(
             onTap: () {
               isMore.toggle();
-              print(isMore.value);
+              //print(isMore.value);
             },
             child: Text(
               post.body.replaceAll("\n", " "),
@@ -127,7 +127,7 @@ class PostItem extends StatelessWidget {
   }
 
   void like(Rx<bool?> isLiked) {
-    int like = 1;
+    //int like = 1;
     isLiked.value = !isLiked.value!;
     Get.dialog(Container(
       color: Colors.transparent,
@@ -139,7 +139,7 @@ class PostItem extends StatelessWidget {
     Future.delayed(const Duration(seconds: 1), () {
       Get.back();
     });
-    like -= 1;
+    //like -= 1;
     isLiked.value = !isLiked.value!;
   }
 }

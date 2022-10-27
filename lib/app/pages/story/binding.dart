@@ -1,4 +1,3 @@
-import 'package:glint/app/pages/sns/controller.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/pages/story/controller.dart';
 

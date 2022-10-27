@@ -78,7 +78,6 @@ class CalendarViewer extends StatelessWidget {
   Widget build(BuildContext context) {
     final weekdays = ['월', '화', '수', '목', '금', '토', '일'];
     List<Widget> dates = calcDate();
-    List<Range> ranges = calcRange();
 
     return SizedBox(
       child: Column(

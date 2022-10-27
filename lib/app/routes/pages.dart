@@ -38,7 +38,7 @@ class AppPages {
       binding: SnsPageBinding(),
       middlewares: [LoginMiddleware()],
     ),
-    GetPage(name: Routes.comment, page: () => CommentPage()),
+    GetPage(name: Routes.comment, page: () => const CommentPage()),
     GetPage(
         name: Routes.story,
         page: () => StoryPage(),

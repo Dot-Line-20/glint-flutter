@@ -4,7 +4,6 @@ import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/pages/story/controller.dart';
 import 'package:glint/app/pages/story/widget/bottomsheet.dart';
-import 'package:glint/app/test/test_api.dart';
 
 class StoryPage extends StatelessWidget {
   StoryPage({Key? key}) : super(key: key);
@@ -57,7 +56,7 @@ class StoryPage extends StatelessWidget {
                           Container(
                             width: 40,
                             height: 40,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.grey,
                             ),

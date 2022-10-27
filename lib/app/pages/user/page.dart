@@ -30,7 +30,7 @@ class UserPage extends StatelessWidget {
               stories(),
               const SizedBox(height: 20),
               successRate(),
-              Expanded(child: const SizedBox()),
+              const Expanded(child: SizedBox()),
               GTMediumTextButton(
                   text: "로그아웃",
                   onTap: () {
@@ -115,19 +115,19 @@ class UserPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(
-              children: [
+              children: const [
                 Text("목표 달성 수", style: AppTextTheme.mediumGray2_14),
                 Text("321", style: AppTextTheme.boldGray1_18),
               ],
             ),
             Column(
-              children: [
+              children: const [
                 Text("팔로우", style: AppTextTheme.mediumGray2_14),
                 Text("1,200", style: AppTextTheme.boldGray1_18),
               ],
             ),
             Column(
-              children: [
+              children: const [
                 Text("목표 달성 수", style: AppTextTheme.mediumGray2_14),
                 Text("1,250", style: AppTextTheme.boldGray1_18),
               ],
