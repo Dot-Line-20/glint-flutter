@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:file_picker/src/file_picker_result.dart';
 import 'package:get/instance_manager.dart';
 import 'package:glint/app/data/models/comment.dart';
 import 'package:glint/app/data/models/post.dart';
@@ -300,5 +301,40 @@ class GTApiProvider implements GTApiInterface {
   Future<void> unlikePost(int postId) async {
     String url = "/posts/$postId/like";
     await dio.delete(url);
+  }
+
+  // MEDIA
+  @override
+  Future<void> getFile(String fileId) async {
+    String url = "/medias/$fileId";
+
+    Response response = await dio.get(url);
+    return response.data["data"];
+  }
+
+  @override
+  Future<void> uploadFile(FilePickerResult result) async {
+    String url = "/media";
+    String fileName = result.files.single.name;
+    String path = result.files.single.path!;
+    FormData formData = FormData.fromMap({
+      "file": await MultipartFile.fromFile(path, filename: fileName),
+    });
+    await dio.post(url, data: formData);
+  }
+
+  @override
+  Future<void> uploadManyFiles(FilePickerResult result) async {
+    String url = "/media/many";
+    List<MultipartFile> files = [];
+    for (var file in result.files) {
+      String fileName = file.name;
+      String path = file.path!;
+      files.add(await MultipartFile.fromFile(path, filename: fileName));
+    }
+    FormData formData = FormData.fromMap({
+      "files": files,
+    });
+    await dio.post(url, data: formData);
   }
 }

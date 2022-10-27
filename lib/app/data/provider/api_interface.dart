@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:glint/app/data/models/comment.dart';
 import 'package:glint/app/data/models/post.dart';
 import 'package:glint/app/data/models/schedule.dart';
@@ -39,4 +40,9 @@ abstract class GTApiInterface {
   Future<List<Comment>> getComments(int postId);
   Future<void> updateComment(int postId, int commentId, String content);
   Future<void> deleteComment(int postId, int commentId);
+
+  // MEDIA
+  Future<void> uploadFile(FilePickerResult result);
+  Future<void> uploadManyFiles(FilePickerResult result);
+  Future<void> getFile(String fileId);
 }
