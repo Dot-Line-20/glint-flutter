@@ -78,6 +78,7 @@ class GTTextFormField extends StatelessWidget {
   final bool autofocus;
   final bool isPassword;
   final int? maxLength;
+  final int? maxLines;
   final TextInputType? textInputType;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
@@ -95,6 +96,7 @@ class GTTextFormField extends StatelessWidget {
       this.hintText,
       this.controller,
       this.maxLength,
+      this.maxLines,
       this.textInputType,
       this.validator,
       this.onChanged,
@@ -124,6 +126,7 @@ class GTTextFormField extends StatelessWidget {
       cursorColor: Colors.black,
       keyboardType: textInputType,
       maxLength: maxLength,
+      maxLines: maxLines,
       controller: controller,
       onChanged: onChanged,
       decoration: InputDecoration(
@@ -152,7 +155,7 @@ class GTTextFormField extends StatelessWidget {
         counterText: "",
         fillColor: Colors.transparent,
         filled: true,
-        hintStyle: AppTextTheme.boldBlue_24,
+        hintStyle: AppTextTheme.mediumGray2_14,
         floatingLabelStyle: const TextStyle(
             color: Color.fromRGBO(0, 0, 0, 0.4),
             fontWeight: FontWeight.w500,

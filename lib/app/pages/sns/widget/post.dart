@@ -24,6 +24,8 @@ class PostItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 10),
         Stack(
@@ -40,7 +42,7 @@ class PostItem extends StatelessWidget {
                 items: post.medias.map((e) {
                   return Image.network(
                     "https://cdn.h2o.vg/images/${e.media.name}.${e.media.type}",
-                    width: double.infinity,
+                    fit: BoxFit.fitWidth,
                   );
                 }).toList(),
                 options: CarouselOptions(
@@ -133,6 +135,7 @@ class PostItem extends StatelessWidget {
             child: Text(
               post.content.replaceAll("\n", " "),
               style: AppTextTheme.lightGray1Height_14,
+              textAlign: TextAlign.start,
               overflow:
                   isMore.value! ? TextOverflow.ellipsis : TextOverflow.visible,
             ),

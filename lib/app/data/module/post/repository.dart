@@ -33,8 +33,8 @@ class PostRepository {
     await api.unlikePost(postId);
   }
 
-  Future<List<int>> uploadFile(FilePickerResult result) =>
-      api.uploadFile(result);
+  Future<List<int>> uploadFile(FilePickerResult result,Function(int,int)? onSendProgress) =>
+      api.uploadFile(result,onSendProgress);
 
   Future<List<int>> uploadManyFile(FilePickerResult result) =>
       api.uploadManyFiles(result);

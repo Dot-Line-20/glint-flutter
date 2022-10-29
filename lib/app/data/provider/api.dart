@@ -316,7 +316,7 @@ class GTApiProvider implements GTApiInterface {
   }
 
   @override
-  Future<List<int>> uploadFile(FilePickerResult result) async {
+  Future<List<int>> uploadFile(FilePickerResult result,Function(int,int)? onSendProgress) async {
     String url = "/medias";
     String fileName = result.files.single.name;
     String path = result.files.single.path!;
@@ -328,9 +328,7 @@ class GTApiProvider implements GTApiInterface {
     Response response = await dio.post(
       url,
       data: formData,
-      onSendProgress: (count, total) {
-        print("count : $count, total : $total");
-      },
+      onSendProgress: onSendProgress
     );
     return [response.data["data"]["id"]];
   }
