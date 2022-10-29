@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter_web_frame/flutter_web_frame.dart';
 import 'package:glint/app/data/initalize.dart';
 import 'package:glint/app/routes/pages.dart';
 import 'package:glint/app/routes/route.dart';
@@ -16,12 +18,16 @@ void main() async {
   // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   // Get.config();
   runApp(
-    GetMaterialApp(
-      initialRoute: Routes.home,
-      getPages: AppPages.pages,
-      theme: ThemeData(fontFamily: "Pretendard"),
-      locale: GetCurrentLocale.currentDeviceLocale,
-      fallbackLocale: GetCurrentLocale.fallBackLocale,
+    FlutterWebFrame(
+      builder: (_) => GetMaterialApp(
+        initialRoute: Routes.home,
+        getPages: AppPages.pages,
+        theme: ThemeData(fontFamily: "Pretendard"),
+        locale: GetCurrentLocale.currentDeviceLocale,
+        fallbackLocale: GetCurrentLocale.fallBackLocale,
+      ),
+      maximumSize: Size(500, Get.height),
+      enabled: kIsWeb, // default is enable, when disable content is full size
     ),
   );
 }
