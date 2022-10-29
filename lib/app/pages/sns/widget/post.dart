@@ -21,6 +21,7 @@ class PostItem extends StatelessWidget {
   }) : super(key: key);
   final Post post;
 
+  final Rx<int> index = 0.obs;
   final Rx<bool> isMore = true.obs;
   final Rx<bool> isLiked = false.obs;
   final PostController postController = Get.find<PostController>();
@@ -52,6 +53,9 @@ class PostItem extends StatelessWidget {
                   enableInfiniteScroll: false,
                   enlargeCenterPage: true,
                   scrollDirection: Axis.horizontal,
+                  onPageChanged: (index, reason) {
+                    this.index.value = index;
+                  },
                 )),
             Positioned(
               top: 10,
@@ -68,6 +72,28 @@ class PostItem extends StatelessWidget {
                     width: 32,
                     height: 32,
                     child: const Icon(Icons.more_horiz)),
+              ),
+            ),
+            Positioned(
+              left: 10,
+              bottom: 10,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: post.medias.map((e) {
+                  int i = post.medias.indexOf(e);
+                  return Obx(() => Container(
+                        width: 8.0,
+                        height: 8.0,
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 2.0),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: index.value == i
+                              ? AppColorTheme.Gray2
+                              : AppColorTheme.Gray3,
+                        ),
+                      ));
+                }).toList(),
               ),
             ),
           ],
