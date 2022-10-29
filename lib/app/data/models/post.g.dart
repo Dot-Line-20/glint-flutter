@@ -6,38 +6,60 @@ part of 'post.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Medias _$MediasFromJson(Map<String, dynamic> json) => Medias(
-      postId: json['postId'] as int,
-      id: json['id'] as String,
+Media _$MediaFromJson(Map<String, dynamic> json) => Media(
+      name: json['name'] as String,
+      id: json['id'] as int,
       type: json['type'] as String,
+      userId: json['userId'] as int,
+      isImage: json['isImage'] as bool,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+    );
+
+Map<String, dynamic> _$MediaToJson(Media instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'type': instance.type,
+      'userId': instance.userId,
+      'isImage': instance.isImage,
+      'createdAt': instance.createdAt.toIso8601String(),
+    };
+
+Medias _$MediasFromJson(Map<String, dynamic> json) => Medias(
+      index: json['index'] as int,
+      media: Media.fromJson(json['media'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$MediasToJson(Medias instance) => <String, dynamic>{
-      'postId': instance.postId,
-      'id': instance.id,
-      'type': instance.type,
+      'index': instance.index,
+      'media': instance.media,
     };
 
-Counts _$CountsFromJson(Map<String, dynamic> json) => Counts(
+Count _$CountFromJson(Map<String, dynamic> json) => Count(
       likes: json['likes'] as int,
     );
 
-Map<String, dynamic> _$CountsToJson(Counts instance) => <String, dynamic>{
+Map<String, dynamic> _$CountToJson(Count instance) => <String, dynamic>{
       'likes': instance.likes,
     };
 
 Post _$PostFromJson(Map<String, dynamic> json) => Post(
+      id: json['id'] as int,
       userId: json['userId'] as int,
       title: json['title'] as String,
       content: json['content'] as String,
-      meias: json['meias'] as String,
+      medias: (json['medias'] as List<dynamic>)
+          .map((e) => Medias.fromJson(e as Map<String, dynamic>))
+          .toList(),
       createdAt: DateTime.parse(json['createdAt'] as String),
+      count: Count.fromJson(json['_count'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$PostToJson(Post instance) => <String, dynamic>{
+      'id': instance.id,
       'userId': instance.userId,
       'title': instance.title,
       'content': instance.content,
-      'meias': instance.meias,
+      'medias': instance.medias,
       'createdAt': instance.createdAt.toIso8601String(),
+      '_count': instance.count,
     };

@@ -6,42 +6,68 @@ part 'post.g.dart';
 // g.dart file generator : flutter pub run build_runner build
 
 @JsonSerializable()
-class Medias {
-  int postId;
-  String id;
+class Media {
+  int id;
+  String name;
   String type;
-  Medias({
-    required this.postId,
+  int userId;
+  bool isImage;
+  DateTime createdAt;
+
+  Media({
+    required this.name,
     required this.id,
     required this.type,
+    required this.userId,
+    required this.isImage,
+    required this.createdAt,
+  });
+  factory Media.fromJson(Map<String, dynamic> json) => _$MediaFromJson(json);
+  Map<String, dynamic> toJson() => _$MediaToJson(this);
+}
+
+@JsonSerializable()
+class Medias {
+  int index;
+  Media media;
+
+  Medias({
+    required this.index,
+    required this.media,
   });
   factory Medias.fromJson(Map<String, dynamic> json) => _$MediasFromJson(json);
   Map<String, dynamic> toJson() => _$MediasToJson(this);
 }
 
 @JsonSerializable()
-class Counts {
+class Count {
   int likes;
-  Counts({
+  Count({
     required this.likes,
   });
-  factory Counts.fromJson(Map<String, dynamic> json) => _$CountsFromJson(json);
-  Map<String, dynamic> toJson() => _$CountsToJson(this);
+  factory Count.fromJson(Map<String, dynamic> json) => _$CountFromJson(json);
+  Map<String, dynamic> toJson() => _$CountToJson(this);
 }
 
 @JsonSerializable()
 class Post {
+  int id;
   int userId;
   String title;
   String content;
-  String meias;
+  List<Medias> medias;
   DateTime createdAt;
+
+  @JsonKey(name: '_count')
+  Count count;
   Post({
+    required this.id,
     required this.userId,
     required this.title,
     required this.content,
-    required this.meias,
+    required this.medias,
     required this.createdAt,
+    required this.count,
   });
 
   factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);

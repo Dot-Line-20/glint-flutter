@@ -12,14 +12,16 @@ class PostPage extends GetView<PostPageController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: const Text("새 게시물"),
           actions: [
             TextButton(
               onPressed: () {
-                //controller.createPost();
+                controller.createPost();
               },
               child: const Text(
                 "공유하기",
+                style: TextStyle(color: Colors.white),
               ),
             )
           ],

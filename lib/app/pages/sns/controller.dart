@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:glint/app/data/models/post.dart';
+import 'package:glint/app/data/module/post/service.dart';
 import 'package:glint/app/test/test_api.dart';
 import 'package:glint/app/test/test_model.dart';
 
 class SnsPageController extends GetxController with StateMixin {
   TestApi testApi = TestApi();
   ImageApi imageApi = ImageApi();
+  final PostController postController = Get.find<PostController>();
   final int _limit = 10;
   final Rx<int> _page = 0.obs;
 
@@ -15,15 +18,18 @@ class SnsPageController extends GetxController with StateMixin {
   final Rx<bool> _isLoadMoreRunning = false.obs;
   final ScrollController scrollController = ScrollController();
   final Rx<List<TestPost>> _posts = Rx([]);
+  final Rx<List<Post>> _post = Rx([]);
 
   bool get isLoading => _isFirstLoadRunning.value || _isLoadMoreRunning.value;
   List<TestPost> get posts => _posts.value;
+  List<Post> get post => _post.value;
 
   @override
   onInit() async {
     super.onInit();
     change(null, status: RxStatus.loading());
     scrollController.addListener(_loadMore);
+    _post.value = await postController.getPosts();
     _isFirstLoadRunning.value = true;
     _posts.value = await testApi.fetchPosts(_page.value, _limit);
     _isFirstLoadRunning.value = false;

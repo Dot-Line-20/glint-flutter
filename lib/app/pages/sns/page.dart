@@ -62,7 +62,9 @@ class SnsPage extends StatelessWidget {
         ),
         Row(
           children: [
-            GTIconButton("assets/images/post.svg", onTap: () {}),
+            GTIconButton("assets/images/post.svg", onTap: () {
+              Get.toNamed(Routes.post);
+            }),
             GTIconButton("assets/images/search.svg", onTap: () {}),
             GTIconButton("assets/images/message.svg", onTap: () {}),
           ],
@@ -117,9 +119,9 @@ class SnsPage extends StatelessWidget {
           ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: controller.posts.length,
+            itemCount: controller.post.length,
             itemBuilder: (context, index) =>
-                PostItem(post: controller.posts[index]),
+                PostItem(post: controller.post[index]),
           ),
           if (controller.isLoading) const CircularProgressIndicator()
         ],

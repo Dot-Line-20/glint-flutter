@@ -26,7 +26,7 @@ abstract class GTApiInterface {
   Future<void> deleteSchedule(String scheduleId);
 
   // POST
-  Future<void> createPost(String title, String content);
+  Future<void> createPost(String title, String content, List<int> mediaIds);
   Future<List<Post>> getPosts();
   Future<void> updatePost(int postId, String title, String content);
   Future<void> deletePost(int postId);
@@ -42,7 +42,7 @@ abstract class GTApiInterface {
   Future<void> deleteComment(int postId, int commentId);
 
   // MEDIA
-  Future<void> uploadFile(FilePickerResult result);
-  Future<void> uploadManyFiles(FilePickerResult result);
+  Future<List<int>> uploadFile(FilePickerResult result);
+  Future<List<int>> uploadManyFiles(FilePickerResult result);
   Future<void> getFile(String fileId);
 }

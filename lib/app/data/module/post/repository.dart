@@ -12,8 +12,9 @@ class PostRepository {
     return response;
   }
 
-  Future<void> createPost(String title, String content) async {
-    await api.createPost(title, content);
+  Future<void> createPost(
+      String title, String content, List<int> mediaIds) async {
+    await api.createPost(title, content, mediaIds);
   }
 
   Future<void> updatePost(int postId, String title, String content) async {
@@ -32,11 +33,9 @@ class PostRepository {
     await api.unlikePost(postId);
   }
 
-  Future<void> uploadFile(FilePickerResult result) async {
-    await api.uploadFile(result);
-  }
+  Future<List<int>> uploadFile(FilePickerResult result) =>
+      api.uploadFile(result);
 
-  Future<void> uploadManyFile(FilePickerResult result) async {
-    await api.uploadManyFiles(result);
-  }
+  Future<List<int>> uploadManyFile(FilePickerResult result) =>
+      api.uploadManyFiles(result);
 }

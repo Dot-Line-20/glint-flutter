@@ -1,7 +1,9 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
+import 'package:glint/app/data/models/post.dart';
 import 'package:glint/app/pages/sns/widget/bottomsheet.dart';
 import 'package:glint/app/routes/route.dart';
 import 'package:glint/app/test/test_model.dart';
@@ -14,7 +16,7 @@ class PostItem extends StatelessWidget {
     Key? key,
     required this.post,
   }) : super(key: key);
-  final TestPost post;
+  final Post post;
 
   final Rx<bool?> isMore = true.obs;
   final Rx<bool?> isLiked = false.obs;
@@ -34,6 +36,22 @@ class PostItem extends StatelessWidget {
                 color: AppColorTheme.BUTTON1,
               ),
             ),
+            CarouselSlider(
+                items: post.medias.map((e) {
+                  return Image.network(
+                    "https://cdn.h2o.vg/images/${e.media.name}.${e.media.type}",
+                    width: double.infinity,
+                  );
+                }).toList(),
+                options: CarouselOptions(
+                  height: 350,
+                  aspectRatio: 16 / 9,
+                  viewportFraction: 0.8,
+                  initialPage: 0,
+                  reverse: false,
+                  enlargeCenterPage: true,
+                  scrollDirection: Axis.horizontal,
+                )),
             Positioned(
               top: 10,
               right: 10,
@@ -113,7 +131,7 @@ class PostItem extends StatelessWidget {
               //print(isMore.value);
             },
             child: Text(
-              post.body.replaceAll("\n", " "),
+              post.content.replaceAll("\n", " "),
               style: AppTextTheme.lightGray1Height_14,
               overflow:
                   isMore.value! ? TextOverflow.ellipsis : TextOverflow.visible,

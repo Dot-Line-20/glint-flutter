@@ -223,11 +223,13 @@ class GTApiProvider implements GTApiInterface {
   // POST
 
   @override
-  Future<void> createPost(String title, String content) async {
+  Future<void> createPost(
+      String title, String content, List<int> mediaIds) async {
     String url = "/posts";
     Map<String, dynamic> body = {
       "title": title,
       "content": content,
+      "mediaIds": mediaIds,
     };
     await dio.post(url, data: body);
   }
@@ -314,18 +316,27 @@ class GTApiProvider implements GTApiInterface {
   }
 
   @override
-  Future<void> uploadFile(FilePickerResult result) async {
-    String url = "/media";
+  Future<List<int>> uploadFile(FilePickerResult result) async {
+    String url = "/medias";
     String fileName = result.files.single.name;
     String path = result.files.single.path!;
+
     FormData formData = FormData.fromMap({
-      "file": await MultipartFile.fromFile(path, filename: fileName),
+      "media": await MultipartFile.fromFile(path, filename: fileName),
     });
-    await dio.post(url, data: formData);
+
+    Response response = await dio.post(
+      url,
+      data: formData,
+      onSendProgress: (count, total) {
+        print("count : $count, total : $total");
+      },
+    );
+    return [response.data["data"]["id"]];
   }
 
   @override
-  Future<void> uploadManyFiles(FilePickerResult result) async {
+  Future<List<int>> uploadManyFiles(FilePickerResult result) async {
     String url = "/media/many";
     List<MultipartFile> files = [];
     for (var file in result.files) {
@@ -336,6 +347,7 @@ class GTApiProvider implements GTApiInterface {
     FormData formData = FormData.fromMap({
       "files": files,
     });
-    await dio.post(url, data: formData);
+    Response response = await dio.post(url, data: formData);
+    return (response.data["data"] as List).map<int>((e) => e["id"]).toList();
   }
 }

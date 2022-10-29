@@ -2,6 +2,8 @@ import 'package:glint/app/core/middleware/login.dart';
 import 'package:glint/app/pages/comment/page.dart';
 import 'package:glint/app/pages/home/binding.dart';
 import 'package:glint/app/pages/home/page.dart';
+import 'package:glint/app/pages/post/binding.dart';
+import 'package:glint/app/pages/post/page.dart';
 import 'package:glint/app/pages/sns/binding.dart';
 import 'package:glint/app/pages/sns/page.dart';
 import 'package:glint/app/pages/login/binding.dart';
@@ -36,6 +38,12 @@ class AppPages {
       name: Routes.sns,
       page: () => SnsPage(),
       binding: SnsPageBinding(),
+      middlewares: [LoginMiddleware()],
+    ),
+    GetPage(
+      name: Routes.post,
+      page: () => PostPage(),
+      binding: PostPageBinding(),
       middlewares: [LoginMiddleware()],
     ),
     GetPage(name: Routes.comment, page: () => const CommentPage()),
