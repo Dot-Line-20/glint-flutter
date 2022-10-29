@@ -5,7 +5,7 @@ abstract class Routes {
   static const sns = "/sns";
   static const post = "/post";
   static const story = "/story";
-  static const comment = "/sns/comment";
+  static const comment = "/sns/:id";
   static const login = "/login";
   static const register = "/register";
   static const schedule = "/schedule";

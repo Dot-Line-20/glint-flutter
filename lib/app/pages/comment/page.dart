@@ -3,10 +3,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
+import 'package:glint/app/data/models/comment.dart';
+import 'package:glint/app/pages/comment/controller.dart';
 import 'package:glint/app/pages/comment/widget/bottomsheet.dart';
 import 'package:glint/app/widgets/button.dart';
+import 'package:glint/app/widgets/textfield.dart';
 
-class CommentPage extends StatelessWidget {
+class CommentPage extends GetView<CommentPageController> {
   const CommentPage({Key? key}) : super(key: key);
 
   Widget header() {
@@ -41,26 +44,41 @@ class CommentPage extends StatelessWidget {
             children: [
               header(),
               const SizedBox(height: 16),
-              Expanded(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return item();
-                  },
-                ),
-              ),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: "Add a comment...",
-                  hintStyle: AppTextTheme.regularGrey3_14,
-                  border: InputBorder.none,
-                  suffixIcon: SvgPicture.asset(
-                    "assets/images/rabbi.svg",
-                    width: 24,
-                    height: 24,
+              controller.obx(
+                (_) => Expanded(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: controller.commentList.length,
+                    itemBuilder: (context, index) {
+                      return item(controller.commentList[index]);
+                    },
                   ),
                 ),
+                onLoading: const Center(
+                  child: CircularProgressIndicator(),
+                ),
+                onError: (error) => Center(
+                  child: Text(error.toString()),
+                ),
+                onEmpty: const Center(
+                  child: Text("Empty"),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: GTTextFormField(
+                      controller: controller.commentTextController,
+                      hintText: "입력하세요",
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  GTIconButton(
+                    "assets/images/rabbi.svg",
+                    onTap: controller.addComment,
+                  )
+                ],
               ),
             ],
           ),
@@ -69,7 +87,7 @@ class CommentPage extends StatelessWidget {
     );
   }
 
-  Widget item() {
+  Widget item(Comment comment) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Column(
@@ -123,8 +141,8 @@ class CommentPage extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 16),
-          const Text(
-            "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+          Text(
+            comment.content,
             style: AppTextTheme.regularGrey1_14,
           ),
         ],

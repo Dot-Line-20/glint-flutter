@@ -2,10 +2,10 @@ import 'package:get/get.dart';
 import 'package:glint/app/data/models/comment.dart';
 import 'package:glint/app/data/module/comment/repository.dart';
 
-class CommentService extends GetxController {
+class CommentController extends GetxController {
   final CommentRepository repository;
 
-  CommentService(this.repository);
+  CommentController(this.repository);
 
   Future<List<Comment>> getComments(int postId) async {
     return await repository.getComments(postId);

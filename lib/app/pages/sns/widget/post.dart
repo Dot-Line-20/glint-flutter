@@ -116,7 +116,7 @@ class PostItem extends StatelessWidget {
                   like(isLiked);
                 }),
                 GTIconButton("assets/images/small_message.svg", onTap: () {
-                  Get.toNamed(Routes.comment);
+                  Get.toNamed("/sns/${post.id}");
                 }),
                 GTIconButton("assets/images/share.svg", onTap: () {
                   Share.share("T");
