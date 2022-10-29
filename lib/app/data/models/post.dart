@@ -1,5 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages, non_constant_identifier_names
 
+import 'package:glint/app/data/models/category.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'post.g.dart';
 
@@ -13,16 +14,15 @@ class Media {
   int userId;
   bool isImage;
   DateTime createdAt;
-  bool isLiked;
 
-  Media(
-      {required this.name,
-      required this.id,
-      required this.type,
-      required this.userId,
-      required this.isImage,
-      required this.createdAt,
-      required this.isLiked});
+  Media({
+    required this.name,
+    required this.id,
+    required this.type,
+    required this.userId,
+    required this.isImage,
+    required this.createdAt,
+  });
   factory Media.fromJson(Map<String, dynamic> json) => _$MediaFromJson(json);
   Map<String, dynamic> toJson() => _$MediaToJson(this);
 }
@@ -58,6 +58,8 @@ class Post {
   String content;
   List<Medias> medias;
   DateTime createdAt;
+  List<Categories> categories;
+  bool isLiked;
 
   @JsonKey(name: '_count')
   Count count;
@@ -68,7 +70,9 @@ class Post {
     required this.content,
     required this.medias,
     required this.createdAt,
+    required this.categories,
     required this.count,
+    required this.isLiked,
   });
 
   factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);

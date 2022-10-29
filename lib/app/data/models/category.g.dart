@@ -17,8 +17,8 @@ Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{
     };
 
 Categories _$CategoriesFromJson(Map<String, dynamic> json) => Categories(
-      scheduleId: json['scheduleId'] as int,
-      categoryId: json['categoryId'] as int,
+      scheduleId: json['scheduleId'] as int?,
+      categoryId: json['categoryId'] as int?,
       category: Category.fromJson(json['category'] as Map<String, dynamic>),
     );
 

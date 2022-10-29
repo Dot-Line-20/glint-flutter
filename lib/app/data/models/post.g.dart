@@ -13,7 +13,6 @@ Media _$MediaFromJson(Map<String, dynamic> json) => Media(
       userId: json['userId'] as int,
       isImage: json['isImage'] as bool,
       createdAt: DateTime.parse(json['createdAt'] as String),
-      isLiked: json['isLiked'] as bool,
     );
 
 Map<String, dynamic> _$MediaToJson(Media instance) => <String, dynamic>{
@@ -23,7 +22,6 @@ Map<String, dynamic> _$MediaToJson(Media instance) => <String, dynamic>{
       'userId': instance.userId,
       'isImage': instance.isImage,
       'createdAt': instance.createdAt.toIso8601String(),
-      'isLiked': instance.isLiked,
     };
 
 Medias _$MediasFromJson(Map<String, dynamic> json) => Medias(
@@ -53,7 +51,11 @@ Post _$PostFromJson(Map<String, dynamic> json) => Post(
           .map((e) => Medias.fromJson(e as Map<String, dynamic>))
           .toList(),
       createdAt: DateTime.parse(json['createdAt'] as String),
+      categories: (json['categories'] as List<dynamic>)
+          .map((e) => Categories.fromJson(e as Map<String, dynamic>))
+          .toList(),
       count: Count.fromJson(json['_count'] as Map<String, dynamic>),
+      isLiked: json['isLiked'] as bool,
     );
 
 Map<String, dynamic> _$PostToJson(Post instance) => <String, dynamic>{
@@ -63,5 +65,7 @@ Map<String, dynamic> _$PostToJson(Post instance) => <String, dynamic>{
       'content': instance.content,
       'medias': instance.medias,
       'createdAt': instance.createdAt.toIso8601String(),
+      'categories': instance.categories,
+      'isLiked': instance.isLiked,
       '_count': instance.count,
     };
