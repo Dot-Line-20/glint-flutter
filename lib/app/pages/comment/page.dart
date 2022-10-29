@@ -46,22 +46,20 @@ class CommentPage extends GetView<CommentPageController> {
               const SizedBox(height: 16),
               controller.obx(
                 (_) => Expanded(
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: controller.commentList.length,
-                    itemBuilder: (context, index) {
-                      return item(controller.commentList[index]);
-                    },
+                  child: Obx(
+                    () => ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: controller.commentList.length,
+                      itemBuilder: (context, index) {
+                        return item(controller.commentList[index]);
+                      },
+                    ),
                   ),
                 ),
-                onLoading: const Center(
-                  child: CircularProgressIndicator(),
-                ),
-                onError: (error) => Center(
-                  child: Text(error.toString()),
-                ),
-                onEmpty: const Center(
-                  child: Text("Empty"),
+                onLoading: const Expanded(
+                  child: Center(
+                    child: CircularProgressIndicator(color: AppColorTheme.Blue),
+                  ),
                 ),
               ),
               Row(

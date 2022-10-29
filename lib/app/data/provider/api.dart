@@ -265,12 +265,13 @@ class GTApiProvider implements GTApiInterface {
 
   // COMMENT
   @override
-  Future<void> createComment(int postId, String content) async {
+  Future<Comment> createComment(int postId, String content) async {
     String url = "/posts/$postId/comments";
     Map<String, dynamic> body = {
       "content": content,
     };
-    await dio.post(url, data: body);
+    Response response = await dio.post(url, data: body);
+    return Comment.fromJson(response.data["data"]);
   }
 
   @override

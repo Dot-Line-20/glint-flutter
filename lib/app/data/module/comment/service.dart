@@ -11,8 +11,8 @@ class CommentController extends GetxController {
     return await repository.getComments(postId);
   }
 
-  Future<void> createComment(int postId, String content) async {
-    await repository.createComment(postId, content);
+  Future<Comment> createComment(int postId, String content) async {
+    return repository.createComment(postId, content);
   }
 
   Future<void> updateComment(int postId, int commentId, String content) async {

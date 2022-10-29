@@ -10,10 +10,8 @@ class CommentRepository {
     return api.getComments(postId);
   }
 
-  Future<void> createComment(int postId, String content) async {
-    await api.createComment(postId, content);
-  }
-
+  Future<Comment> createComment(int postId, String content) =>
+      api.createComment(postId, content);
   Future<void> updateComment(int postId, int commentId, String content) async {
     await api.updateComment(postId, commentId, content);
   }

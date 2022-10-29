@@ -24,8 +24,12 @@ class CommentPageController extends GetxController with StateMixin {
   }
 
   Future<void> addComment() async {
-    await commentController.createComment(postId, commentTextController.text);
+    change(null, status: RxStatus.loading());
+
+    Comment comment = await commentController.createComment(
+        postId, commentTextController.text);
     commentTextController.clear();
-    await getComment();
+    _commentList.value.insert(0, comment);
+    change(null, status: RxStatus.success());
   }
 }

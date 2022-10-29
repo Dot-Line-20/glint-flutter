@@ -36,7 +36,7 @@ abstract class GTApiInterface {
   Future<void> unlikePost(int postId);
 
   // COMMENT
-  Future<void> createComment(int postId, String content);
+  Future<Comment> createComment(int postId, String content);
   Future<List<Comment>> getComments(int postId);
   Future<void> updateComment(int postId, int commentId, String content);
   Future<void> deleteComment(int postId, int commentId);
