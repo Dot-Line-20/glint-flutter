@@ -96,7 +96,7 @@ class UserPage extends StatelessWidget {
         ),
         const SizedBox(width: 10),
         Text(
-          userController.userInfo!.name,
+          userController.userInfo?.name ?? "",
           style: AppTextTheme.boldHGray1_26,
         ),
       ],
