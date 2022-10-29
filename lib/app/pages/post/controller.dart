@@ -81,6 +81,11 @@ class PostPageController extends GetxController {
   Uint8List fileBytes(int index) =>
       filePickerResult.value?.files[index].bytes ?? Uint8List(0);
 
-  double get progress =>
-      (_uploadImageCount.value / _uploadImageTotal.value) * 100;
+  String get progress {
+    if (_uploadImageCount.value == 0 || _uploadImageTotal.value == 0) {
+      return "0.0";
+    }
+    return ((_uploadImageCount.value / _uploadImageTotal.value) * 100)
+        .toStringAsFixed(1);
+  }
 }

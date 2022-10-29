@@ -20,7 +20,7 @@ class PostController extends GetxController {
     } else {
       List<int> upload = result.isSinglePick
           ? await repository.uploadFile(result, onSendProgress)
-          : await repository.uploadManyFile(result);
+          : await repository.uploadManyFile(result, onSendProgress);
       await Future.wait([
         repository.createPost(title, content, upload),
       ]);

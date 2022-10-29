@@ -37,6 +37,7 @@ class PostRepository {
           FilePickerResult result, Function(int, int)? onSendProgress) =>
       api.uploadFile(result, onSendProgress);
 
-  Future<List<int>> uploadManyFile(FilePickerResult result) =>
-      api.uploadManyFiles(result);
+  Future<List<int>> uploadManyFile(
+          FilePickerResult result, Function(int, int)? onSendProgress) =>
+      api.uploadManyFiles(result, onSendProgress);
 }

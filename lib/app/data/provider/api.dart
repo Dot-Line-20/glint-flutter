@@ -336,8 +336,9 @@ class GTApiProvider implements GTApiInterface {
   }
 
   @override
-  Future<List<int>> uploadManyFiles(FilePickerResult result) async {
-    String url = "/media/many";
+  Future<List<int>> uploadManyFiles(
+      FilePickerResult result, Function(int, int)? onSendProgress) async {
+    String url = "/medias/many";
     List<MultipartFile> files = [];
     for (var file in result.files) {
       String fileName = file.name;
@@ -347,7 +348,8 @@ class GTApiProvider implements GTApiInterface {
     FormData formData = FormData.fromMap({
       "files": files,
     });
-    Response response = await dio.post(url, data: formData);
+    Response response =
+        await dio.post(url, data: formData, onSendProgress: onSendProgress);
     return (response.data["data"] as List).map<int>((e) => e["id"]).toList();
   }
 }
