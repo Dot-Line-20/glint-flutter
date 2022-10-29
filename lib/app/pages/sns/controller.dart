@@ -59,4 +59,10 @@ class SnsPageController extends GetxController with StateMixin {
       }
     }
   }
+
+  Future<void> refreshPost() async {
+    _page.value = 0;
+    _hasNextPage.value = true;
+    _post.value = await postController.getPosts(_page.value, _limit);
+  }
 }
