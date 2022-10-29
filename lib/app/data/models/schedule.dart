@@ -1,5 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages, non_constant_identifier_names
 
+import 'package:glint/app/data/models/category.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'schedule.g.dart';
 
@@ -15,7 +16,9 @@ class Schedule {
   DateTime endingAt;
   bool isSuccess;
   DateTime createdAt;
-  List<dynamic> categories;
+  List<Categories> categories;
+  List<dynamic> childSchedules;
+  List<DateTime> repetitions;
   Schedule({
     required this.id,
     required this.userId,
@@ -26,6 +29,8 @@ class Schedule {
     required this.isSuccess,
     required this.createdAt,
     required this.categories,
+    required this.childSchedules,
+    required this.repetitions,
   });
 
   factory Schedule.fromJson(Map<String, dynamic> json) =>

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/instance_manager.dart';
+import 'package:glint/app/data/models/category.dart';
 import 'package:glint/app/data/models/comment.dart';
 import 'package:glint/app/data/models/post.dart';
 import 'package:glint/app/data/models/schedule.dart';
@@ -137,6 +138,13 @@ class GTApiProvider implements GTApiInterface {
   @override
   Future<User> getUser() async {
     String url = '/users';
+    Response response = await dio.get(url);
+    return User.fromJson(response.data["data"]);
+  }
+
+  @override
+  Future<User> getOtherUser(int userId) async {
+    String url = '/users/$userId';
     Response response = await dio.get(url);
     return User.fromJson(response.data["data"]);
   }
@@ -386,5 +394,31 @@ class GTApiProvider implements GTApiInterface {
     Response response =
         await dio.post(url, data: formData, onSendProgress: onSendProgress);
     return (response.data["data"] as List).map<int>((e) => e["id"]).toList();
+  }
+
+  @override
+  Future<Category> createCategory(String name) async {
+    String url = "/categories";
+    Map<String, dynamic> body = {
+      "name": name,
+    };
+    Response response = await dio.post(url, data: body);
+    return Category.fromJson(response.data["data"]);
+  }
+
+  @override
+  Future<Category> getCategorie(int categoryId) async {
+    String url = "/categories/$categoryId";
+    Response response = await dio.get(url);
+    return Category.fromJson(response.data["data"]);
+  }
+
+  @override
+  Future<List<Category>> getCategories() async {
+    String url = "/categories";
+    Response response = await dio.get(url);
+    return (response.data["data"] as List)
+        .map<Category>((e) => Category.fromJson(e))
+        .toList();
   }
 }

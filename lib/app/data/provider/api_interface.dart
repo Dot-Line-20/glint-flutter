@@ -1,4 +1,5 @@
 import 'package:file_picker/file_picker.dart';
+import 'package:glint/app/data/models/category.dart';
 import 'package:glint/app/data/models/comment.dart';
 import 'package:glint/app/data/models/post.dart';
 import 'package:glint/app/data/models/schedule.dart';
@@ -12,6 +13,7 @@ abstract class GTApiInterface {
   Future<Map> refreshToken(String refreshToken);
   // USER
   Future<User> getUser();
+  Future<User> getOtherUser(int userId);
   Future<Map> updateUser(
       String email, String password, String name, String birth, String image);
   Future<void> deleteUser(String userId);
@@ -48,8 +50,12 @@ abstract class GTApiInterface {
       FilePickerResult result, Function(int, int)? onSendProgress);
   Future<List<int>> uploadManyFiles(
       FilePickerResult result, Function(int, int)? onSendProgress);
-
   Future<List<int>> uploadManyFilesForWeb(
       FilePickerResult result, Function(int, int)? onSendProgress);
   Future<void> getFile(String fileId);
+
+  // CATEGORY
+  Future<Category> createCategory(String name);
+  Future<List<Category>> getCategories();
+  Future<Category> getCategorie(int categoryId);
 }

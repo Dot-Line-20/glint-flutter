@@ -1,5 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages, non_constant_identifier_names
 
+import 'package:glint/app/data/models/post.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'user.g.dart';
 
@@ -13,6 +14,7 @@ class User {
   DateTime birth;
   String? image;
   DateTime createdAt;
+  Media? media;
   User({
     required this.id,
     required this.email,
@@ -20,6 +22,7 @@ class User {
     required this.birth,
     required this.image,
     required this.createdAt,
+    this.media,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

@@ -13,6 +13,7 @@ Media _$MediaFromJson(Map<String, dynamic> json) => Media(
       userId: json['userId'] as int,
       isImage: json['isImage'] as bool,
       createdAt: DateTime.parse(json['createdAt'] as String),
+      isLiked: json['isLiked'] as bool,
     );
 
 Map<String, dynamic> _$MediaToJson(Media instance) => <String, dynamic>{
@@ -22,6 +23,7 @@ Map<String, dynamic> _$MediaToJson(Media instance) => <String, dynamic>{
       'userId': instance.userId,
       'isImage': instance.isImage,
       'createdAt': instance.createdAt.toIso8601String(),
+      'isLiked': instance.isLiked,
     };
 
 Medias _$MediasFromJson(Map<String, dynamic> json) => Medias(

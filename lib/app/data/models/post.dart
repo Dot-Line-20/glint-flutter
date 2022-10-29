@@ -13,15 +13,16 @@ class Media {
   int userId;
   bool isImage;
   DateTime createdAt;
+  bool isLiked;
 
-  Media({
-    required this.name,
-    required this.id,
-    required this.type,
-    required this.userId,
-    required this.isImage,
-    required this.createdAt,
-  });
+  Media(
+      {required this.name,
+      required this.id,
+      required this.type,
+      required this.userId,
+      required this.isImage,
+      required this.createdAt,
+      required this.isLiked});
   factory Media.fromJson(Map<String, dynamic> json) => _$MediaFromJson(json);
   Map<String, dynamic> toJson() => _$MediaToJson(this);
 }

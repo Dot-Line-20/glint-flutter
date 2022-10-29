@@ -15,7 +15,13 @@ Schedule _$ScheduleFromJson(Map<String, dynamic> json) => Schedule(
       endingAt: DateTime.parse(json['endingAt'] as String),
       isSuccess: json['isSuccess'] as bool,
       createdAt: DateTime.parse(json['createdAt'] as String),
-      categories: json['categories'] as List<dynamic>,
+      categories: (json['categories'] as List<dynamic>)
+          .map((e) => Categories.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      childSchedules: json['childSchedules'] as List<dynamic>,
+      repetitions: (json['repetitions'] as List<dynamic>)
+          .map((e) => DateTime.parse(e as String))
+          .toList(),
     );
 
 Map<String, dynamic> _$ScheduleToJson(Schedule instance) => <String, dynamic>{
@@ -28,4 +34,7 @@ Map<String, dynamic> _$ScheduleToJson(Schedule instance) => <String, dynamic>{
       'isSuccess': instance.isSuccess,
       'createdAt': instance.createdAt.toIso8601String(),
       'categories': instance.categories,
+      'childSchedules': instance.childSchedules,
+      'repetitions':
+          instance.repetitions.map((e) => e.toIso8601String()).toList(),
     };

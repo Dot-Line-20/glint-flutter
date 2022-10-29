@@ -13,6 +13,9 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       birth: DateTime.parse(json['birth'] as String),
       image: json['image'] as String?,
       createdAt: DateTime.parse(json['createdAt'] as String),
+      media: json['media'] == null
+          ? null
+          : Media.fromJson(json['media'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
@@ -22,4 +25,5 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'birth': instance.birth.toIso8601String(),
       'image': instance.image,
       'createdAt': instance.createdAt.toIso8601String(),
+      'media': instance.media,
     };
