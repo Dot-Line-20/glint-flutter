@@ -26,7 +26,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        VideoPlayer(_controller),
+        AspectRatio(aspectRatio: 1, child: VideoPlayer(_controller)),
         GestureDetector(
           onTap: () {
             setState(() {
@@ -36,8 +36,8 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
             });
           },
           child: Icon(
-              _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-            ),
+            _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+          ),
         ),
       ],
     );

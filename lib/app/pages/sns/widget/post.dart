@@ -35,68 +35,69 @@ class PostItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 10),
-        Stack(
-          children: [
-            CarouselSlider(
-                items: post.medias.map((e) {
-                  return ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: networkFile(e),
-                  );
-                }).toList(),
-                options: CarouselOptions(
-                  aspectRatio: 16 / 9,
-                  viewportFraction: 1,
-                  initialPage: 0,
-                  reverse: false,
-                  enableInfiniteScroll: false,
-                  enlargeCenterPage: true,
-                  scrollDirection: Axis.horizontal,
-                  onPageChanged: (index, reason) {
-                    this.index.value = index;
+        if (post.medias.isNotEmpty)
+          Stack(
+            children: [
+              CarouselSlider(
+                  items: post.medias.map((e) {
+                    return ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: networkFile(e),
+                    );
+                  }).toList(),
+                  options: CarouselOptions(
+                    aspectRatio: 1,
+                    viewportFraction: 1,
+                    initialPage: 0,
+                    reverse: false,
+                    enableInfiniteScroll: false,
+                    enlargeCenterPage: true,
+                    scrollDirection: Axis.horizontal,
+                    onPageChanged: (index, reason) {
+                      this.index.value = index;
+                    },
+                  )),
+              Positioned(
+                top: 10,
+                right: 10,
+                child: GestureDetector(
+                  onTap: () {
+                    PostBottomSheet().bottomSheet();
                   },
-                )),
-            Positioned(
-              top: 10,
-              right: 10,
-              child: GestureDetector(
-                onTap: () {
-                  PostBottomSheet().bottomSheet();
-                },
-                child: Container(
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColorTheme.Gray3,
-                    ),
-                    width: 32,
-                    height: 32,
-                    child: const Icon(Icons.more_horiz)),
+                  child: Container(
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColorTheme.Gray3,
+                      ),
+                      width: 32,
+                      height: 32,
+                      child: const Icon(Icons.more_horiz)),
+                ),
               ),
-            ),
-            Positioned(
-              left: 10,
-              bottom: 10,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: post.medias.map((e) {
-                  int i = post.medias.indexOf(e);
-                  return Obx(() => Container(
-                        width: 8.0,
-                        height: 8.0,
-                        margin: const EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 2.0),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: index.value == i
-                              ? AppColorTheme.Gray2
-                              : AppColorTheme.Gray3,
-                        ),
-                      ));
-                }).toList(),
+              Positioned(
+                left: 10,
+                bottom: 10,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: post.medias.map((e) {
+                    int i = post.medias.indexOf(e);
+                    return Obx(() => Container(
+                          width: 8.0,
+                          height: 8.0,
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 2.0),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: index.value == i
+                                ? AppColorTheme.Gray2
+                                : AppColorTheme.Gray3,
+                          ),
+                        ));
+                  }).toList(),
+                ),
               ),
-            ),
-          ],
-        ),
+            ],
+          ),
         const SizedBox(height: 16),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -180,6 +181,7 @@ class PostItem extends StatelessWidget {
     if (e.media.type != "mp4" && e.media.type != "mov") {
       return Image.network(
         "https://cdn.h2o.vg/images/${e.media.name}.${e.media.type}",
+        width: double.infinity,
         fit: BoxFit.fitWidth,
       );
     }
