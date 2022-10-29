@@ -44,6 +44,7 @@ class LoginPage extends GetView<LoginPageController> {
                         const SizedBox(height: 50),
                         const Text("비밀번호", style: AppTextTheme.boldGray3_14),
                         GTTextFormField(
+                          maxLines: 1,
                           isPassword: true,
                           enableInteractiveSelection: false,
                           controller: controller.passwordTextController,

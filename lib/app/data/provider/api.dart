@@ -35,6 +35,10 @@ class JWTInterceptor extends Interceptor {
       options.path = "/users/${authService.userId}${options.path}";
     }
 
+    if (options.path.startsWith("/posts") && options.method == "DELETE") {
+      options.path += "/${authService.userId}";
+    }
+
     return handler.next(options);
   }
 
@@ -296,14 +300,14 @@ class GTApiProvider implements GTApiInterface {
   // LIKE
   @override
   Future<void> likePost(int postId) async {
-    String url = "/posts/$postId/like";
-    await dio.post(url);
+    String url = "/posts/$postId/likes";
+    await dio.post(url, data: {});
   }
 
   @override
   Future<void> unlikePost(int postId) async {
-    String url = "/posts/$postId/like";
-    await dio.delete(url);
+    String url = "/posts/$postId/likes";
+    await dio.delete(url, data: {});
   }
 
   // MEDIA
@@ -316,7 +320,8 @@ class GTApiProvider implements GTApiInterface {
   }
 
   @override
-  Future<List<int>> uploadFile(FilePickerResult result,Function(int,int)? onSendProgress) async {
+  Future<List<int>> uploadFile(
+      FilePickerResult result, Function(int, int)? onSendProgress) async {
     String url = "/medias";
     String fileName = result.files.single.name;
     String path = result.files.single.path!;
@@ -325,11 +330,8 @@ class GTApiProvider implements GTApiInterface {
       "media": await MultipartFile.fromFile(path, filename: fileName),
     });
 
-    Response response = await dio.post(
-      url,
-      data: formData,
-      onSendProgress: onSendProgress
-    );
+    Response response =
+        await dio.post(url, data: formData, onSendProgress: onSendProgress);
     return [response.data["data"]["id"]];
   }
 

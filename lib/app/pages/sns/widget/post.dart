@@ -1,13 +1,16 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/data/models/post.dart';
+import 'package:glint/app/data/module/post/service.dart';
 import 'package:glint/app/pages/sns/widget/bottomsheet.dart';
 import 'package:glint/app/routes/route.dart';
 import 'package:glint/app/test/test_model.dart';
 import 'package:glint/app/widgets/button.dart';
+import 'package:glint/app/widgets/snackbar.dart';
 import 'package:lottie/lottie.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -18,8 +21,9 @@ class PostItem extends StatelessWidget {
   }) : super(key: key);
   final Post post;
 
-  final Rx<bool?> isMore = true.obs;
-  final Rx<bool?> isLiked = false.obs;
+  final Rx<bool> isMore = true.obs;
+  final Rx<bool> isLiked = false.obs;
+  final PostController postController = Get.find<PostController>();
 
   @override
   Widget build(BuildContext context) {
@@ -112,9 +116,14 @@ class PostItem extends StatelessWidget {
             ),
             Row(
               children: [
-                GTIconButton("assets/images/like.svg", onTap: () {
-                  like(isLiked);
-                }),
+                Obx(
+                  () => GTIconButton(
+                      isLiked.value
+                          ? "assets/images/like_true.svg"
+                          : "assets/images/like.svg", onTap: () {
+                    like(isLiked);
+                  }),
+                ),
                 GTIconButton("assets/images/small_message.svg", onTap: () {
                   Get.toNamed("/sns/${post.id}");
                 }),
@@ -137,7 +146,7 @@ class PostItem extends StatelessWidget {
               style: AppTextTheme.lightGray1Height_14,
               textAlign: TextAlign.start,
               overflow:
-                  isMore.value! ? TextOverflow.ellipsis : TextOverflow.visible,
+                  isMore.value ? TextOverflow.ellipsis : TextOverflow.visible,
             ),
           ),
         ),
@@ -147,20 +156,29 @@ class PostItem extends StatelessWidget {
     );
   }
 
-  void like(Rx<bool?> isLiked) {
+  void like(Rx<bool> isLiked) {
     //int like = 1;
-    isLiked.value = !isLiked.value!;
-    Get.dialog(Container(
-      color: Colors.transparent,
-      child: Lottie.asset(
-        "assets/lottie/like.json",
-        repeat: false,
-      ),
-    ));
-    Future.delayed(const Duration(seconds: 1), () {
-      Get.back();
-    });
-    //like -= 1;
-    isLiked.value = !isLiked.value!;
+    isLiked.value = !isLiked.value;
+
+    if (isLiked.value) {
+      try {
+        postController.likePost(post.id);
+      } on DioError catch (e) {
+        GTSnackBar.open(e.response!.data["data"][0]["title"]);
+      }
+
+      Get.dialog(Container(
+        color: Colors.transparent,
+        child: Lottie.asset(
+          "assets/lottie/like.json",
+          repeat: false,
+        ),
+      ));
+      Future.delayed(const Duration(seconds: 1), () {
+        Get.back();
+      });
+    } else {
+      postController.unlikePost(post.id);
+    }
   }
 }
