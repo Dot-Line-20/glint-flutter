@@ -9,8 +9,8 @@ class PostController extends GetxController {
 
   PostController(this.repository);
 
-  Future<List<Post>> getPosts() async {
-    return await repository.getPosts();
+  Future<List<Post>> getPosts(int page, int limit) async {
+    return await repository.getPosts(page, limit);
   }
 
   Future<void> createPost(String title, String content,

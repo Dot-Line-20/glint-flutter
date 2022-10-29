@@ -27,7 +27,7 @@ abstract class GTApiInterface {
 
   // POST
   Future<void> createPost(String title, String content, List<int> mediaIds);
-  Future<List<Post>> getPosts();
+  Future<List<Post>> getPosts(int index, int size);
   Future<void> updatePost(int postId, String title, String content);
   Future<void> deletePost(int postId);
 

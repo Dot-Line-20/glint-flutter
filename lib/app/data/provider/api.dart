@@ -245,8 +245,8 @@ class GTApiProvider implements GTApiInterface {
   }
 
   @override
-  Future<List<Post>> getPosts() async {
-    String url = "/posts";
+  Future<List<Post>> getPosts(int index, int size) async {
+    String url = "/posts?page[index]=$index&page[size]=$size";
     Response response = await dio.get(url);
     return (response.data["data"] as List)
         .map<Post>((e) => Post.fromJson(e))

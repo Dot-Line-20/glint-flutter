@@ -7,8 +7,8 @@ class PostRepository {
 
   PostRepository(this.api);
 
-  Future<List<Post>> getPosts() async {
-    final response = await api.getPosts();
+  Future<List<Post>> getPosts(int page, int limit) async {
+    final response = await api.getPosts(page, limit);
     return response;
   }
 
@@ -33,8 +33,9 @@ class PostRepository {
     await api.unlikePost(postId);
   }
 
-  Future<List<int>> uploadFile(FilePickerResult result,Function(int,int)? onSendProgress) =>
-      api.uploadFile(result,onSendProgress);
+  Future<List<int>> uploadFile(
+          FilePickerResult result, Function(int, int)? onSendProgress) =>
+      api.uploadFile(result, onSendProgress);
 
   Future<List<int>> uploadManyFile(FilePickerResult result) =>
       api.uploadManyFiles(result);

@@ -34,27 +34,22 @@ class PostItem extends StatelessWidget {
         const SizedBox(height: 10),
         Stack(
           children: [
-            Container(
-              height: 350,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: AppColorTheme.BUTTON1,
-              ),
-            ),
             CarouselSlider(
                 items: post.medias.map((e) {
-                  return Image.network(
-                    "https://cdn.h2o.vg/images/${e.media.name}.${e.media.type}",
-                    fit: BoxFit.fitWidth,
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.network(
+                      "https://cdn.h2o.vg/images/${e.media.name}.${e.media.type}",
+                      fit: BoxFit.fitWidth,
+                    ),
                   );
                 }).toList(),
                 options: CarouselOptions(
-                  height: 350,
                   aspectRatio: 16 / 9,
-                  viewportFraction: 0.8,
+                  viewportFraction: 1,
                   initialPage: 0,
                   reverse: false,
+                  enableInfiniteScroll: false,
                   enlargeCenterPage: true,
                   scrollDirection: Axis.horizontal,
                 )),
@@ -66,9 +61,9 @@ class PostItem extends StatelessWidget {
                   PostBottomSheet().bottomSheet();
                 },
                 child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.white.withOpacity(0.6),
+                      color: AppColorTheme.Gray3,
                     ),
                     width: 32,
                     height: 32,

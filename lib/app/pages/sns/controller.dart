@@ -9,7 +9,7 @@ class SnsPageController extends GetxController with StateMixin {
   TestApi testApi = TestApi();
   ImageApi imageApi = ImageApi();
   final PostController postController = Get.find<PostController>();
-  final int _limit = 10;
+  final int _limit = 2;
   final Rx<int> _page = 0.obs;
 
   final Rx<bool> _isFirstLoadRunning = false.obs;
@@ -29,9 +29,9 @@ class SnsPageController extends GetxController with StateMixin {
     super.onInit();
     change(null, status: RxStatus.loading());
     scrollController.addListener(_loadMore);
-    _post.value = await postController.getPosts();
+    _post.value = await postController.getPosts(_page.value, _limit);
     _isFirstLoadRunning.value = true;
-    _posts.value = await testApi.fetchPosts(_page.value, _limit);
+    //_posts.value = await testApi.fetchPosts(_page.value, _limit);
     _isFirstLoadRunning.value = false;
     change(null, status: RxStatus.success());
   }
@@ -46,11 +46,11 @@ class SnsPageController extends GetxController with StateMixin {
       _page.value += 1; // Increase _page by 1
 
       try {
-        List<TestPost> fetchedPosts =
-            await testApi.fetchPosts(_page.value, _limit);
+        List<Post> fetchedPosts =
+            await postController.getPosts(_page.value, _limit);
 
         if (fetchedPosts.isNotEmpty) {
-          _posts.value.addAll(fetchedPosts);
+          _post.value.addAll(fetchedPosts);
         } else {
           _hasNextPage.value = false;
         }
