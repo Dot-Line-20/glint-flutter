@@ -44,7 +44,12 @@ abstract class GTApiInterface {
   // MEDIA
   Future<List<int>> uploadFile(
       FilePickerResult result, Function(int, int)? onSendProgress);
+  Future<List<int>> uploadFileForWeb(
+      FilePickerResult result, Function(int, int)? onSendProgress);
   Future<List<int>> uploadManyFiles(
+      FilePickerResult result, Function(int, int)? onSendProgress);
+
+  Future<List<int>> uploadManyFilesForWeb(
       FilePickerResult result, Function(int, int)? onSendProgress);
   Future<void> getFile(String fileId);
 }

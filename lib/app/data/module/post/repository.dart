@@ -1,4 +1,5 @@
 import 'package:file_picker/file_picker.dart';
+import 'package:get/get.dart';
 import 'package:glint/app/data/models/post.dart';
 import 'package:glint/app/data/provider/api_interface.dart';
 
@@ -34,10 +35,18 @@ class PostRepository {
   }
 
   Future<List<int>> uploadFile(
-          FilePickerResult result, Function(int, int)? onSendProgress) =>
-      api.uploadFile(result, onSendProgress);
+      FilePickerResult result, Function(int, int)? onSendProgress) {
+    if (GetPlatform.isWeb) {
+      return api.uploadFileForWeb(result, onSendProgress);
+    }
+    return api.uploadFile(result, onSendProgress);
+  }
 
   Future<List<int>> uploadManyFile(
-          FilePickerResult result, Function(int, int)? onSendProgress) =>
-      api.uploadManyFiles(result, onSendProgress);
+      FilePickerResult result, Function(int, int)? onSendProgress) {
+    if (GetPlatform.isWeb) {
+      return api.uploadManyFilesForWeb(result, onSendProgress);
+    }
+    return api.uploadManyFiles(result, onSendProgress);
+  }
 }

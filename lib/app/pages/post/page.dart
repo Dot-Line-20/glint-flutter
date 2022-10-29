@@ -44,7 +44,6 @@ class PostPage extends GetView<PostPageController> {
                   children: [
                     GTTextFormField(
                       controller: controller.contentController,
-                      maxLength: 5,
                       maxLines: 5,
                       hintText: "내용을 적어주세요",
                     ),
@@ -96,9 +95,24 @@ class PostPage extends GetView<PostPageController> {
 
   Widget pickedFile(int index) {
     if (controller.filePickerResult.value?.files[index].extension != "mp4") {
+      if (GetPlatform.isWeb) {
+        return Image.memory(
+          controller.fileBytes(index),
+          fit: BoxFit.cover,
+        );
+      }
       return Image.file(
         File(controller.filePath(index)),
         fit: BoxFit.cover,
+      );
+    }
+
+    if (GetPlatform.isWeb) {
+      return const Center(
+        child: Text(
+          "동영상 미리보기는 웹에서 지원하지 않습니다.",
+          style: AppTextTheme.boldGray2_14,
+        ),
       );
     }
 

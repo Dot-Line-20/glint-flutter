@@ -337,6 +337,21 @@ class GTApiProvider implements GTApiInterface {
   }
 
   @override
+  Future<List<int>> uploadFileForWeb(
+      FilePickerResult result, Function(int, int)? onSendProgress) async {
+    String url = "/medias";
+    String fileName = result.files.single.name;
+    List<int> bytes = result.files.single.bytes!;
+    FormData formData = FormData.fromMap({
+      "media": MultipartFile.fromBytes(bytes, filename: fileName),
+    });
+
+    Response response =
+        await dio.post(url, data: formData, onSendProgress: onSendProgress);
+    return [response.data["data"]["id"]];
+  }
+
+  @override
   Future<List<int>> uploadManyFiles(
       FilePickerResult result, Function(int, int)? onSendProgress) async {
     String url = "/medias/many";
@@ -344,7 +359,26 @@ class GTApiProvider implements GTApiInterface {
     for (var file in result.files) {
       String fileName = file.name;
       String path = file.path!;
+
       files.add(await MultipartFile.fromFile(path, filename: fileName));
+    }
+    FormData formData = FormData.fromMap({
+      "files": files,
+    });
+    Response response =
+        await dio.post(url, data: formData, onSendProgress: onSendProgress);
+    return (response.data["data"] as List).map<int>((e) => e["id"]).toList();
+  }
+
+  @override
+  Future<List<int>> uploadManyFilesForWeb(
+      FilePickerResult result, Function(int, int)? onSendProgress) async {
+    String url = "/medias/many";
+    List<MultipartFile> files = [];
+    for (PlatformFile file in result.files) {
+      String fileName = file.name;
+      List<int> bytes = file.bytes!;
+      files.add(MultipartFile.fromBytes(bytes, filename: fileName));
     }
     FormData formData = FormData.fromMap({
       "files": files,
