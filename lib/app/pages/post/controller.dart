@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/data/module/post/service.dart';
 import 'package:glint/app/widgets/snackbar.dart';
+import 'package:video_thumbnail/video_thumbnail.dart';
 
 class PostPageController extends GetxController {
   final PostController postController = Get.find<PostController>();
@@ -80,6 +81,17 @@ class PostPageController extends GetxController {
   String filePath(int index) => filePickerResult.value?.files[index].path ?? "";
   Uint8List fileBytes(int index) =>
       filePickerResult.value?.files[index].bytes ?? Uint8List(0);
+  Future<Uint8List?> videoThumbnail(int index) async {
+    if (filePickerResult.value?.files[index].extension == "mp4") {
+      return VideoThumbnail.thumbnailData(
+        video: filePath(index),
+        imageFormat: ImageFormat.JPEG,
+        quality: 25,
+      );
+    } else {
+      return Uint8List(0);
+    }
+  }
 
   String get progress {
     if (_uploadImageCount.value == 0 || _uploadImageTotal.value == 0) {

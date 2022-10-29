@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -55,10 +56,7 @@ class PostPage extends GetView<PostPageController> {
                           crossAxisCount: 3,
                           children:
                               List.generate(controller.fileCount, (index) {
-                            return Image.file(
-                              File(controller.filePath(index)),
-                              fit: BoxFit.cover,
-                            );
+                            return pickedFile(index);
                           }),
                         ),
                       ),
@@ -94,5 +92,32 @@ class PostPage extends GetView<PostPageController> {
             ),
           ),
         ));
+  }
+
+  Widget pickedFile(int index) {
+    if (controller.filePickerResult.value?.files[index].extension != "mp4") {
+      return Image.file(
+        File(controller.filePath(index)),
+        fit: BoxFit.cover,
+      );
+    }
+
+    return FutureBuilder<Uint8List?>(
+      future: controller.videoThumbnail(index),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return Stack(
+            children: [
+              Image.memory(
+                snapshot.data!,
+                fit: BoxFit.cover,
+              ),
+            ],
+          );
+        } else {
+          return const SizedBox();
+        }
+      },
+    );
   }
 }

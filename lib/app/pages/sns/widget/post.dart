@@ -7,12 +7,14 @@ import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/data/models/post.dart';
 import 'package:glint/app/data/module/post/service.dart';
 import 'package:glint/app/pages/sns/widget/bottomsheet.dart';
+import 'package:glint/app/pages/sns/widget/video_player.dart';
 import 'package:glint/app/routes/route.dart';
 import 'package:glint/app/test/test_model.dart';
 import 'package:glint/app/widgets/button.dart';
 import 'package:glint/app/widgets/snackbar.dart';
 import 'package:lottie/lottie.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:video_player/video_player.dart';
 
 class PostItem extends StatelessWidget {
   PostItem({
@@ -39,10 +41,7 @@ class PostItem extends StatelessWidget {
                 items: post.medias.map((e) {
                   return ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image.network(
-                      "https://cdn.h2o.vg/images/${e.media.name}.${e.media.type}",
-                      fit: BoxFit.fitWidth,
-                    ),
+                    child: networkFile(e),
                   );
                 }).toList(),
                 options: CarouselOptions(
@@ -174,6 +173,19 @@ class PostItem extends StatelessWidget {
         const SizedBox(height: 20),
         const Divider(color: AppColorTheme.Gray4, thickness: 1),
       ],
+    );
+  }
+
+  Widget networkFile(Medias e) {
+    if (e.media.type != "mp4" && e.media.type != "mov") {
+      return Image.network(
+        "https://cdn.h2o.vg/images/${e.media.name}.${e.media.type}",
+        fit: BoxFit.fitWidth,
+      );
+    }
+
+    return VideoPlayerWidget(
+      url: "https://cdn.h2o.vg/videos/${e.media.name}.${e.media.type}",
     );
   }
 
