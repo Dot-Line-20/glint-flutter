@@ -242,6 +242,7 @@ class GTApiProvider implements GTApiInterface {
       "title": title,
       "content": content,
       "mediaIds": mediaIds,
+      "categoryIds": [],
     };
     await dio.post(url, data: body);
   }

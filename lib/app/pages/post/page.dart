@@ -7,6 +7,7 @@ import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 
 import 'package:glint/app/pages/post/controller.dart';
+import 'package:glint/app/pages/post/widget/category.dart';
 import 'package:glint/app/widgets/button.dart';
 import 'package:glint/app/widgets/textfield.dart';
 
@@ -41,11 +42,57 @@ class PostPage extends GetView<PostPageController> {
               fit: StackFit.expand,
               children: [
                 Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     GTTextFormField(
                       controller: controller.contentController,
                       maxLines: 5,
                       hintText: "내용을 적어주세요",
+                    ),
+                    const SizedBox(height: 8),
+                    // horizonatal scrollable
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints(
+                              minHeight: 25,
+                              maxHeight: 30,
+                            ),
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemCount: 5,
+                              itemBuilder: (context, index) {
+                                // radius random color
+                                return Container(
+                                  margin: const EdgeInsets.only(right: 8),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100),
+                                    color: AppColorTheme.BUTTON1,
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8, vertical: 4),
+                                    child: const Text(
+                                      "CATEGOREIS",
+                                      style: AppTextTheme.boldWhite_14,
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                        // add iconbutton
+                        GTIconButton(
+                          "assets/images/rabbi.svg",
+                          onTap: () {
+                            //
+                            CategoryDialog.show(context, []);
+                          },
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 16),
                     Obx(

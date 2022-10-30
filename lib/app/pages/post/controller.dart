@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:glint/app/data/models/category.dart';
 import 'package:glint/app/data/module/post/service.dart';
 import 'package:glint/app/widgets/snackbar.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
@@ -12,6 +13,7 @@ import 'package:video_thumbnail/video_thumbnail.dart';
 class PostPageController extends GetxController {
   final PostController postController = Get.find<PostController>();
   Rx<FilePickerResult?> filePickerResult = Rx(null);
+  Rx<List<Categories>> categories = Rx([]);
 
   final Rx<int> _uploadImageCount = Rx(0);
   final Rx<int> _uploadImageTotal = Rx(0);

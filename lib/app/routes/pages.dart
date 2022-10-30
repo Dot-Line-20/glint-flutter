@@ -49,7 +49,7 @@ class AppPages {
     ),
     GetPage(
         name: Routes.comment,
-        page: () => const CommentPage(),
+        page: () => CommentPage(),
         binding: CommentPageBinding()),
     GetPage(
         name: Routes.story,

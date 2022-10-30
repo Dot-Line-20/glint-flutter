@@ -8,6 +8,7 @@ class UserController extends GetxController with StateMixin<User> {
 
   final Rx<User?> _userInfo = Rx(null);
   final Rx<int> _successRate = Rx(0);
+  final Rx<Map<int, User>> _users = Rx({});
 
   User? get userInfo => _userInfo.value;
   int get successRate => _successRate.value;
@@ -21,9 +22,27 @@ class UserController extends GetxController with StateMixin<User> {
 
   getUserInfo() async {
     _userInfo.value = await repository.getUserInfo();
+    _users.value[_userInfo.value!.id] = _userInfo.value!;
   }
 
   getSucessRate() async {
     _successRate.value = await repository.getSuccessRate();
+  }
+
+  Future<User> getOtherUserInfo(int userId) async {
+    return repository.getOtherUserInfo(userId);
+  }
+
+  Future<void> addUsers(List<int> userIds) async {
+    for (int userId in userIds) {
+      if (!_users.value.containsKey(userId)) {
+        _users.value[userId] = await getOtherUserInfo(userId);
+      }
+    }
+  }
+
+  User? getUser(int userId) {
+    User? user = _users.value[userId];
+    return user;
   }
 }

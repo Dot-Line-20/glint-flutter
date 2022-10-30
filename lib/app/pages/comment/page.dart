@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/data/models/comment.dart';
+import 'package:glint/app/data/models/user.dart';
+import 'package:glint/app/data/module/user/service.dart';
 import 'package:glint/app/pages/comment/controller.dart';
 import 'package:glint/app/pages/comment/widget/bottomsheet.dart';
 import 'package:glint/app/widgets/button.dart';
 import 'package:glint/app/widgets/textfield.dart';
 
 class CommentPage extends GetView<CommentPageController> {
-  const CommentPage({Key? key}) : super(key: key);
+  CommentPage({Key? key}) : super(key: key);
+
+  final UserController userController = Get.find<UserController>();
 
   Widget header() {
     return Row(
@@ -86,6 +89,7 @@ class CommentPage extends GetView<CommentPageController> {
   }
 
   Widget item(Comment comment) {
+    User? user = userController.getUser(comment.userId);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Column(
@@ -103,20 +107,21 @@ class CommentPage extends GetView<CommentPageController> {
                       shape: BoxShape.circle,
                       color: Colors.grey,
                     ),
+                    child: Image.network("src"),
                   ),
                   const SizedBox(width: 16),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text(
-                        "EXAMPLE",
+                        user?.name ?? "",
                         style: AppTextTheme.semiboldGrey1_14,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                       ),
-                      SizedBox(height: 4),
+                      const SizedBox(height: 4),
                       Text(
-                        "EXAMPLE",
+                        user?.email ?? "",
                         style: AppTextTheme.lightGray3_14,
                       ),
                     ],

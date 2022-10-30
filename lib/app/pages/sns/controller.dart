@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/data/models/post.dart';
 import 'package:glint/app/data/module/post/service.dart';
+import 'package:glint/app/data/module/user/service.dart';
 import 'package:glint/app/test/test_api.dart';
 import 'package:glint/app/test/test_model.dart';
 
@@ -9,6 +10,7 @@ class SnsPageController extends GetxController with StateMixin {
   TestApi testApi = TestApi();
   ImageApi imageApi = ImageApi();
   final PostController postController = Get.find<PostController>();
+  final UserController userController = Get.find<UserController>();
   final int _limit = 2;
   final Rx<int> _page = 0.obs;
 
@@ -24,13 +26,29 @@ class SnsPageController extends GetxController with StateMixin {
   List<TestPost> get posts => _posts.value;
   List<Post> get post => _post.value;
 
+  List<int> userIds(int index, int limit) {
+    List<int> userIds = [];
+    int start = index * limit;
+    int end = start + limit;
+
+    if (end > posts.length) {
+      end = posts.length;
+    }
+
+    for (int i = start; i < end; i++) {
+      userIds.add(_post.value[i].userId);
+    }
+    return userIds;
+  }
+
   @override
   onInit() async {
     super.onInit();
     change(null, status: RxStatus.loading());
     scrollController.addListener(_loadMore);
-    _post.value = await postController.getPosts(_page.value, _limit);
     _isFirstLoadRunning.value = true;
+    _post.value = await postController.getPosts(_page.value, _limit);
+    await userController.addUsers(userIds(_page.value, _limit));
     //_posts.value = await testApi.fetchPosts(_page.value, _limit);
     _isFirstLoadRunning.value = false;
     change(null, status: RxStatus.success());
@@ -51,6 +69,7 @@ class SnsPageController extends GetxController with StateMixin {
 
         if (fetchedPosts.isNotEmpty) {
           _post.value.addAll(fetchedPosts);
+          await userController.addUsers(userIds(_page.value, _limit));
         } else {
           _hasNextPage.value = false;
         }
