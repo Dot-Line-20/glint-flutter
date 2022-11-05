@@ -13,16 +13,20 @@ class PostController extends GetxController {
     return await repository.getPosts(page, limit);
   }
 
-  Future<void> createPost(String title, String content,
-      FilePickerResult? result, Function(int, int) onSendProgress) async {
+  Future<void> createPost(
+      String title,
+      String content,
+      FilePickerResult? result,
+      Function(int, int) onSendProgress,
+      List<int> categoryIds) async {
     if (result == null) {
-      await repository.createPost(title, content, []);
+      //await repository.createPost(title, content, [], categoryIds);
     } else {
       List<int> upload = result.isSinglePick
           ? await repository.uploadFile(result, onSendProgress)
           : await repository.uploadManyFile(result, onSendProgress);
       await Future.wait([
-        repository.createPost(title, content, upload),
+        repository.createPost(title, content, upload, categoryIds),
       ]);
     }
   }

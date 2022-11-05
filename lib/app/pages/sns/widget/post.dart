@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_launcher_icons/main.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
@@ -186,9 +187,42 @@ class _PostItemState extends State<PostItem> {
             overflow: isMore ? TextOverflow.ellipsis : TextOverflow.visible,
           ),
         ),
+        const SizedBox(height: 16),
+        _categoryList(),
         const SizedBox(height: 20),
         const Divider(color: AppColorTheme.Gray4, thickness: 1),
       ],
+    );
+  }
+
+  Widget _categoryList() {
+    if (widget.post.categories.isEmpty) {
+      return Container();
+    }
+    return SizedBox(
+      height: 30,
+      child: ListView.builder(
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemCount: widget.post.categories.length,
+        itemBuilder: (context, index) {
+          // radius random color
+          return Container(
+            margin: const EdgeInsets.only(right: 8),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100),
+              color: AppColorTheme.BUTTON1,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              child: Text(
+                widget.post.categories[index].category.name,
+                style: AppTextTheme.boldWhite_14,
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 

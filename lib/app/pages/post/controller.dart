@@ -26,9 +26,6 @@ class PostPageController extends GetxController with StateMixin {
 
   @override
   void onInit() async {
-    change(null, status: RxStatus.loading());
-    categories.value = await categoryController.getCategories();
-    change(null, status: RxStatus.success());
     super.onInit();
   }
 
@@ -46,6 +43,10 @@ class PostPageController extends GetxController with StateMixin {
     }
   }
 
+  void getCategory() async {
+    categories.value = await Get.toNamed("/category");
+  }
+
   onSendProgress(int sent, int total) {
     _uploadImageCount.value = sent;
     _uploadImageTotal.value = total;
@@ -55,7 +56,11 @@ class PostPageController extends GetxController with StateMixin {
     isUploading.value = true;
     try {
       await postController.createPost(
-          "임시", contentController.text, filePickerResult.value, onSendProgress);
+          "임시",
+          contentController.text,
+          filePickerResult.value,
+          onSendProgress,
+          categories.value.map((e) => e.id).toList());
       Get.back();
     } on DioError catch (e) {
       GTSnackBar.open(e.response!.data["data"][0]["title"]);

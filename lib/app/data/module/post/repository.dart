@@ -13,9 +13,9 @@ class PostRepository {
     return response;
   }
 
-  Future<void> createPost(
-      String title, String content, List<int> mediaIds) async {
-    await api.createPost(title, content, mediaIds);
+  Future<void> createPost(String title, String content, List<int> mediaIds,
+      List<int> categoryIds) async {
+    await api.createPost(title, content, mediaIds, categoryIds);
   }
 
   Future<void> updatePost(int postId, String title, String content) async {

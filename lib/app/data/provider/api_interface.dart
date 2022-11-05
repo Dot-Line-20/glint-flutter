@@ -28,7 +28,8 @@ abstract class GTApiInterface {
   Future<void> deleteSchedule(String scheduleId);
 
   // POST
-  Future<void> createPost(String title, String content, List<int> mediaIds);
+  Future<void> createPost(
+      String title, String content, List<int> mediaIds, List<int> categoryIds);
   Future<List<Post>> getPosts(int index, int size);
   Future<void> updatePost(int postId, String title, String content);
   Future<void> deletePost(int postId);
@@ -56,6 +57,6 @@ abstract class GTApiInterface {
 
   // CATEGORY
   Future<Category> createCategory(String name);
-  Future<List<Category>> getCategories();
+  Future<List<Category>> getCategories(String partialName);
   Future<Category> getCategorie(int categoryId);
 }

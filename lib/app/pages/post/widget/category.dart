@@ -15,31 +15,33 @@ class CategoryDialog {
         int selectedId = 0;
         return AlertDialog(
           title: const Text('카테고리'),
-          content: SingleChildScrollView(
-              child: Column(
-            children: [
-              const GTTextField(hintText: "카테고리 검색"),
-              const SizedBox(height: 16),
-              ...categories.map((category) {
-                return Row(
-                  children: [
-                    GTIconButton(
-                      "assets/images/checkbox.svg",
-                      onTap: () {
-                        selectedId = category.id ?? 0;
-                      },
-                    ),
-                    const SizedBox(width: 16),
-                    Text(category.name ?? ""),
-                  ],
-                );
-              }).toList(),
-              GTMediumTextButton(
-                text: "카테고리 추가",
-                onTap: () {},
-              )
-            ],
-          )),
+          content: Scaffold(
+            body: SingleChildScrollView(
+                child: Column(
+              children: [
+                const GTTextField(hintText: "카테고리 검색"),
+                const SizedBox(height: 16),
+                ...categories.map((category) {
+                  return Row(
+                    children: [
+                      GTIconButton(
+                        "assets/images/checkbox.svg",
+                        onTap: () {
+                          selectedId = category.id ?? 0;
+                        },
+                      ),
+                      const SizedBox(width: 16),
+                      Text(category.name ?? ""),
+                    ],
+                  );
+                }).toList(),
+                GTMediumTextButton(
+                  text: "카테고리 추가",
+                  onTap: () {},
+                )
+              ],
+            )),
+          ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),

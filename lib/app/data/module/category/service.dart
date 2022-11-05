@@ -16,6 +16,10 @@ class CategoryController extends GetxController {
     return await repository.getCategories();
   }
 
+  Future<List<Category>> searchCategories(String query) async {
+    return await repository.searchCategories(query);
+  }
+
   Future<Category> createCategory(String name) async {
     return repository.createCategory(name);
   }

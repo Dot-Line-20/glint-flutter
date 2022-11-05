@@ -59,39 +59,37 @@ class PostPage extends GetView<PostPageController> {
                               minHeight: 25,
                               maxHeight: 30,
                             ),
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              scrollDirection: Axis.horizontal,
-                              itemCount: 5,
-                              itemBuilder: (context, index) {
-                                // radius random color
-                                return Container(
-                                  margin: const EdgeInsets.only(right: 8),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    color: AppColorTheme.BUTTON1,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 8, vertical: 4),
-                                    child: const Text(
-                                      "CATEGOREIS",
-                                      style: AppTextTheme.boldWhite_14,
+                            child: Obx(
+                              () => ListView.builder(
+                                shrinkWrap: true,
+                                scrollDirection: Axis.horizontal,
+                                itemCount: controller.categories.value.length,
+                                itemBuilder: (context, index) {
+                                  // radius random color
+                                  return Container(
+                                    margin: const EdgeInsets.only(right: 8),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(100),
+                                      color: AppColorTheme.BUTTON1,
                                     ),
-                                  ),
-                                );
-                              },
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8, vertical: 4),
+                                      child: Text(
+                                        controller.categories.value[index].name,
+                                        style: AppTextTheme.boldWhite_14,
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
                             ),
                           ),
                         ),
                         // add iconbutton
                         GTIconButton(
                           "assets/images/rabbi.svg",
-                          onTap: () {
-                            //
-                            CategoryDialog()
-                                .show(context, controller.categories.value);
-                          },
+                          onTap: controller.getCategory,
                         ),
                       ],
                     ),

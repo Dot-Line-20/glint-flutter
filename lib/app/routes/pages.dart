@@ -1,4 +1,6 @@
 import 'package:glint/app/core/middleware/login.dart';
+import 'package:glint/app/pages/category/binding.dart';
+import 'package:glint/app/pages/category/page.dart';
 import 'package:glint/app/pages/comment/binding.dart';
 import 'package:glint/app/pages/comment/page.dart';
 import 'package:glint/app/pages/home/binding.dart';
@@ -45,6 +47,12 @@ class AppPages {
       name: Routes.post,
       page: () => PostPage(),
       binding: PostPageBinding(),
+      middlewares: [LoginMiddleware()],
+    ),
+    GetPage(
+      name: Routes.category,
+      page: () => CategoryPage(),
+      binding: CategoryPageBinding(),
       middlewares: [LoginMiddleware()],
     ),
     GetPage(

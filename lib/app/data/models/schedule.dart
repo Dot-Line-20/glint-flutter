@@ -17,7 +17,7 @@ class Schedule {
   bool isSuccess;
   DateTime createdAt;
   List<Categories> categories;
-  List<dynamic> childSchedules;
+  //List<dynamic> childSchedules;
   List<DateTime> repetitions;
   Schedule({
     required this.id,
@@ -29,7 +29,7 @@ class Schedule {
     required this.isSuccess,
     required this.createdAt,
     required this.categories,
-    required this.childSchedules,
+    //required this.childSchedules,
     required this.repetitions,
   });
 

@@ -235,8 +235,8 @@ class GTApiProvider implements GTApiInterface {
   // POST
 
   @override
-  Future<void> createPost(
-      String title, String content, List<int> mediaIds) async {
+  Future<void> createPost(String title, String content, List<int> mediaIds,
+      List<int> categoryIds) async {
     String url = "/posts";
     Map<String, dynamic> body = {
       "title": title,
@@ -410,14 +410,15 @@ class GTApiProvider implements GTApiInterface {
   @override
   Future<Category> getCategorie(int categoryId) async {
     String url = "/categories/$categoryId";
-      Response response = await dio.get(url);
-    
+    Response response = await dio.get(url);
+
     return Category.fromJson(response.data["data"]);
   }
 
   @override
-  Future<List<Category>> getCategories() async {
+  Future<List<Category>> getCategories(String partialName) async {
     String url = "/categories";
+    if (partialName.isNotEmpty) url += "?partialName=$partialName";
     Response response = await dio.get(url);
     return (response.data["data"] as List)
         .map<Category>((e) => Category.fromJson(e))
