@@ -49,6 +49,55 @@ class _PostItemState extends State<PostItem> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(height: 12),
+        Row(
+          children: [
+            Container(
+              height: 40,
+              width: 40,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: AppColorTheme.BUTTON1,
+              ),
+              child: Image.network(
+                "https://cdn.h2o.vg/images/${user.value?.media?.name ?? ""}.${user.value?.media?.type ?? ""}",
+                fit: BoxFit.cover,
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    user.value?.name ?? "",
+                    style: AppTextTheme.semiboldGrey1_14,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    user.value?.email ?? "",
+                    style: AppTextTheme.lightGray3_14,
+                  ),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                PostBottomSheet().bottomSheet();
+              },
+              child: Container(
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColorTheme.Gray3,
+                  ),
+                  width: 32,
+                  height: 32,
+                  child: const Icon(Icons.more_horiz)),
+            ),
+          ],
+        ),
         const SizedBox(height: 10),
         if (widget.post.medias.isNotEmpty)
           Stack(
@@ -74,43 +123,28 @@ class _PostItemState extends State<PostItem> {
                       });
                     },
                   )),
-              Positioned(
-                top: 10,
-                right: 10,
-                child: GestureDetector(
-                  onTap: () {
-                    PostBottomSheet().bottomSheet();
-                  },
-                  child: Container(
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppColorTheme.Gray3,
-                      ),
-                      width: 32,
-                      height: 32,
-                      child: const Icon(Icons.more_horiz)),
-                ),
-              ),
-              Positioned(
-                left: 10,
+              Positioned.fill(
                 bottom: 10,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: widget.post.medias.map((e) {
-                    int i = widget.post.medias.indexOf(e);
-                    return Container(
-                      width: 8.0,
-                      height: 8.0,
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 2.0),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: index == i
-                            ? AppColorTheme.Gray2
-                            : AppColorTheme.Gray3,
-                      ),
-                    );
-                  }).toList(),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: widget.post.medias.map((e) {
+                      int i = widget.post.medias.indexOf(e);
+                      return Container(
+                        width: 8.0,
+                        height: 8.0,
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 2.0),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: index == i
+                              ? AppColorTheme.BUTTON1
+                              : AppColorTheme.Gray3,
+                        ),
+                      );
+                    }).toList(),
+                  ),
                 ),
               ),
             ],
@@ -119,43 +153,6 @@ class _PostItemState extends State<PostItem> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
-              child: Row(
-                children: [
-                  Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: AppColorTheme.BUTTON1,
-                    ),
-                    child: Image.network(
-                      "https://cdn.h2o.vg/images/${user.value?.media?.name ?? ""}.${user.value?.media?.type ?? ""}",
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          user.value?.name ?? "",
-                          style: AppTextTheme.semiboldGrey1_14,
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          user.value?.email ?? "",
-                          style: AppTextTheme.lightGray3_14,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
             Row(
               children: [
                 GTIconButton(
@@ -167,11 +164,11 @@ class _PostItemState extends State<PostItem> {
                 GTIconButton("assets/images/small_message.svg", onTap: () {
                   Get.toNamed("/sns/${widget.post.id}");
                 }),
-                GTIconButton("assets/images/share.svg", onTap: () {
-                  Share.share("T");
-                }),
               ],
-            )
+            ),
+            GTIconButton("assets/images/share.svg", onTap: () {
+              Share.share("T");
+            }),
           ],
         ),
         const SizedBox(height: 16),
@@ -197,15 +194,20 @@ class _PostItemState extends State<PostItem> {
 
   Widget networkFile(Medias e) {
     if (e.media.type != "mp4" && e.media.type != "mov") {
-      return Image.network(
-        "https://cdn.h2o.vg/images/${e.media.name}.${e.media.type}",
-        width: double.infinity,
-        fit: BoxFit.fitWidth,
+      return AspectRatio(
+        aspectRatio: 16 / 9,
+        child: Image.network(
+          "https://cdn.h2o.vg/images/${e.media.name}.${e.media.type}",
+          fit: BoxFit.cover,
+        ),
       );
     }
 
-    return VideoPlayerWidget(
-      url: "https://cdn.h2o.vg/videos/${e.media.name}.${e.media.type}",
+    return AspectRatio(
+      aspectRatio: 16 / 9,
+      child: VideoPlayerWidget(
+        url: "https://cdn.h2o.vg/videos/${e.media.name}.${e.media.type}",
+      ),
     );
   }
 
