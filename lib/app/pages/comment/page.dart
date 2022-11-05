@@ -54,7 +54,8 @@ class CommentPage extends GetView<CommentPageController> {
                       shrinkWrap: true,
                       itemCount: controller.commentList.length,
                       itemBuilder: (context, index) {
-                        return item(controller.commentList[index]);
+                        return item(controller.userList[index],
+                            controller.commentList[index]);
                       },
                     ),
                   ),
@@ -88,8 +89,7 @@ class CommentPage extends GetView<CommentPageController> {
     );
   }
 
-  Widget item(Comment comment) {
-    User? user = userController.getUser(comment.userId);
+  Widget item(User user, Comment comment) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Column(

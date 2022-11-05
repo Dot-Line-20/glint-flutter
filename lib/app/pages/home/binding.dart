@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:glint/app/data/module/category/repository.dart';
+import 'package:glint/app/data/module/category/service.dart';
 import 'package:glint/app/data/module/post/repository.dart';
 import 'package:glint/app/data/module/post/service.dart';
 import 'package:glint/app/data/module/schedule/repository.dart';
@@ -16,5 +18,6 @@ class HomePageBinding extends Bindings {
         ScheduleController(ScheduleRepository(GTApiProvider())));
     Get.put<UserController>(UserController(UserRepository(GTApiProvider())));
     Get.put<PostController>(PostController(PostRepository(GTApiProvider())));
+    Get.put<CategoryController>(CategoryController(CategoryRepository(GTApiProvider())));
   }
 }

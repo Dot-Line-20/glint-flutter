@@ -410,7 +410,8 @@ class GTApiProvider implements GTApiInterface {
   @override
   Future<Category> getCategorie(int categoryId) async {
     String url = "/categories/$categoryId";
-    Response response = await dio.get(url);
+      Response response = await dio.get(url);
+    
     return Category.fromJson(response.data["data"]);
   }
 

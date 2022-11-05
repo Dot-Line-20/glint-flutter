@@ -89,7 +89,8 @@ class PostPage extends GetView<PostPageController> {
                           "assets/images/rabbi.svg",
                           onTap: () {
                             //
-                            CategoryDialog.show(context, []);
+                            CategoryDialog()
+                                .show(context, controller.categories.value);
                           },
                         ),
                       ],

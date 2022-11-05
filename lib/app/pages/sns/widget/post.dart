@@ -27,8 +27,7 @@ class PostItem extends StatefulWidget {
 }
 
 class _PostItemState extends State<PostItem> {
-  late User? user;
-
+  Rx<User?> user = Rx(null);
   int index = 0;
   bool isMore = true;
   bool isLiked = false;
@@ -38,7 +37,9 @@ class _PostItemState extends State<PostItem> {
   @override
   void initState() {
     isLiked = widget.post.isLiked;
-    user = userController.getUser(widget.post.userId);
+    userController
+        .getOtherUserInfo(widget.post.userId)
+        .then((value) => user.value = value);
     super.initState();
   }
 
@@ -129,7 +130,7 @@ class _PostItemState extends State<PostItem> {
                       color: AppColorTheme.BUTTON1,
                     ),
                     child: Image.network(
-                      "https://cdn.h2o.vg/images/${user?.media?.name ?? ""}.${user?.media?.type ?? ""}",
+                      "https://cdn.h2o.vg/images/${user.value?.media?.name ?? ""}.${user.value?.media?.type ?? ""}",
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -139,14 +140,14 @@ class _PostItemState extends State<PostItem> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          user?.name ?? "",
+                          user.value?.name ?? "",
                           style: AppTextTheme.semiboldGrey1_14,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          user?.email ?? "",
+                          user.value?.email ?? "",
                           style: AppTextTheme.lightGray3_14,
                         ),
                       ],

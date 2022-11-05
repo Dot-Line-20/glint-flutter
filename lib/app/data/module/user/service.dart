@@ -33,6 +33,14 @@ class UserController extends GetxController with StateMixin<User> {
     return repository.getOtherUserInfo(userId);
   }
 
+  Future<List<User>> getUserList(List<int> userIds) async {
+    List<User> users = [];
+    for (int userId in userIds) {
+      users.add(await getOtherUserInfo(userId));
+    }
+    return users;
+  }
+
   Future<void> addUsers(List<int> userIds) async {
     for (int userId in userIds) {
       if (!_users.value.containsKey(userId)) {

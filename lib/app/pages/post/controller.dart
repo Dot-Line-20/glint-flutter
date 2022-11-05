@@ -6,14 +6,16 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/data/models/category.dart';
+import 'package:glint/app/data/module/category/service.dart';
 import 'package:glint/app/data/module/post/service.dart';
 import 'package:glint/app/widgets/snackbar.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 
-class PostPageController extends GetxController {
+class PostPageController extends GetxController with StateMixin {
   final PostController postController = Get.find<PostController>();
+  final CategoryController categoryController = Get.find<CategoryController>();
   Rx<FilePickerResult?> filePickerResult = Rx(null);
-  Rx<List<Categories>> categories = Rx([]);
+  Rx<List<Category>> categories = Rx([]);
 
   final Rx<int> _uploadImageCount = Rx(0);
   final Rx<int> _uploadImageTotal = Rx(0);
@@ -21,6 +23,14 @@ class PostPageController extends GetxController {
 
   final TextEditingController titleController = TextEditingController();
   final TextEditingController contentController = TextEditingController();
+
+  @override
+  void onInit() async {
+    change(null, status: RxStatus.loading());
+    categories.value = await categoryController.getCategories();
+    change(null, status: RxStatus.success());
+    super.onInit();
+  }
 
   void getFileFromPicker() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(

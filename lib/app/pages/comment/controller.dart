@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/data/models/comment.dart';
+import 'package:glint/app/data/models/user.dart';
 import 'package:glint/app/data/module/comment/service.dart';
 import 'package:glint/app/data/module/user/service.dart';
 
@@ -16,25 +17,26 @@ class CommentPageController extends GetxController with StateMixin {
     super.onInit();
     change(null, status: RxStatus.loading());
     await getComment();
+
     change(null, status: RxStatus.success());
   }
 
   final Rx<List<Comment>> _commentList = Rx([]);
+  final Rx<List<User>> _userList = Rx([]);
   List<Comment> get commentList => _commentList.value;
+  List<User> get userList => _userList.value;
 
   List<int> get userIds {
     List<int> userIds = [];
     for (Comment comment in commentList) {
-      if (!userIds.contains(comment.userId)) {
-        userIds.add(comment.userId);
-      }
+      userIds.add(comment.userId);
     }
     return userIds;
   }
 
   Future<void> getComment() async {
     _commentList.value = await commentController.getComments(postId);
-    await userController.addUsers(userIds);
+    _userList.value = await userController.getUserList(userIds);
   }
 
   Future<void> addComment() async {
