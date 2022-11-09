@@ -44,8 +44,10 @@ class CommentPageController extends GetxController with StateMixin {
 
     Comment comment = await commentController.createComment(
         postId, commentTextController.text);
+    User user = (await userController.getOtherUserInfo(comment.userId));
     commentTextController.clear();
     _commentList.value.insert(0, comment);
+    _userList.value.insert(0, user);
     change(null, status: RxStatus.success());
   }
 }
