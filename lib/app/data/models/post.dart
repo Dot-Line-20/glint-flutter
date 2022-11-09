@@ -43,8 +43,10 @@ class Medias {
 @JsonSerializable()
 class Count {
   int likes;
+  int comments;
   Count({
     required this.likes,
+    required this.comments,
   });
   factory Count.fromJson(Map<String, dynamic> json) => _$CountFromJson(json);
   Map<String, dynamic> toJson() => _$CountToJson(this);
@@ -54,7 +56,6 @@ class Count {
 class Post {
   int id;
   int userId;
-  String title;
   String content;
   List<Medias> medias;
   DateTime createdAt;
@@ -66,7 +67,6 @@ class Post {
   Post({
     required this.id,
     required this.userId,
-    required this.title,
     required this.content,
     required this.medias,
     required this.createdAt,

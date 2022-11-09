@@ -53,35 +53,40 @@ class _PostItemState extends State<PostItem> {
         const SizedBox(height: 12),
         Row(
           children: [
-            Container(
-              height: 40,
-              width: 40,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                color: AppColorTheme.BUTTON1,
-              ),
-              child: Image.network(
-                "https://cdn.h2o.vg/images/${user.value?.media?.name ?? ""}.${user.value?.media?.type ?? ""}",
-                fit: BoxFit.cover,
+            Obx(
+              () => Container(
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColorTheme.BUTTON1,
+                  image: DecorationImage(
+                    image: NetworkImage(
+                        "https://cdn.h2o.vg/images/${user.value?.media?.name ?? ""}.${user.value?.media?.type ?? ""}"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
             ),
             const SizedBox(width: 12),
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    user.value?.name ?? "",
-                    style: AppTextTheme.semiboldGrey1_14,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    user.value?.email ?? "",
-                    style: AppTextTheme.lightGray3_14,
-                  ),
-                ],
+              child: Obx(
+                () => Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      user.value?.name ?? "",
+                      style: AppTextTheme.semiboldGrey1_14,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      user.value?.email ?? "",
+                      style: AppTextTheme.lightGray3_14,
+                    ),
+                  ],
+                ),
               ),
             ),
             GestureDetector(

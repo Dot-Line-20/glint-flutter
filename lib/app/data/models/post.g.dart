@@ -36,16 +36,17 @@ Map<String, dynamic> _$MediasToJson(Medias instance) => <String, dynamic>{
 
 Count _$CountFromJson(Map<String, dynamic> json) => Count(
       likes: json['likes'] as int,
+      comments: json['comments'] as int,
     );
 
 Map<String, dynamic> _$CountToJson(Count instance) => <String, dynamic>{
       'likes': instance.likes,
+      'comments': instance.comments,
     };
 
 Post _$PostFromJson(Map<String, dynamic> json) => Post(
       id: json['id'] as int,
       userId: json['userId'] as int,
-      title: json['title'] as String,
       content: json['content'] as String,
       medias: (json['medias'] as List<dynamic>)
           .map((e) => Medias.fromJson(e as Map<String, dynamic>))
@@ -61,7 +62,6 @@ Post _$PostFromJson(Map<String, dynamic> json) => Post(
 Map<String, dynamic> _$PostToJson(Post instance) => <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,
-      'title': instance.title,
       'content': instance.content,
       'medias': instance.medias,
       'createdAt': instance.createdAt.toIso8601String(),
