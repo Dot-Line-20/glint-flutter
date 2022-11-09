@@ -103,25 +103,29 @@ class CommentPage extends GetView<CommentPageController> {
                   Container(
                     width: 40,
                     height: 40,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.grey,
+                      image: DecorationImage(
+                        image: NetworkImage(
+                            "https://cdn.h2o.vg/images/${user.media?.name ?? ""}.${user.media?.type ?? ""}"),
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                    child: Image.network("src"),
                   ),
                   const SizedBox(width: 16),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        user?.name ?? "",
+                        user.name,
                         style: AppTextTheme.semiboldGrey1_14,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        user?.email ?? "",
+                        user.email,
                         style: AppTextTheme.lightGray3_14,
                       ),
                     ],

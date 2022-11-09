@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
+import 'package:glint/app/data/module/user/service.dart';
 import 'package:glint/app/pages/sns/controller.dart';
 import 'package:glint/app/pages/sns/widget/post.dart';
 import 'package:glint/app/routes/route.dart';
@@ -11,6 +12,7 @@ class SnsPage extends StatelessWidget {
   SnsPage({Key? key}) : super(key: key);
 
   final SnsPageController controller = Get.find<SnsPageController>();
+  final UserController userController = Get.find<UserController>();
 
   @override
   Widget build(BuildContext context) {
@@ -56,13 +58,20 @@ class SnsPage extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
-            color: AppColorTheme.BUTTON1,
+        Obx(
+          () => Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100),
+              color: AppColorTheme.BUTTON1,
+              image: DecorationImage(
+                image: NetworkImage(
+                    "https://cdn.h2o.vg/images/${userController.userInfo?.media?.name ?? ""}.${userController.userInfo?.media?.type ?? ""}"),
+                fit: BoxFit.cover,
+              ),
+            ),
+            height: 44,
+            width: 44,
           ),
-          height: 44,
-          width: 44,
         ),
         Row(
           children: [

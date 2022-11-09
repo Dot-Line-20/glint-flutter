@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/data/models/post.dart';
 import 'package:glint/app/data/module/post/service.dart';
-import 'package:glint/app/data/module/user/service.dart';
 import 'package:glint/app/test/test_api.dart';
 import 'package:glint/app/test/test_model.dart';
 
@@ -10,7 +9,6 @@ class SnsPageController extends GetxController with StateMixin {
   TestApi testApi = TestApi();
   ImageApi imageApi = ImageApi();
   final PostController postController = Get.find<PostController>();
-  final UserController userController = Get.find<UserController>();
   final int _limit = 2;
   final Rx<int> _page = 0.obs;
 
@@ -48,7 +46,6 @@ class SnsPageController extends GetxController with StateMixin {
     scrollController.addListener(_loadMore);
     _isFirstLoadRunning.value = true;
     _post.value = await postController.getPosts(_page.value, _limit);
-    await userController.addUsers(userIds(_page.value, _limit));
     //_posts.value = await testApi.fetchPosts(_page.value, _limit);
     _isFirstLoadRunning.value = false;
     change(null, status: RxStatus.success());
@@ -69,7 +66,6 @@ class SnsPageController extends GetxController with StateMixin {
 
         if (fetchedPosts.isNotEmpty) {
           _post.value.addAll(fetchedPosts);
-          await userController.addUsers(userIds(_page.value, _limit));
         } else {
           _hasNextPage.value = false;
         }

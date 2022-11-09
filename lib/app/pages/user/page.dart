@@ -83,23 +83,30 @@ class UserPage extends StatelessWidget {
   }
 
   Widget header() {
-    return Row(
-      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
-            color: AppColorTheme.BUTTON1,
+    return Obx(
+      () => Row(
+        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: AppColorTheme.BUTTON1,
+              image: DecorationImage(
+                image: NetworkImage(
+                    "https://cdn.h2o.vg/images/${userController.userInfo?.media?.name ?? ""}.${userController.userInfo?.media?.type ?? ""}"),
+                fit: BoxFit.cover,
+              ),
+            ),
+            height: 44,
+            width: 44,
           ),
-          height: 44,
-          width: 44,
-        ),
-        const SizedBox(width: 10),
-        Text(
-          userController.userInfo?.name ?? "",
-          style: AppTextTheme.boldHGray1_26,
-        ),
-      ],
+          const SizedBox(width: 10),
+          Text(
+            userController.userInfo?.name ?? "",
+            style: AppTextTheme.boldHGray1_26,
+          ),
+        ],
+      ),
     );
   }
 
