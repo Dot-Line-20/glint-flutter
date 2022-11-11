@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:glint/app/data/models/category.dart';
+import 'package:glint/app/data/models/chat.dart';
 import 'package:glint/app/data/models/comment.dart';
 import 'package:glint/app/data/models/post.dart';
 import 'package:glint/app/data/models/schedule.dart';
@@ -59,4 +60,9 @@ abstract class GTApiInterface {
   Future<Category> createCategory(String name);
   Future<List<Category>> getCategories(String partialName);
   Future<Category> getCategorie(int categoryId);
+
+  //CHAT
+  Future<ChatRoom> createChatRoom(String name, List<int> userIds);
+  Future<List<ChatRoom>> getChatRooms();
+  Future<List<ChatMessage>> getChatMessages(int chatId);
 }

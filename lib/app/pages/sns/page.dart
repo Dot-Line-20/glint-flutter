@@ -79,7 +79,9 @@ class SnsPage extends StatelessWidget {
               Get.toNamed(Routes.post);
             }),
             GTIconButton("assets/images/search.svg", onTap: () {}),
-            GTIconButton("assets/images/message.svg", onTap: () {}),
+            GTIconButton("assets/images/message.svg", onTap: () {
+              Get.toNamed(Routes.chat);
+            }),
           ],
         )
       ],

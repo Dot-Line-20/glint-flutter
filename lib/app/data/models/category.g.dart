@@ -18,13 +18,13 @@ Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{
 
 Categories _$CategoriesFromJson(Map<String, dynamic> json) => Categories(
       scheduleId: json['scheduleId'] as int?,
-      categoryId: json['categoryId'] as int?,
+      CategoryId: json['CategoryId'] as int?,
       category: Category.fromJson(json['category'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$CategoriesToJson(Categories instance) =>
     <String, dynamic>{
       'scheduleId': instance.scheduleId,
-      'categoryId': instance.categoryId,
+      'CategoryId': instance.CategoryId,
       'category': instance.category,
     };

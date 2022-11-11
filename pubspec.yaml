@@ -68,6 +68,7 @@ dependencies:
   video_thumbnail: ^0.5.3
   video_player: ^2.4.7
   flutter_web_frame: ^0.0.3
+  socket_io_client: ^2.0.0
 
 dev_dependencies:
   flutter_test:

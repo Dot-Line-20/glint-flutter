@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/instance_manager.dart';
 import 'package:glint/app/data/models/category.dart';
+import 'package:glint/app/data/models/chat.dart';
 import 'package:glint/app/data/models/comment.dart';
 import 'package:glint/app/data/models/post.dart';
 import 'package:glint/app/data/models/schedule.dart';
@@ -422,6 +423,35 @@ class GTApiProvider implements GTApiInterface {
     Response response = await dio.get(url);
     return (response.data["data"] as List)
         .map<Category>((e) => Category.fromJson(e))
+        .toList();
+  }
+
+  @override
+  Future<ChatRoom> createChatRoom(String name, List<int> userIds) async {
+    String url = "/chats";
+    Map<String, dynamic> body = {
+      "name": name,
+      "userIds": userIds,
+    };
+    Response response = await dio.post(url, data: body);
+    return ChatRoom.fromJson(response.data["data"]);
+  }
+
+  @override
+  Future<List<ChatRoom>> getChatRooms() async {
+    String url = "/chats";
+    Response response = await dio.get(url);
+    return (response.data["data"] as List)
+        .map<ChatRoom>((e) => ChatRoom.fromJson(e))
+        .toList();
+  }
+
+  @override
+  Future<List<ChatMessage>> getChatMessages(int chatId) async {
+    String url = "/chats/$chatId/messages";
+    Response response = await dio.get(url);
+    return (response.data["data"] as List)
+        .map<ChatMessage>((e) => ChatMessage.fromJson(e))
         .toList();
   }
 }

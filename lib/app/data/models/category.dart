@@ -23,12 +23,12 @@ class Category {
 @JsonSerializable()
 class Categories {
   int? scheduleId;
-  int? categoryId;
+  int? CategoryId;
   Category category;
 
   Categories({
     this.scheduleId,
-    this.categoryId,
+    this.CategoryId,
     required this.category,
   });
   factory Categories.fromJson(Map<String, dynamic> json) =>

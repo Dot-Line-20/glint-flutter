@@ -13,7 +13,7 @@ class ScheduleController extends GetxController
 
   @override
   void onInit() {
-    fetchScheduleList();
+    //fetchScheduleList();
     super.onInit();
   }
 

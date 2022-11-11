@@ -11,4 +11,5 @@ abstract class Routes {
   static const schedule = "/schedule";
   static const user = "/user";
   static const category = "/category";
+  static const chat = "/chat";
 }
