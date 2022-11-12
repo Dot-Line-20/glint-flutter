@@ -7,7 +7,6 @@ import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 
 import 'package:glint/app/pages/post/controller.dart';
-import 'package:glint/app/pages/post/widget/category.dart';
 import 'package:glint/app/widgets/button.dart';
 import 'package:glint/app/widgets/textfield.dart';
 

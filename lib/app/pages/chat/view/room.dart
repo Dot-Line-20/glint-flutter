@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/pages/chat/controller.dart';
-import 'package:glint/app/pages/chat/view/chat.dart';
 
 class ChatRoomListPage extends GetView<ChatController> {
   const ChatRoomListPage({Key? key}) : super(key: key);

@@ -7,11 +7,6 @@ class CategoryController extends GetxController {
 
   CategoryController(this.repository);
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
   Future<List<Category>> getCategories() async {
     return await repository.getCategories();
   }

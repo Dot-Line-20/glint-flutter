@@ -1,9 +1,7 @@
 import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:glint/app/pages/post/widget/category.dart';
 import 'package:glint/app/pages/schedule/controller.dart';
-import 'package:glint/app/pages/schedule/widget/calander.dart';
 import 'package:glint/app/pages/schedule/widget/schedule.dart';
 import 'package:glint/app/routes/route.dart';
 import 'package:glint/app/widgets/button.dart';

@@ -42,16 +42,16 @@ class PostController extends GetxController {
   Future<void> likePost(int postId) async {
     try {
       await repository.likePost(postId);
-    } on DioError catch (e) {
-      print(e.response!.data);
+    } on DioError catch (_) {
+      //print(e.response!.data);
     }
   }
 
   Future<void> unlikePost(int postId) async {
     try {
       await repository.unlikePost(postId);
-    } on DioError catch (e) {
-      print(e.response!.data);
+    } on DioError catch (_) {
+      //print(e.response!.data);
     }
   }
 }

@@ -34,7 +34,7 @@ class AppPages {
     ),
     GetPage(
       name: Routes.chat,
-      page: () => ChatRoomListPage(),
+      page: () => const ChatRoomListPage(),
       binding: ChatBinding(),
       middlewares: [LoginMiddleware()],
     ),
@@ -53,7 +53,7 @@ class AppPages {
     ),
     GetPage(
       name: Routes.post,
-      page: () => PostPage(),
+      page: () => const PostPage(),
       binding: PostPageBinding(),
       middlewares: [LoginMiddleware()],
     ),

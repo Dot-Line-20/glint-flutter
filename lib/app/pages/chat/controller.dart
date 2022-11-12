@@ -29,7 +29,7 @@ class ChatController extends GetxController with StateMixin<List<ChatRoom>> {
   enterChatRoom(int chatRoomId) async {
     messages.value = await chatService.getChatMessages(chatRoomId);
     chatService.enterChatRoom(chatRoomId);
-    Get.to(() => ChatPage());
+    Get.to(() => const ChatPage());
   }
 
   void sendMessage() async {

@@ -12,7 +12,6 @@ class CategoryDialog {
     return showDialog<int>(
       context: context,
       builder: (context) {
-        int selectedId = 0;
         return AlertDialog(
           title: const Text('카테고리'),
           content: Scaffold(
@@ -26,12 +25,10 @@ class CategoryDialog {
                     children: [
                       GTIconButton(
                         "assets/images/checkbox.svg",
-                        onTap: () {
-                          selectedId = category.id ?? 0;
-                        },
+                        onTap: () {},
                       ),
                       const SizedBox(width: 16),
-                      Text(category.name ?? ""),
+                      Text(category.name),
                     ],
                   );
                 }).toList(),

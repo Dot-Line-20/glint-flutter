@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_launcher_icons/main.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
@@ -11,13 +10,10 @@ import 'package:glint/app/data/module/post/service.dart';
 import 'package:glint/app/data/module/user/service.dart';
 import 'package:glint/app/pages/sns/widget/bottomsheet.dart';
 import 'package:glint/app/pages/sns/widget/video_player.dart';
-import 'package:glint/app/routes/route.dart';
-import 'package:glint/app/test/test_model.dart';
 import 'package:glint/app/widgets/button.dart';
 import 'package:glint/app/widgets/snackbar.dart';
 import 'package:lottie/lottie.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:video_player/video_player.dart';
 
 class PostItem extends StatefulWidget {
   const PostItem({Key? key, required this.post}) : super(key: key);

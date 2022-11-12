@@ -24,11 +24,6 @@ class PostPageController extends GetxController with StateMixin {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController contentController = TextEditingController();
 
-  @override
-  void onInit() async {
-    super.onInit();
-  }
-
   void getFileFromPicker() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       allowMultiple: true,
@@ -75,7 +70,7 @@ class PostPageController extends GetxController with StateMixin {
     // }
 
     isUploading.value = true;
-    print("UPLOAD FILE ${isUploading.value}");
+    //print("UPLOAD FILE ${isUploading.value}");
     _uploadImageCount.value = 0;
     _uploadImageTotal.value = 100;
 
@@ -84,14 +79,14 @@ class PostPageController extends GetxController with StateMixin {
     //     : await postController.uploadManyFiles(filePickerResult.value!);
 
     // 1plus 1sec
-    Timer timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      _uploadImageCount.value += 10;
-      if (_uploadImageCount.value == 100) {
-        isUploading.value = false;
-        timer.cancel();
-        print("END");
-      }
-    });
+    // Timer timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+    //   _uploadImageCount.value += 10;
+    //   if (_uploadImageCount.value == 100) {
+    //     isUploading.value = false;
+    //     timer.cancel();
+    //     print("END");
+    //   }
+    // });
   }
 
   int get fileCount => filePickerResult.value?.files.length ?? 0;

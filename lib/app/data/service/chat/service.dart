@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:glint/app/data/models/chat.dart';
-import 'package:glint/app/data/service/auth/service.dart';
 import 'package:glint/app/data/service/chat/repository.dart';
+// ignore: library_prefixes
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 enum SocketStatus { connecting, connected, disconnecting, disconnected }
@@ -58,33 +58,29 @@ class ChatService extends GetxService {
     // Handle Socket Status
     io.on(SocketEvent.authLogin.value, (data) {
       log("[CHAT SERVICE] authLogin");
-      print(data);
     });
 
     io.on(SocketEvent.chatJoin.value, (data) {
-      print("chat:join");
+      log("[CHAT SERVICE] chatJoin");
     });
 
     io.on(SocketEvent.chatLeave.value, (data) {
-      print("chat:leave");
-      print(data);
+      log("[CHAT SERVICE] chatLeave");
     });
 
     io.on(SocketEvent.messageCreate.value, (data) {
-      print("message:create");
+      log("[CHAT SERVICE] messageCreate");
       Message message = Message.fromJson(data["data"]);
       messages.value.add(message);
       messages.refresh();
     });
 
     io.on(SocketEvent.messageDelete.value, (data) {
-      print("message:delete");
-      print(data);
+      log("[CHAT SERVICE] messageDelete");
     });
 
     io.on(SocketEvent.messageUpdate.value, (data) {
-      print("message:update");
-      print(data);
+      log("[CHAT SERVICE] messageUpdate");
     });
 
     log("[CHAT SERVICE] init done");

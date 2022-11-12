@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/data/models/chat.dart';
-import 'package:glint/app/data/models/post.dart';
 import 'package:glint/app/pages/chat/controller.dart';
 
 class ChatPage extends GetView<ChatController> {
@@ -63,7 +62,7 @@ class ChatPage extends GetView<ChatController> {
                   Expanded(
                     child: TextField(
                       controller: controller.messageController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: "Type a message",
                       ),
@@ -71,7 +70,7 @@ class ChatPage extends GetView<ChatController> {
                   ),
                   IconButton(
                     onPressed: controller.sendMessage,
-                    icon: Icon(Icons.send),
+                    icon: const Icon(Icons.send),
                   ),
                 ],
               ),

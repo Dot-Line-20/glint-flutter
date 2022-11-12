@@ -29,7 +29,7 @@ class CategoryPageController extends GetxController with StateMixin {
   }
 
   void selectCategory(int index) {
-    print(categories.value[index].id);
+    //print(categories.value[index].id);
     if (selectedCategories.value
         .any((element) => element.id == categories.value[index].id)) {
       selectedCategories.value
@@ -38,7 +38,7 @@ class CategoryPageController extends GetxController with StateMixin {
       selectedCategories.value.add(categories.value[index]);
     }
     selectedCategories.refresh();
-    print(selectedCategories.value.map((e) => "${e.name} | ${e.id}"));
+    //print(selectedCategories.value.map((e) => "${e.name} | ${e.id}"));
   }
 
   bool checkSelected(int index) {
