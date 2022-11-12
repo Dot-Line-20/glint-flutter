@@ -21,6 +21,14 @@ class HomePageController extends GetxController {
     Routes.user,
   ];
 
+  List<Widget> pages = [
+    SnsPage(),
+    const SchedulePage(),
+    UserPage(),
+  ];
+
+  Widget get currentPage => pages[pageIndex];
+
   Route? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.sns:
@@ -54,6 +62,6 @@ class HomePageController extends GetxController {
     if (_pageIndex.value == index) return;
     if (_pages[index] == '') return;
     _pageIndex(index);
-    Get.offAllNamed(_pages[index], id: _navigatorKey);
+    //Get.offAllNamed(_pages[index], id: _navigatorKey);
   }
 }

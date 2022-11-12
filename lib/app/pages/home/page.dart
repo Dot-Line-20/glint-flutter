@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/pages/home/controller.dart';
-import 'package:glint/app/routes/route.dart';
 
 class HomePage extends GetView<HomePageController> {
   const HomePage({Key? key}) : super(key: key);
@@ -12,10 +11,9 @@ class HomePage extends GetView<HomePageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Navigator(
-          key: controller.navigatorKey,
-          initialRoute: Routes.sns,
-          onGenerateRoute: controller.onGenerateRoute,
+        body: Obx(
+          () => IndexedStack(
+              index: controller.pageIndex, children: controller.pages),
         ),
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
