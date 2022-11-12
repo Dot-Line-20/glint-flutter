@@ -90,7 +90,7 @@ class CategoryPage extends StatelessWidget {
   }
 
   Widget categoryGrid() {
-    if (controller.categories.value.isEmpty) {
+    if (controller.categories.isEmpty) {
       return _notExist();
     }
 
@@ -98,7 +98,7 @@ class CategoryPage extends StatelessWidget {
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             mainAxisSpacing: 16, crossAxisCount: 3),
         shrinkWrap: true,
-        itemCount: controller.categories.value.length,
+        itemCount: controller.categories.length,
         itemBuilder: (context, index) {
           return Obx(
             () => GestureDetector(
@@ -115,8 +115,7 @@ class CategoryPage extends StatelessWidget {
                           shape: BoxShape.circle,
                         ),
                         child: Center(
-                            child:
-                                Text(controller.categories.value[index].name)),
+                            child: Text(controller.categories[index].name)),
                       ),
                       //selected
                       if (controller.checkSelected(index))
@@ -141,7 +140,7 @@ class CategoryPage extends StatelessWidget {
                         ),
                     ],
                   ),
-                  Text(controller.categories.value[index].name)
+                  Text(controller.categories[index].name)
                 ],
               ),
             ),
