@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
+import 'package:glint/app/core/util/constant.dart';
+import 'package:glint/app/data/module/user/user.dart';
 import 'package:glint/app/data/service/chat/chat.dart';
 import 'package:glint/app/pages/chat/controller.dart';
+import 'package:glint/app/widgets/button.dart';
+import 'package:glint/app/widgets/textfield.dart';
 
 class ChatPage extends GetView<ChatController> {
   const ChatPage({Key? key}) : super(key: key);
@@ -22,7 +26,7 @@ class ChatPage extends GetView<ChatController> {
       ),
       body: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         child: Column(
           children: [
             Expanded(
@@ -45,8 +49,8 @@ class ChatPage extends GetView<ChatController> {
                           itemCount:
                               controller.chatService.messages.value.length,
                           itemBuilder: (context, index) {
-                            return Text(controller
-                                .chatService.messages.value[index].content);
+                            return _chatBubble(
+                                controller.chatService.messages.value[index]);
                           },
                         ),
                       ),
@@ -55,25 +59,21 @@ class ChatPage extends GetView<ChatController> {
                 ),
               ),
             ),
-            Container(
-              color: Colors.grey,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      controller: controller.messageController,
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Type a message",
-                      ),
-                    ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: GTTextFormField(
+                    controller: controller.messageController,
+                    hintText: "입력하세요",
                   ),
-                  IconButton(
-                    onPressed: controller.sendMessage,
-                    icon: const Icon(Icons.send),
-                  ),
-                ],
-              ),
+                ),
+                const SizedBox(width: 16),
+                GTIconButton(
+                  "assets/images/rabbi.svg",
+                  onTap: controller.sendMessage,
+                )
+              ],
             ),
           ],
         ),
@@ -81,15 +81,22 @@ class ChatPage extends GetView<ChatController> {
     );
   }
 
-  Widget _chatBubble(ChatMessage message) {
-    bool isMe =
-        message.user.id == int.tryParse(controller.authService.userId ?? "");
+  Widget _chatBubble(dynamic message) {
+    String content = "";
+    User? user;
+    if (message is ChatMessage) {
+      content = message.content;
+      user = message.user;
+    } else if (message is Message) {
+      content = message.content;
+      user = controller.users.value[message.userId];
+    }
+
+    bool isMe = user!.id == int.tryParse(controller.authService.userId ?? "");
 
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
-        mainAxisAlignment:
-            isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (!isMe)
@@ -98,38 +105,46 @@ class ChatPage extends GetView<ChatController> {
                 Container(
                   width: 24,
                   height: 24,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.grey,
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(user.profile ?? LOADING),
+                    ),
                   ),
                 ),
                 const SizedBox(width: 6),
               ],
             ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (!isMe)
-                Text(
-                  message.user.name,
-                  style: AppTextTheme.T6,
-                ),
-              Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: isMe ? AppColorTheme.Blue : AppColorTheme.Gray5,
+          Expanded(
+            child: Column(
+              crossAxisAlignment:
+                  isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (!isMe)
+                  Text(
+                    user.name,
+                    style: AppTextTheme.T6,
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 8.0, horizontal: 10),
-                    child: Text(
-                      message.content,
-                      style: isMe
-                          ? AppTextTheme.Main.copyWith(color: Colors.white)
-                          : AppTextTheme.Main,
+                Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: isMe ? AppColorTheme.Blue : AppColorTheme.Gray5,
                     ),
-                  )),
-            ],
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8.0, horizontal: 10),
+                      child: Text(
+                        content,
+                        style: isMe
+                            ? AppTextTheme.Main.copyWith(color: Colors.white)
+                            : AppTextTheme.Main,
+                      ),
+                    )),
+              ],
+            ),
           ),
         ],
       ),

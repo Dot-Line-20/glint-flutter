@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
+import 'package:glint/app/core/util/constant.dart';
+import 'package:glint/app/data/service/chat/chat.dart';
 import 'package:glint/app/pages/chat/controller.dart';
 
 class ChatRoomListPage extends GetView<ChatController> {
@@ -26,26 +28,36 @@ class ChatRoomListPage extends GetView<ChatController> {
               (_) => ListView.builder(
                 itemCount: controller.chatRooms.value.length,
                 itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () => controller
-                        .enterChatRoom(controller.chatRooms.value[index].id),
-                    child: Row(
-                      children: [
-                        const SizedBox(width: 20),
-                        const CircleAvatar(
-                          radius: 20,
-                        ),
-                        const SizedBox(width: 20),
-                        Text(controller.chatRooms.value[index].name),
-                      ],
-                    ),
-                  );
+                  return _chatRoomItem(controller.chatRooms.value[index]);
                 },
               ),
             ),
           ),
         ],
       )),
+    );
+  }
+
+  Widget _chatRoomItem(ChatRoom chatRoom) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      child: GestureDetector(
+        onTap: () {
+          controller.enterChatRoom(chatRoom.users, chatRoom.id);
+        },
+        child: Row(
+          children: [
+            const SizedBox(width: 20),
+            CircleAvatar(
+              radius: 20,
+              backgroundImage:
+                  NetworkImage(chatRoom.users.first.user.profile ?? LOADING),
+            ),
+            const SizedBox(width: 20),
+            Text(chatRoom.name, style: AppTextTheme.T3),
+          ],
+        ),
+      ),
     );
   }
 }

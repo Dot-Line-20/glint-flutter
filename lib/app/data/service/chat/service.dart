@@ -93,11 +93,13 @@ class ChatService extends GetxService {
   }
 
   void enterChatRoom(int roomId) {
+    messages.value.clear();
     io.emit(SocketEvent.chatJoin.value, {"id": roomId});
   }
 
-  void leaveChatRoom(String roomId) {
-    io.emit(SocketEvent.chatLeave.value, roomId);
+  void leaveChatRoom(int roomId) {
+    messages.value.clear();
+    io.emit(SocketEvent.chatLeave.value, {"id": roomId});
   }
 
   void sendMessage(String message) {
