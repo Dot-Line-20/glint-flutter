@@ -34,16 +34,14 @@ class SnsPage extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Expanded(
-                child: controller.obx(
-                  (_) => SingleChildScrollView(
-                    controller: controller.scrollController,
-                    child: Column(
-                      children: [
-                        Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: body()),
-                      ],
-                    ),
+                child: SingleChildScrollView(
+                  controller: controller.scrollController,
+                  child: Column(
+                    children: [
+                      Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: body()),
+                    ],
                   ),
                 ),
               )
@@ -134,9 +132,9 @@ class SnsPage extends StatelessWidget {
           ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: controller.post.length,
+            itemCount: controller.posts.length,
             itemBuilder: (context, index) =>
-                PostItem(post: controller.post[index]),
+                PostItem(post: controller.posts[index]),
           ),
           if (controller.isLoading) const CircularProgressIndicator()
         ],
