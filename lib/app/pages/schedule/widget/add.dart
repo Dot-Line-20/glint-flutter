@@ -8,6 +8,9 @@ import 'package:glint/app/widgets/button.dart';
 import 'package:glint/app/widgets/textfield.dart';
 
 class PickSchedule {
+  int? parentId;
+  PickSchedule({this.parentId});
+
   final SchedulePageController controller = Get.find<SchedulePageController>();
   void show() {
     showModalBottomSheet(
@@ -57,7 +60,7 @@ class PickSchedule {
                                 () => TextButton(
                                     onPressed: () {
                                       controller.inputValidity
-                                          ? controller.addSchedule()
+                                          ? controller.addSchedule(parentId)
                                           : null;
                                     },
                                     child: Text(

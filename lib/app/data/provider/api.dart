@@ -194,6 +194,7 @@ class GTApiProvider implements GTApiInterface {
   // SCHEDULE
   @override
   Future<Schedule> makeSchedule(
+    int? parentScheduleId,
     String name,
     String content,
     String startingAt,
@@ -202,7 +203,7 @@ class GTApiProvider implements GTApiInterface {
   ) async {
     String url = '/schedules';
     Map<String, dynamic> body = {
-      "parentScheduleId": null,
+      "parentScheduleId": parentScheduleId,
       "name": name,
       "type": 0,
       "content": content,

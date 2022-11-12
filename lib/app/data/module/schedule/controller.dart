@@ -28,6 +28,8 @@ class ScheduleController extends GetxController
 
   //add
   Future addSchedule(
+        int? parentScheduleId,
+
     String name,
     String content,
     String startingAt,
@@ -36,6 +38,8 @@ class ScheduleController extends GetxController
   ) async {
     try {
       Schedule result = await repository.makeSchedule(
+            parentScheduleId,
+
         name,
         content,
         startingAt,

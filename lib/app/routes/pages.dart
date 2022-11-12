@@ -81,7 +81,7 @@ class AppPages {
         binding: RegisterPageBinding()),
     GetPage(
       name: Routes.schedule,
-      page: () => const SchedulePage(),
+      page: () => SchedulePage(),
       binding: SchedulePageBinding(),
       middlewares: [LoginMiddleware()],
     ),

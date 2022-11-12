@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/data/module/schedule/schedule.dart';
+import 'package:glint/app/pages/schedule/widget/detail.dart';
 
 class ScheduleList extends StatelessWidget {
   final List<Schedule> scheduleList;
@@ -39,63 +41,69 @@ class ScheduleList extends StatelessWidget {
       durationText = "(+$durationMinute분)";
     }
 
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      decoration: const BoxDecoration(color: AppColorTheme.white),
-      padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 30),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // (start.day - end.day) Day
-              Text(
-                "${schedule.startingAt.format} $durationText",
-                style: AppTextTheme.T5.copyWith(color: AppColorTheme.BUTTON1),
-              ),
-              Text(
-                schedule.name,
-                style: AppTextTheme.T3,
-              ),
-              const SizedBox(height: 16),
-              Text(schedule.content, style: AppTextTheme.Explain),
-              const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  if (durationHour != 0)
-                    Text(
-                      "${schedule.startingAt.format2} ~ ${schedule.endingAt.format2}",
-                      style: AppTextTheme.T5
-                          .copyWith(color: AppColorTheme.BUTTON1, fontSize: 12),
-                    ),
-                  Row(
-                      children: schedule.categories
-                          .map(
-                            (e) => Container(
-                              margin: const EdgeInsets.only(right: 8),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: AppColorTheme.BUTTON1,
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 16, vertical: 4),
-                                child: Text(
-                                  e.categoryId.toString(),
-                                  style: AppTextTheme.T6
-                                      .copyWith(color: AppColorTheme.white),
+    return GestureDetector(
+      onTap: () {
+        // Get.toNamed("/schedule/detail", arguments: schedule);
+        Get.to(() => DetailSchedule(schedule: schedule));
+      },
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 16),
+        decoration: const BoxDecoration(color: AppColorTheme.white),
+        padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 30),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // (start.day - end.day) Day
+                Text(
+                  "${schedule.startingAt.format} $durationText",
+                  style: AppTextTheme.T5.copyWith(color: AppColorTheme.BUTTON1),
+                ),
+                Text(
+                  schedule.name,
+                  style: AppTextTheme.T3,
+                ),
+                const SizedBox(height: 16),
+                Text(schedule.content, style: AppTextTheme.Explain),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    if (durationHour != 0)
+                      Text(
+                        "${schedule.startingAt.format2} ~ ${schedule.endingAt.format2}",
+                        style: AppTextTheme.T5.copyWith(
+                            color: AppColorTheme.BUTTON1, fontSize: 12),
+                      ),
+                    Row(
+                        children: schedule.categories
+                            .map(
+                              (e) => Container(
+                                margin: const EdgeInsets.only(right: 8),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: AppColorTheme.BUTTON1,
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 4),
+                                  child: Text(
+                                    e.categoryId.toString(),
+                                    style: AppTextTheme.T6
+                                        .copyWith(color: AppColorTheme.white),
+                                  ),
                                 ),
                               ),
-                            ),
-                          )
-                          .toList()),
-                ],
-              ),
-            ],
-          ),
-        ],
+                            )
+                            .toList()),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

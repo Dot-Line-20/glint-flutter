@@ -7,7 +7,8 @@ import 'package:glint/app/data/module/schedule/schedule.dart';
 import 'package:glint/app/data/module/schedule/controller.dart';
 import 'package:glint/app/widgets/snackbar.dart';
 
-class SchedulePageController extends GetxController with StateMixin {
+class SchedulePageController extends GetxController
+    with StateMixin, GetSingleTickerProviderStateMixin {
   final ScheduleController scheduleController = Get.find<ScheduleController>();
   List<Schedule> get scheduleList => scheduleController.scheduleList;
 
@@ -15,6 +16,8 @@ class SchedulePageController extends GetxController with StateMixin {
 
   final DraggableScrollableController draggableScrollableController =
       DraggableScrollableController();
+
+  late AnimationController animationController;
 
   //Schedule Title
   final TextEditingController scheduleNameController = TextEditingController();
@@ -158,6 +161,11 @@ class SchedulePageController extends GetxController with StateMixin {
     scheduleNameController.addListener(onScheduleChange);
     scheduleContentController.addListener(onScheduleContentChange);
 
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 300),
+    );
+
     // change isAllDay With Text
     isAllDay.listen((value) {
       if (value) {
@@ -172,7 +180,7 @@ class SchedulePageController extends GetxController with StateMixin {
     super.onInit();
   }
 
-  void addSchedule() async {
+  void addSchedule(int? parentScheduleId) async {
     if (isAllDay.value) {
       scheduleStart.value = DateTime(
         scheduleStart.value!.year,
@@ -195,7 +203,7 @@ class SchedulePageController extends GetxController with StateMixin {
 
     List<int> categoryIds = categories.value.map((e) => e.id).toList();
 
-    await scheduleController.addSchedule(scheduleName.value!,
+    await scheduleController.addSchedule(parentScheduleId, scheduleName.value!,
         scheduleContent.value!, startAt, endAt, categoryIds);
 
     scheduleContentController.clear();

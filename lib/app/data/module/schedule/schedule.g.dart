@@ -9,7 +9,7 @@ part of 'schedule.dart';
 Schedule _$ScheduleFromJson(Map<String, dynamic> json) => Schedule(
       id: json['id'] as int,
       userId: json['userId'] as int,
-      parentScheduleId: json['parentScheduleId'] as String?,
+      parentScheduleId: json['parentScheduleId'] as int?,
       name: json['name'] as String,
       content: json['content'] as String,
       startingAt: DateTime.parse(json['startingAt'] as String),

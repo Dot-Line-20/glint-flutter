@@ -9,9 +9,15 @@ class ScheduleRepository {
   Future<List<Schedule>> getScheduleList() => api.getScheduleList();
 
   // makeSchedule
-  Future<Schedule> makeSchedule(String name, String content, String startingAt,
-          String endingAt, List<int> categoryIds) =>
+  Future<Schedule> makeSchedule(
+          int? parentScheduleId,
+          String name,
+          String content,
+          String startingAt,
+          String endingAt,
+          List<int> categoryIds) =>
       api.makeSchedule(
+        parentScheduleId,
         name,
         content,
         startingAt,

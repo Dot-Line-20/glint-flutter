@@ -15,26 +15,27 @@ class HomePage extends GetView<HomePageController> {
           () => IndexedStack(
               index: controller.pageIndex, children: controller.pages),
         ),
-        bottomNavigationBar: Container(
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.only(
-              topRight: Radius.circular(40),
-              topLeft: Radius.circular(40),
+        bottomNavigationBar: Obx(() {
+          if (controller.hideBottomBar) return const SizedBox();
+          return Container(
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(40),
+                topLeft: Radius.circular(40),
+              ),
+              boxShadow: <BoxShadow>[
+                BoxShadow(
+                    color: Colors.black.withAlpha(50),
+                    blurRadius: 10.0,
+                    offset: const Offset(0.0, 0.75))
+              ],
             ),
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                  color: Colors.black.withAlpha(50),
-                  blurRadius: 10.0,
-                  offset: const Offset(0.0, 0.75))
-            ],
-          ),
-          child: ClipRRect(
-            borderRadius: const BorderRadius.only(
-              topRight: Radius.circular(40),
-              topLeft: Radius.circular(40),
-            ),
-            child: Obx(
-              () => BottomNavigationBar(
+            child: ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(40),
+                topLeft: Radius.circular(40),
+              ),
+              child: BottomNavigationBar(
                 elevation: 10,
                 backgroundColor: AppColorTheme.white,
                 type: BottomNavigationBarType.fixed,
@@ -53,8 +54,8 @@ class HomePage extends GetView<HomePageController> {
                 ],
               ),
             ),
-          ),
-        ));
+          );
+        }));
   }
 
   BottomNavigationBarItem _bottomNavItem(String imageUrl, String label) {

@@ -10,7 +10,7 @@ part 'schedule.g.dart';
 class Schedule {
   int id;
   int userId;
-  String? parentScheduleId;
+  int? parentScheduleId;
   String name;
   String content;
   DateTime startingAt;

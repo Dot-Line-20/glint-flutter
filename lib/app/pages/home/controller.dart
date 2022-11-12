@@ -2,19 +2,18 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:glint/app/pages/schedule/binding.dart';
+import 'package:glint/app/data/service/orientation/service.dart';
 import 'package:glint/app/pages/schedule/page.dart';
-import 'package:glint/app/pages/sns/binding.dart';
 import 'package:glint/app/pages/sns/page.dart';
-import 'package:glint/app/pages/user/binding.dart';
 import 'package:glint/app/pages/user/page.dart';
 import 'package:glint/app/routes/route.dart';
 
 class HomePageController extends GetxController {
-  final _navigatorKey = Random().nextInt(65535);
-  late final navigatorKey = Get.nestedKey(_navigatorKey);
   final _pageIndex = 0.obs;
   int get pageIndex => _pageIndex.value;
+
+  bool get hideBottomBar => pageIndex == 1 && OrientationService.to.isLandscape;
+
   final _pages = [
     Routes.sns,
     Routes.schedule,
@@ -23,40 +22,9 @@ class HomePageController extends GetxController {
 
   List<Widget> pages = [
     SnsPage(),
-    const SchedulePage(),
+    SchedulePage(),
     UserPage(),
   ];
-
-  Widget get currentPage => pages[pageIndex];
-
-  Route? onGenerateRoute(RouteSettings settings) {
-    switch (settings.name) {
-      case Routes.sns:
-        return GetPageRoute(
-          transition: Transition.noTransition,
-          settings: settings,
-          page: () => SnsPage(),
-          binding: SnsPageBinding(),
-        );
-      case Routes.schedule:
-        return GetPageRoute(
-          transition: Transition.noTransition,
-          settings: settings,
-          page: () => const SchedulePage(),
-          binding: SchedulePageBinding(),
-        );
-      case Routes.user:
-        return GetPageRoute(
-          transition: Transition.noTransition,
-          settings: settings,
-          page: () => UserPage(),
-          binding: UserPageBinding(),
-        );
-
-      default:
-        return GetPageRoute(settings: settings, page: () => Container());
-    }
-  }
 
   void changePage(int index) {
     if (_pageIndex.value == index) return;

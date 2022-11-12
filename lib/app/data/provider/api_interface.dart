@@ -23,6 +23,7 @@ abstract class GTApiInterface {
 
   //SCHEDULE
   Future<Schedule> makeSchedule(
+    int? parentScheduleId,
     String name,
     String content,
     String startingAt,
