@@ -324,13 +324,13 @@ class GTApiProvider implements GTApiInterface {
   @override
   Future<void> likePost(int postId) async {
     String url = "/posts/$postId/likes";
-    await dio.post(url);
+    await dio.post(url, data: {});
   }
 
   @override
   Future<void> unlikePost(int postId) async {
     String url = "/posts/$postId/likes";
-    await dio.delete(url, data: null);
+    await dio.delete(url, data: {});
   }
 
   // MEDIA

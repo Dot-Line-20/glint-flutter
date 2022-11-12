@@ -259,22 +259,7 @@ class _PostItemState extends State<PostItem> {
     });
 
     if (!isLiked) {
-      try {
-        postController.likePost(widget.post.id);
-      } on DioError catch (e) {
-        GTSnackBar.open(e.response!.data["data"][0]["title"]);
-      }
-
-      Get.dialog(Container(
-        color: Colors.transparent,
-        child: Lottie.asset(
-          "assets/lottie/like.json",
-          repeat: false,
-        ),
-      ));
-      Future.delayed(const Duration(seconds: 1), () {
-        Get.back();
-      });
+      postController.likePost(widget.post.id);
     } else {
       postController.unlikePost(widget.post.id);
     }
