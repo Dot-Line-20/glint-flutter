@@ -51,9 +51,10 @@ class CommentBottomSheet {
                             child: Column(
                               children: [
                                 SvgPicture.asset("assets/images/spam.svg"),
-                                const Text(
+                                Text(
                                   "신고하기",
-                                  style: AppTextTheme.mediumRed_12,
+                                  style: AppTextTheme.T7
+                                      .copyWith(color: AppColorTheme.Sys_Red),
                                 )
                               ],
                             ),

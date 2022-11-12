@@ -54,24 +54,20 @@ class UserPage extends StatelessWidget {
           children: [
             const Text(
               "목표 성취 확률",
-              style: AppTextTheme.boldGray1_20,
+              style: AppTextTheme.T3,
             ),
             const SizedBox(height: 20),
             Text.rich(
               TextSpan(
-                style: AppTextTheme.mediumGray2_12,
+                style: AppTextTheme.Main,
                 children: [
-                  const TextSpan(
-                      text: "이 유저는 ", style: AppTextTheme.mediumGray2_14),
+                  const TextSpan(text: "이 유저는 ", style: AppTextTheme.Main),
                   TextSpan(
                       text: "${userController.successRate}%",
-                      style: AppTextTheme.boldGray1_16),
-                  const TextSpan(
-                      text: "확률로\n", style: AppTextTheme.mediumGray2_14),
-                  const TextSpan(
-                      text: "목표 달성할 ", style: AppTextTheme.mediumGray2_14),
-                  const TextSpan(
-                      text: "가능성이 높습니다.", style: AppTextTheme.boldGray1_16),
+                      style: AppTextTheme.T5),
+                  const TextSpan(text: "확률로\n", style: AppTextTheme.Main),
+                  const TextSpan(text: "목표 달성할 ", style: AppTextTheme.Main),
+                  const TextSpan(text: "가능성이 높습니다.", style: AppTextTheme.T5),
                 ],
               ),
               textAlign: TextAlign.start,
@@ -104,7 +100,7 @@ class UserPage extends StatelessWidget {
           const SizedBox(width: 10),
           Text(
             userController.userInfo?.name ?? "",
-            style: AppTextTheme.boldHGray1_26,
+            style: AppTextTheme.Title,
           ),
         ],
       ),
@@ -124,20 +120,20 @@ class UserPage extends StatelessWidget {
           children: [
             Column(
               children: const [
-                Text("목표 달성 수", style: AppTextTheme.mediumGray2_14),
-                Text("321", style: AppTextTheme.boldGray1_18),
+                Text("목표 달성 수", style: AppTextTheme.Main),
+                Text("321", style: AppTextTheme.T4),
               ],
             ),
             Column(
               children: const [
-                Text("팔로우", style: AppTextTheme.mediumGray2_14),
-                Text("1,200", style: AppTextTheme.boldGray1_18),
+                Text("팔로우", style: AppTextTheme.Main),
+                Text("1,200", style: AppTextTheme.T4),
               ],
             ),
             Column(
               children: const [
-                Text("목표 달성 수", style: AppTextTheme.mediumGray2_14),
-                Text("1,250", style: AppTextTheme.boldGray1_18),
+                Text("목표 달성 수", style: AppTextTheme.Main),
+                Text("1,250", style: AppTextTheme.T4),
               ],
             ),
           ],

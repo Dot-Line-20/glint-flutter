@@ -29,10 +29,11 @@ class RegisterInitPage extends GetView<RegisterPageController> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("회원가입", style: AppTextTheme.boldHGray1_24),
+                  const Text("회원가입", style: AppTextTheme.Title),
                   const SizedBox(height: 8),
-                  const Text("GLINT를 시작해보아요!",
-                      style: AppTextTheme.boldGray2_14),
+                  Text("GLINT를 시작해보아요!",
+                      style:
+                          AppTextTheme.T6.copyWith(color: AppColorTheme.Gray2)),
                   const SizedBox(height: 50),
                   Form(
                     key: controller.formKey,
@@ -42,30 +43,34 @@ class RegisterInitPage extends GetView<RegisterPageController> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text("이메일",
-                                  style: AppTextTheme.boldGray3_14),
+                              Text("이메일",
+                                  style: AppTextTheme.T6
+                                      .copyWith(color: AppColorTheme.Gray3)),
                               GTTextFormField(
                                 enableInteractiveSelection: false,
                                 controller: controller.emailTextController,
                               ),
                               const SizedBox(height: 50),
-                              const Text("비밀번호",
-                                  style: AppTextTheme.boldGray3_14),
+                              Text("비밀번호",
+                                  style: AppTextTheme.T6
+                                      .copyWith(color: AppColorTheme.Gray3)),
                               GTTextFormField(
                                 enableInteractiveSelection: false,
                                 isPassword: true,
                                 controller: controller.passwordTextController,
                               ),
                               const SizedBox(height: 50),
-                              const Text("이름  ",
-                                  style: AppTextTheme.boldGray3_14),
+                              Text("이름  ",
+                                  style: AppTextTheme.T6
+                                      .copyWith(color: AppColorTheme.Gray3)),
                               GTTextFormField(
                                 enableInteractiveSelection: false,
                                 controller: controller.nameTextController,
                               ),
                               const SizedBox(height: 50),
-                              const Text("생년월일",
-                                  style: AppTextTheme.boldGray3_14),
+                              Text("생년월일",
+                                  style: AppTextTheme.T6
+                                      .copyWith(color: AppColorTheme.Gray3)),
                               GTTextFormField(
                                 readOnly: true,
                                 onTap: controller.pickDateTime,
@@ -88,9 +93,9 @@ class RegisterInitPage extends GetView<RegisterPageController> {
                   onTap: controller.initInputValidity
                       ? controller.registerUser
                       : null,
-                  child: const Text(
+                  child: Text(
                     "다음",
-                    style: AppTextTheme.boldWhite_18,
+                    style: AppTextTheme.T4.copyWith(color: AppColorTheme.white),
                   ),
                 ),
               ),

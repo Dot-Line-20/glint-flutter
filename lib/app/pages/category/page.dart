@@ -20,14 +20,14 @@ class CategoryPage extends StatelessWidget {
         centerTitle: true,
         title: const Text(
           "카테고리",
-          style: AppTextTheme.boldGray1_18,
+          style: AppTextTheme.T4,
         ),
         actions: [
           TextButton(
             onPressed: controller.sendData,
             child: const Text(
               "선택하기",
-              style: AppTextTheme.boldGray2_14,
+              style: AppTextTheme.Main,
             ),
           )
         ],
@@ -66,11 +66,11 @@ class CategoryPage extends StatelessWidget {
                   SvgPicture.asset("assets/images/none.svg",
                       width: 150, height: 150),
                   const SizedBox(height: 16),
-                  const Text("검색한 카테고리가 없네요", style: AppTextTheme.boldGray1_16),
+                  const Text("검색한 카테고리가 없네요", style: AppTextTheme.T4),
                   const SizedBox(height: 16),
                   const Text.rich(
                     TextSpan(
-                      style: AppTextTheme.mediumGray2_12,
+                      style: AppTextTheme.Explain,
                       children: [
                         TextSpan(text: "추가하기 버튼을 통해\n"),
                         TextSpan(text: "카테고리를 추가할 수 있습니다"),

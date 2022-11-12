@@ -17,7 +17,7 @@ class RegisterCreatePage extends GetView<RegisterPageController> {
         foregroundColor: AppColorTheme.black,
         elevation: 0,
         centerTitle: true,
-        title: const Text("프로필 생성", style: AppTextTheme.mediumGray1_18),
+        title: const Text("프로필 생성", style: AppTextTheme.T4),
       ),
       body: SafeArea(
           child: Padding(
@@ -41,12 +41,13 @@ class RegisterCreatePage extends GetView<RegisterPageController> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(30),
                               color: AppColorTheme.BUTTON1),
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
                                 vertical: 5, horizontal: 13),
                             child: Text(
                               "변경",
-                              style: AppTextTheme.boldWhite_12,
+                              style: AppTextTheme.T7
+                                  .copyWith(color: AppColorTheme.white),
                             ),
                           ),
                         ),
@@ -61,14 +62,17 @@ class RegisterCreatePage extends GetView<RegisterPageController> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text("닉네임", style: AppTextTheme.boldGray3_14),
+                            Text("닉네임",
+                                style: AppTextTheme.T6
+                                    .copyWith(color: AppColorTheme.Gray3)),
                             GTTextFormField(
                               enableInteractiveSelection: false,
                               controller: controller.nicknameTextController,
                             ),
                             const SizedBox(height: 50),
-                            const Text("사용자 아이디",
-                                style: AppTextTheme.boldGray3_14),
+                            Text("사용자 아이디",
+                                style: AppTextTheme.T6
+                                    .copyWith(color: AppColorTheme.Gray3)),
                             GTTextFormField(
                               isPassword: true,
                               enableInteractiveSelection: false,
@@ -84,9 +88,9 @@ class RegisterCreatePage extends GetView<RegisterPageController> {
               (_) => Obx(
                 () => GTKeyboardReactiveButton(
                   disabled: !controller.passwordInputValidity,
-                  child: const Text(
+                  child: Text(
                     "확인",
-                    style: AppTextTheme.boldWhite_18,
+                    style: AppTextTheme.T4.copyWith(color: AppColorTheme.white),
                   ),
                 ),
               ),

@@ -15,7 +15,7 @@ class ChatRoomListPage extends GetView<ChatController> {
         centerTitle: true,
         title: const Text(
           "채팅",
-          style: AppTextTheme.boldGray1_18,
+          style: AppTextTheme.T4,
         ),
       ),
       body: SafeArea(

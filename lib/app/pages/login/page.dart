@@ -25,9 +25,10 @@ class LoginPage extends GetView<LoginPageController> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text("로그인", style: AppTextTheme.boldHGray1_24),
+              const Text("로그인", style: AppTextTheme.Title),
               const SizedBox(height: 8),
-              const Text("홍보용 문구", style: AppTextTheme.boldGray2_14),
+              Text("홍보용 문구",
+                  style: AppTextTheme.T6.copyWith(color: AppColorTheme.Gray2)),
               const SizedBox(height: 70),
               Form(
                 key: controller.formKey,
@@ -36,13 +37,17 @@ class LoginPage extends GetView<LoginPageController> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text("아이디", style: AppTextTheme.boldGray3_14),
+                        Text("아이디",
+                            style: AppTextTheme.T6
+                                .copyWith(color: AppColorTheme.Gray3)),
                         GTTextFormField(
                           enableInteractiveSelection: false,
                           controller: controller.idTextController,
                         ),
                         const SizedBox(height: 50),
-                        const Text("비밀번호", style: AppTextTheme.boldGray3_14),
+                        Text("비밀번호",
+                            style: AppTextTheme.T6
+                                .copyWith(color: AppColorTheme.Gray3)),
                         GTTextFormField(
                           maxLines: 1,
                           isPassword: true,
@@ -58,9 +63,10 @@ class LoginPage extends GetView<LoginPageController> {
                   () => GTKeyboardReactiveButton(
                     disabled: !controller.inputValidity,
                     onTap: controller.inputValidity ? controller.login : null,
-                    child: const Text(
+                    child: Text(
                       "로그인하기",
-                      style: AppTextTheme.boldWhite_18,
+                      style:
+                          AppTextTheme.T4.copyWith(color: AppColorTheme.white),
                     ),
                   ),
                 ),
@@ -152,6 +158,6 @@ class LoginHelper extends StatelessWidget {
           overlayColor: MaterialStateProperty.all(Colors.transparent),
         ),
         onPressed: onTap,
-        child: Text(content, style: AppTextTheme.mediumGray2_14));
+        child: Text(content, style: AppTextTheme.Main));
   }
 }

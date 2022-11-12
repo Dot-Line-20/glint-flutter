@@ -153,7 +153,7 @@ class RegisterPageController extends GetxController with StateMixin {
             children: [
               const Text(
                 "생일 설정",
-                style: AppTextTheme.boldGray1_20,
+                style: AppTextTheme.T3,
                 textAlign: TextAlign.start,
               ),
               const SizedBox(height: 15),
@@ -167,23 +167,29 @@ class RegisterPageController extends GetxController with StateMixin {
                       minimumDate: DateTime(1900),
                       maximumDate: DateTime(DateTime.now().year, 12, 31),
                       locale: const Locale('ko'),
-                      scrollViewOptions: const DatePickerScrollViewOptions(
+                      scrollViewOptions: DatePickerScrollViewOptions(
                           year: ScrollViewDetailOptions(
                             label: '년',
-                            margin: EdgeInsets.only(right: 16),
-                            textStyle: AppTextTheme.boldGray2_20,
-                            selectedTextStyle: AppTextTheme.boldGray2_20,
+                            margin: const EdgeInsets.only(right: 16),
+                            textStyle: AppTextTheme.T3
+                                .copyWith(color: AppColorTheme.Gray2),
+                            selectedTextStyle: AppTextTheme.T3
+                                .copyWith(color: AppColorTheme.Gray2),
                           ),
                           month: ScrollViewDetailOptions(
                             label: '월',
-                            margin: EdgeInsets.only(right: 16),
-                            textStyle: AppTextTheme.boldGray2_20,
-                            selectedTextStyle: AppTextTheme.boldGray2_20,
+                            margin: const EdgeInsets.only(right: 16),
+                            textStyle: AppTextTheme.T3
+                                .copyWith(color: AppColorTheme.Gray2),
+                            selectedTextStyle: AppTextTheme.T3
+                                .copyWith(color: AppColorTheme.Gray2),
                           ),
                           day: ScrollViewDetailOptions(
                             label: '일',
-                            textStyle: AppTextTheme.boldGray2_20,
-                            selectedTextStyle: AppTextTheme.boldGray2_20,
+                            textStyle: AppTextTheme.T3
+                                .copyWith(color: AppColorTheme.Gray2),
+                            selectedTextStyle: AppTextTheme.T3
+                                .copyWith(color: AppColorTheme.Gray2),
                           )),
                       onDateTimeChanged: (DateTime value) {
                         birthDayController.text = value.convertStringFormat;

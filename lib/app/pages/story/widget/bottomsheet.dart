@@ -68,7 +68,7 @@ class StoryBottomSheet {
               SvgPicture.asset("assets/images/broken_heart.svg"),
               const Text(
                 "팔로우 취소",
-                style: AppTextTheme.mediumGray1_12,
+                style: AppTextTheme.T7,
               )
             ],
           ),

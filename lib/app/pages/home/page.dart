@@ -42,8 +42,10 @@ class HomePage extends GetView<HomePageController> {
                 type: BottomNavigationBarType.fixed,
                 currentIndex: controller.pageIndex,
                 showSelectedLabels: true,
-                selectedLabelStyle: AppTextTheme.boldBlue_12,
-                unselectedLabelStyle: AppTextTheme.boldGray3_12,
+                selectedLabelStyle:
+                    AppTextTheme.T7.copyWith(color: AppColorTheme.Blue),
+                unselectedLabelStyle:
+                    AppTextTheme.T7.copyWith(color: AppColorTheme.Gray3),
                 selectedItemColor: AppColorTheme.BUTTON1,
                 onTap: controller.changePage,
                 items: [

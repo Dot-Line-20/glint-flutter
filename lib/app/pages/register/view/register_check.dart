@@ -17,7 +17,7 @@ class RegisterCheckPage extends GetView<RegisterPageController> {
         foregroundColor: AppColorTheme.black,
         elevation: 0,
         centerTitle: true,
-        title: const Text("본인 인증", style: AppTextTheme.mediumGray1_18),
+        title: const Text("본인 인증", style: AppTextTheme.T4),
       ),
       body: SafeArea(
           child: Padding(
@@ -33,7 +33,7 @@ class RegisterCheckPage extends GetView<RegisterPageController> {
                 children: [
                   const SizedBox(height: 70),
                   const Text("이메일로 온 4자리 숫자를 입력해주세요.",
-                      style: AppTextTheme.mediumGray1_20),
+                      style: AppTextTheme.T3),
                   const SizedBox(height: 40),
                   SizedBox(
                     width: 300,
@@ -63,9 +63,9 @@ class RegisterCheckPage extends GetView<RegisterPageController> {
                 () => GTKeyboardReactiveButton(
                   disabled: !controller.passwordInputValidity,
                   onTap: controller.moveToForthPage,
-                  child: const Text(
+                  child: Text(
                     "다음",
-                    style: AppTextTheme.boldWhite_18,
+                    style: AppTextTheme.T4.copyWith(color: AppColorTheme.white),
                   ),
                 ),
               ),
@@ -86,7 +86,7 @@ class RegisterCheckPage extends GetView<RegisterPageController> {
               onTap: controller.moveToChangeEmail,
               child: const Text(
                 "이메일이 오지 않았어요 > ",
-                style: AppTextTheme.mediumGray2_14,
+                style: AppTextTheme.Main,
               ),
             )
           ],

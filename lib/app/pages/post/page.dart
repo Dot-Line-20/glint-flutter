@@ -22,14 +22,14 @@ class PostPage extends GetView<PostPageController> {
           centerTitle: true,
           title: const Text(
             "새 게시물",
-            style: AppTextTheme.boldGray1_18,
+            style: AppTextTheme.T4,
           ),
           actions: [
             TextButton(
               onPressed: controller.createPost,
               child: const Text(
                 "공유하기",
-                style: AppTextTheme.boldGray2_14,
+                style: AppTextTheme.Main,
               ),
             )
           ],
@@ -76,7 +76,8 @@ class PostPage extends GetView<PostPageController> {
                                           horizontal: 8, vertical: 4),
                                       child: Text(
                                         controller.categories.value[index].name,
-                                        style: AppTextTheme.boldWhite_14,
+                                        style: AppTextTheme.T6.copyWith(
+                                            color: AppColorTheme.white),
                                       ),
                                     ),
                                   );
@@ -126,7 +127,7 @@ class PostPage extends GetView<PostPageController> {
                             Center(
                                 child: Text(
                               "${controller.progress}%",
-                              style: AppTextTheme.boldGray2_14,
+                              style: AppTextTheme.T6,
                             )),
                           ],
                         ),

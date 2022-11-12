@@ -32,7 +32,7 @@ class CommentPage extends GetView<CommentPageController> {
           width: 44,
         ),
         const SizedBox(width: 16),
-        const Text("sdjafhjgfsh", style: AppTextTheme.boldGray1_18),
+        const Text("sdjafhjgfsh", style: AppTextTheme.T4),
       ],
     );
   }
@@ -118,15 +118,14 @@ class CommentPage extends GetView<CommentPageController> {
                     children: [
                       Text(
                         user.name,
-                        style: AppTextTheme.semiboldGrey1_14,
+                        style: AppTextTheme.T6,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                       ),
                       const SizedBox(height: 4),
-                      Text(
-                        user.email,
-                        style: AppTextTheme.lightGray3_14,
-                      ),
+                      Text(user.email,
+                          style: AppTextTheme.Main.copyWith(
+                              color: AppColorTheme.Gray3)),
                     ],
                   ),
                 ],
@@ -149,7 +148,7 @@ class CommentPage extends GetView<CommentPageController> {
           const SizedBox(height: 16),
           Text(
             comment.content,
-            style: AppTextTheme.regularGrey1_14,
+            style: AppTextTheme.Main,
           ),
         ],
       ),

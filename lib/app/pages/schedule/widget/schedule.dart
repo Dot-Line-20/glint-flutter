@@ -37,11 +37,11 @@ class ScheduleList extends StatelessWidget {
             children: [
               Text(
                 "${scheduleList.startingAt.format} ~ ${scheduleList.endingAt.format}",
-                style: AppTextTheme.semiboldBlue_14,
+                style: AppTextTheme.T6.copyWith(color: AppColorTheme.Blue),
               ),
               Text(
                 scheduleList.name,
-                style: AppTextTheme.boldGray1_18,
+                style: AppTextTheme.T4,
               ),
             ],
           ),
@@ -59,12 +59,12 @@ class ScheduleList extends StatelessWidget {
         children: [
           SvgPicture.asset("assets/images/none.svg", width: 150, height: 150),
           const SizedBox(height: 16),
-          const Text("아직 일정이 없네요", style: AppTextTheme.boldGray1_16),
+          const Text("아직 일정이 없네요", style: AppTextTheme.T5),
           const SizedBox(height: 16),
-          const Text.rich(
+           Text.rich(
             TextSpan(
-              style: AppTextTheme.mediumGray2_12,
-              children: [
+              style: AppTextTheme.T7.copyWith(color: AppColorTheme.Gray2),
+              children: const [
                 TextSpan(text: "추가하기 버튼을 통해\n"),
                 TextSpan(text: "빠르게 일정을 추가할 수 있습니다"),
               ],

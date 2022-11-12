@@ -41,7 +41,7 @@ class GTTextField extends StatelessWidget {
       enableSuggestions: !isPassword,
       autocorrect: !isPassword,
       autofocus: autofocus,
-      style: AppTextTheme.boldGray1_18,
+      style: AppTextTheme.T4,
       cursorColor: Colors.black,
       keyboardType: textInputType,
       maxLength: maxLength,
@@ -62,7 +62,7 @@ class GTTextField extends StatelessWidget {
         counterText: "",
         fillColor: AppColorTheme.white,
         filled: true,
-        hintStyle: AppTextTheme.boldBlue_24,
+        hintStyle: AppTextTheme.Explain,
         floatingLabelStyle: const TextStyle(
             color: Color.fromRGBO(0, 0, 0, 0.4),
             fontWeight: FontWeight.w500,
@@ -121,7 +121,7 @@ class GTTextFormField extends StatelessWidget {
       enableSuggestions: !isPassword,
       autocorrect: !isPassword,
       autofocus: autofocus,
-      style: AppTextTheme.boldGray1_18,
+      style: AppTextTheme.T4,
       onEditingComplete: onEditingComplete,
       cursorColor: Colors.black,
       keyboardType: textInputType,
@@ -132,7 +132,7 @@ class GTTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hintText,
         labelText: label,
-        labelStyle: AppTextTheme.boldGray3_14,
+        labelStyle: AppTextTheme.T6.copyWith(color: AppColorTheme.Gray3),
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(
             color: color,
@@ -155,7 +155,7 @@ class GTTextFormField extends StatelessWidget {
         counterText: "",
         fillColor: Colors.transparent,
         filled: true,
-        hintStyle: AppTextTheme.mediumGray2_14,
+        hintStyle: AppTextTheme.Explain,
         floatingLabelStyle: const TextStyle(
             color: Color.fromRGBO(0, 0, 0, 0.4),
             fontWeight: FontWeight.w500,

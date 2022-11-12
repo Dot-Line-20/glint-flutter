@@ -16,7 +16,7 @@ class EmailCheckPage extends GetView<RegisterPageController> {
           foregroundColor: AppColorTheme.black,
           elevation: 0,
           centerTitle: true,
-          title: const Text("이메일 확인", style: AppTextTheme.mediumGray1_18),
+          title: const Text("이메일 확인", style: AppTextTheme.T4),
         ),
         body: SafeArea(
           child: Padding(
@@ -29,16 +29,17 @@ class EmailCheckPage extends GetView<RegisterPageController> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(controller.emailText.value ?? "",
-                          style: AppTextTheme.boldBlue_24),
+                          style: AppTextTheme.Title.copyWith(
+                              color: AppColorTheme.Blue)),
                       const SizedBox(height: 20),
                       const Text("이 이메일이 맞나요? 아니라면 변경해주세요",
-                          style: AppTextTheme.mediumGray1_16),
+                          style: AppTextTheme.T5),
                       const SizedBox(height: 50),
                       GestureDetector(
                         onTap: controller.moveToReSecondPage,
                         child: const Text(
                           "이메일 변경 > ",
-                          style: AppTextTheme.boldGray1_18,
+                          style: AppTextTheme.T4,
                         ),
                       ),
                     ],
@@ -48,9 +49,9 @@ class EmailCheckPage extends GetView<RegisterPageController> {
                   (_) => GTKeyboardReactiveButton(
                     disabled: true,
                     onTap: controller.moveToThirdPage,
-                    child: const Text(
+                    child:  Text(
                       "다시 인증하기",
-                      style: AppTextTheme.boldWhite_18,
+                      style: AppTextTheme.T4.copyWith(color: AppColorTheme.white),
                     ),
                   ),
                   onLoading: const GTKeyboardReactiveButton(

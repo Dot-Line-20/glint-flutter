@@ -49,17 +49,18 @@ class PickSchedule {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text("일정 등록",
-                                style: AppTextTheme.mediumGray1_20),
+                            const Text("일정 등록", style: AppTextTheme.T3),
                             const SizedBox(height: 16),
-                            const Text("일정 이름",
-                                style: AppTextTheme.mediumGray2_14),
+                            Text("일정 이름",
+                                style: AppTextTheme.Main.copyWith(
+                                    color: AppColorTheme.Gray2)),
                             GTTextFormField(
                               controller: controller.scheduleNameController,
                             ),
                             const SizedBox(height: 16),
-                            const Text("기간",
-                                style: AppTextTheme.mediumGray2_14),
+                            Text("기간",
+                                style: AppTextTheme.Main.copyWith(
+                                    color: AppColorTheme.Gray2)),
                             GTTextFormField(
                               readOnly: true,
                               onTap: controller.pickDateRange,
@@ -73,9 +74,10 @@ class PickSchedule {
                                   onTap: controller.inputValidity
                                       ? controller.addSchedule
                                       : null,
-                                  child: const Text(
+                                  child: Text(
                                     "추가하기",
-                                    style: AppTextTheme.boldWhite_18,
+                                    style: AppTextTheme.T4
+                                        .copyWith(color: AppColorTheme.white),
                                   ),
                                 ),
                               ),

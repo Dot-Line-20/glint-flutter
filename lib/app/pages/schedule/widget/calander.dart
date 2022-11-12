@@ -94,7 +94,8 @@ class CalendarViewer extends StatelessWidget {
                             padding: const EdgeInsets.all(12),
                             child: Text(
                               e,
-                              style: AppTextTheme.semiboldGrey3_14,
+                              style: AppTextTheme.T6.copyWith(
+                                  color: AppColorTheme.Gray3),
                             ),
                           ),
                         ))
@@ -196,11 +197,11 @@ class CalendarViewerDateItem extends StatelessWidget {
 
   TextStyle get _textStyle {
     if (isHighlighted) {
-      return AppTextTheme.boldWhite_14;
+      return AppTextTheme.T6.copyWith(color: AppColorTheme.white);
     } else if (lastday) {
-      return AppTextTheme.boldGray3_14;
+      return AppTextTheme.T6.copyWith(color: AppColorTheme.Gray3);
     } else {
-      return AppTextTheme.boldGray2_14;
+      return AppTextTheme.T6.copyWith(color: AppColorTheme.Gray2);
     }
   }
 

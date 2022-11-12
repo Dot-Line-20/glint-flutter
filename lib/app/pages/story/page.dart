@@ -64,17 +64,19 @@ class StoryPage extends StatelessWidget {
                           const SizedBox(width: 16),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
+                            children:  [
                               Text(
                                 "EXAMPLE",
-                                style: AppTextTheme.semiboldWhite_18,
+                                style: AppTextTheme.T4.copyWith(
+                                    color: AppColorTheme.white),
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 2,
                               ),
-                              SizedBox(height: 4),
+                              const SizedBox(height: 4),
                               Text(
                                 "EXAMPLE",
-                                style: AppTextTheme.boldWhite_12,
+                                style: AppTextTheme.T7.copyWith(
+                                    color: AppColorTheme.white),
                               ),
                             ],
                           ),

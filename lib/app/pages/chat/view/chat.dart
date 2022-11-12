@@ -17,7 +17,7 @@ class ChatPage extends GetView<ChatController> {
         centerTitle: true,
         title: const Text(
           "채팅방",
-          style: AppTextTheme.boldGray1_18,
+          style: AppTextTheme.T4,
         ),
       ),
       body: SafeArea(
@@ -112,7 +112,7 @@ class ChatPage extends GetView<ChatController> {
               if (!isMe)
                 Text(
                   message.user.name,
-                  style: AppTextTheme.mediumGray1_12,
+                  style: AppTextTheme.T6,
                 ),
               Container(
                   decoration: BoxDecoration(
@@ -125,9 +125,8 @@ class ChatPage extends GetView<ChatController> {
                     child: Text(
                       message.content,
                       style: isMe
-                          ? AppTextTheme.regularGrey1_14
-                              .copyWith(color: Colors.white)
-                          : AppTextTheme.regularGrey1_14,
+                          ? AppTextTheme.Main.copyWith(color: Colors.white)
+                          : AppTextTheme.Main,
                     ),
                   )),
             ],

@@ -19,7 +19,7 @@ class SchedulePage extends GetView<SchedulePageController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text("일정",
-                textAlign: TextAlign.start, style: AppTextTheme.boldHGray1_24),
+                textAlign: TextAlign.start, style: AppTextTheme.Title),
             const SizedBox(height: 16),
             Expanded(
               child: Obx(() => ScheduleList(

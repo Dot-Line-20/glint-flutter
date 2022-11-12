@@ -120,7 +120,7 @@ class SnsPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            const Text("EXAMPLE", style: AppTextTheme.mediumGray1_12)
+            const Text("EXAMPLE", style: AppTextTheme.Main)
           ],
         ),
       ),

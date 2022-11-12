@@ -29,10 +29,10 @@ class RegisterPasswordPage extends GetView<RegisterPageController> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("회원가입", style: AppTextTheme.boldHGray1_24),
+                  const Text("회원가입", style: AppTextTheme.Title),
                   const SizedBox(height: 8),
-                  const Text("비밀번호는 8자리 이상, 특수문자를 포함해야해요",
-                      style: AppTextTheme.boldGray2_14),
+                   Text("비밀번호는 8자리 이상, 특수문자를 포함해야해요",
+                      style: AppTextTheme.T6.copyWith(color: AppColorTheme.Gray2)),
                   const SizedBox(height: 50),
                   Form(
                     key: controller.secondFormKey,
@@ -41,7 +41,9 @@ class RegisterPasswordPage extends GetView<RegisterPageController> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text("아이디", style: AppTextTheme.boldGray3_14),
+                            Text("아이디",
+                                style: AppTextTheme.T6
+                                    .copyWith(color: AppColorTheme.Gray3)),
                             GTTextFormField(
                               enableInteractiveSelection: false,
                               controller: controller.idTextController,
@@ -52,8 +54,9 @@ class RegisterPasswordPage extends GetView<RegisterPageController> {
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Text("비밀번호",
-                                      style: AppTextTheme.boldGray3_14),
+                                  Text("비밀번호",
+                                      style: AppTextTheme.T6.copyWith(
+                                          color: AppColorTheme.Gray3)),
                                   GTTextFormField(
                                     enableInteractiveSelection: false,
                                     controller:
@@ -70,15 +73,18 @@ class RegisterPasswordPage extends GetView<RegisterPageController> {
                                     Text(
                                       controller.guideText.value ?? "",
                                       style: controller.passwordAvailable
-                                          ? AppTextTheme.mediumGreen_12
-                                          : AppTextTheme.mediumRed_12,
+                                          ? AppTextTheme.T7.copyWith(
+                                              color: AppColorTheme.Sys_Green)
+                                          : AppTextTheme.T7.copyWith(
+                                              color: AppColorTheme.Sys_Red),
                                     ),
                                 ],
                               ),
                             ),
                             const SizedBox(height: 50),
-                            const Text("비밀번호 확인",
-                                style: AppTextTheme.boldGray3_14),
+                            Text("비밀번호 확인",
+                                style: AppTextTheme.T6
+                                    .copyWith(color: AppColorTheme.Gray3)),
                             GTTextFormField(
                               enableInteractiveSelection: false,
                               controller:
@@ -96,9 +102,10 @@ class RegisterPasswordPage extends GetView<RegisterPageController> {
                 () => GTKeyboardReactiveButton(
                   disabled: !controller.passwordInputValidity,
                   onTap: controller.moveToThirdPage,
-                  child: const Text(
+                  child: Text(
                     "다음",
-                    style: AppTextTheme.boldWhite_18,
+                    style: AppTextTheme.T4
+                        .copyWith(color: AppColorTheme.white),
                   ),
                 ),
               ),
