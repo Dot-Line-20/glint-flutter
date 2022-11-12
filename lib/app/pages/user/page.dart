@@ -6,6 +6,7 @@ import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/core/util/constant.dart';
 import 'package:glint/app/data/module/user/controller.dart';
 import 'package:glint/app/data/service/auth/service.dart';
+import 'package:glint/app/pages/user/view/setting.dart';
 import 'package:glint/app/routes/route.dart';
 import 'package:glint/app/widgets/button.dart';
 
@@ -82,26 +83,34 @@ class UserPage extends StatelessWidget {
   Widget header() {
     return Obx(
       () => Row(
-        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: AppColorTheme.BUTTON1,
-              image: DecorationImage(
-                image:
-                    NetworkImage(userController.userInfo?.profile ?? LOADING),
-                fit: BoxFit.cover,
+          Row(
+            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColorTheme.BUTTON1,
+                  image: DecorationImage(
+                    image: NetworkImage(
+                        userController.userInfo?.profile ?? LOADING),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                height: 44,
+                width: 44,
               ),
-            ),
-            height: 44,
-            width: 44,
+              const SizedBox(width: 10),
+              Text(
+                userController.userInfo?.name ?? "",
+                style: AppTextTheme.Title,
+              ),
+            ],
           ),
-          const SizedBox(width: 10),
-          Text(
-            userController.userInfo?.name ?? "",
-            style: AppTextTheme.Title,
-          ),
+          GTIconButton("assets/images/rabbi.svg", onTap: () {
+            Get.to(() => const SettingPage());
+          }),
         ],
       ),
     );
