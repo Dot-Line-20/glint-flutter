@@ -36,3 +36,20 @@ class User {
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
   Map<String, dynamic> toJson() => _$UserToJson(this);
 }
+
+@JsonSerializable()
+class MetaData {
+  int? successRate;
+  int followers;
+  int following;
+
+  MetaData({
+    required this.successRate,
+    required this.followers,
+    required this.following,
+  });
+
+  factory MetaData.fromJson(Map<String, dynamic> json) =>
+      _$MetaDataFromJson(json);
+  Map<String, dynamic> toJson() => _$MetaDataToJson(this);
+}

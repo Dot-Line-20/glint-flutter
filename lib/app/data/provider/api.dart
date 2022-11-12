@@ -34,7 +34,7 @@ class JWTInterceptor extends Interceptor {
       options.path = "/users/${authService.userId}";
     }
 
-    if (options.path.startsWith("/schedules")) {
+    if (options.path.startsWith("/schedules") || options.path.startsWith("/metadata")) {
       options.path = "/users/${authService.userId}${options.path}";
     }
 
@@ -182,6 +182,13 @@ class GTApiProvider implements GTApiInterface {
       //print(e.response!.data);
       return 0;
     }
+  }
+
+  @override
+  Future<MetaData> getMetaData() async {
+    String url = "/metadata";
+    Response response = await dio.get(url);
+    return MetaData.fromJson(response.data["data"]);
   }
 
   // SCHEDULE

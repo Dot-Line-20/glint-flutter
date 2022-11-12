@@ -19,6 +19,7 @@ abstract class GTApiInterface {
       String email, String password, String name, String birth, String image);
   Future<void> deleteUser(String userId);
   Future<int> getSuccessRate();
+  Future<MetaData> getMetaData();
 
   //SCHEDULE
   Future<Schedule> makeSchedule(

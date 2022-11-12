@@ -27,3 +27,15 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'createdAt': instance.createdAt.toIso8601String(),
       'media': instance.media,
     };
+
+MetaData _$MetaDataFromJson(Map<String, dynamic> json) => MetaData(
+      successRate: json['successRate'] as int?,
+      followers: json['followers'] as int,
+      following: json['following'] as int,
+    );
+
+Map<String, dynamic> _$MetaDataToJson(MetaData instance) => <String, dynamic>{
+      'successRate': instance.successRate,
+      'followers': instance.followers,
+      'following': instance.following,
+    };

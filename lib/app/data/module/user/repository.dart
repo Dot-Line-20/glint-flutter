@@ -18,4 +18,5 @@ class UserRepository {
 
   ///returns the user successRate
   Future<int> getSuccessRate() => api.getSuccessRate();
+  Future<MetaData> getMetaData() => api.getMetaData();
 }
