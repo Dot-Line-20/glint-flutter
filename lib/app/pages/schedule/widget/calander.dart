@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
-import 'package:glint/app/data/models/schedule.dart';
+import 'package:glint/app/data/module/schedule/schedule.dart';
 
 class Range {
   final DateTime? start;
@@ -94,8 +94,8 @@ class CalendarViewer extends StatelessWidget {
                             padding: const EdgeInsets.all(12),
                             child: Text(
                               e,
-                              style: AppTextTheme.T6.copyWith(
-                                  color: AppColorTheme.Gray3),
+                              style: AppTextTheme.T6
+                                  .copyWith(color: AppColorTheme.Gray3),
                             ),
                           ),
                         ))

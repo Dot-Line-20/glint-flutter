@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/core/util/constant.dart';
-import 'package:glint/app/data/module/user/service.dart';
+import 'package:glint/app/data/module/user/controller.dart';
 import 'package:glint/app/pages/sns/controller.dart';
 import 'package:glint/app/pages/sns/widget/post.dart';
 import 'package:glint/app/routes/route.dart';

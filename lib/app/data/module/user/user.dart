@@ -1,6 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages, non_constant_identifier_names
 
-import 'package:glint/app/data/models/post.dart';
+import 'package:glint/app/data/module/post/post.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'user.g.dart';
 

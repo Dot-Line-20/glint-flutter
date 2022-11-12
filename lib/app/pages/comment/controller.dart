@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:glint/app/data/models/comment.dart';
-import 'package:glint/app/data/models/user.dart';
-import 'package:glint/app/data/module/comment/service.dart';
-import 'package:glint/app/data/module/user/service.dart';
+import 'package:glint/app/data/module/comment/comment.dart';
+import 'package:glint/app/data/module/user/user.dart';
+import 'package:glint/app/data/module/comment/controller.dart';
+import 'package:glint/app/data/module/user/controller.dart';
 
 class CommentPageController extends GetxController with StateMixin {
   final CommentController commentController = Get.find<CommentController>();

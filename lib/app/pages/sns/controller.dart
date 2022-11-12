@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:glint/app/data/models/post.dart';
-import 'package:glint/app/data/module/post/service.dart';
+import 'package:glint/app/data/module/post/post.dart';
+import 'package:glint/app/data/module/post/controller.dart';
 import 'package:glint/app/test/test_api.dart';
 import 'package:glint/app/test/test_model.dart';
 

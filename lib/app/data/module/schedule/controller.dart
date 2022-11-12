@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:glint/app/data/models/schedule.dart';
+import 'package:glint/app/data/module/schedule/schedule.dart';
 import 'package:glint/app/data/module/schedule/repository.dart';
 
 class ScheduleController extends GetxController

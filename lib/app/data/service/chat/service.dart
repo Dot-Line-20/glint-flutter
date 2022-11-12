@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:get/get.dart';
-import 'package:glint/app/data/models/chat.dart';
+import 'package:glint/app/data/service/chat/chat.dart';
 import 'package:glint/app/data/service/chat/repository.dart';
 // ignore: library_prefixes
 import 'package:socket_io_client/socket_io_client.dart' as IO;

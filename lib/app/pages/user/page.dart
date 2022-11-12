@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/core/util/constant.dart';
-import 'package:glint/app/data/module/user/service.dart';
+import 'package:glint/app/data/module/user/controller.dart';
 import 'package:glint/app/data/service/auth/service.dart';
 import 'package:glint/app/routes/route.dart';
 import 'package:glint/app/widgets/button.dart';

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:glint/app/data/models/comment.dart';
+import 'package:glint/app/data/module/comment/comment.dart';
 import 'package:glint/app/data/module/comment/repository.dart';
 
 class CommentController extends GetxController {

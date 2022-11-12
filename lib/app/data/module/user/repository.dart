@@ -1,4 +1,4 @@
-import 'package:glint/app/data/models/user.dart';
+import 'package:glint/app/data/module/user/user.dart';
 import 'package:glint/app/data/provider/api_interface.dart';
 
 class UserRepository {

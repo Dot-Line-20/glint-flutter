@@ -5,9 +5,9 @@ import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:glint/app/data/models/category.dart';
-import 'package:glint/app/data/module/category/service.dart';
-import 'package:glint/app/data/module/post/service.dart';
+import 'package:glint/app/data/module/category/category.dart';
+import 'package:glint/app/data/module/category/controller.dart';
+import 'package:glint/app/data/module/post/controller.dart';
 import 'package:glint/app/widgets/snackbar.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 

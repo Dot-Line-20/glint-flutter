@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:glint/app/data/models/user.dart';
-import 'package:glint/app/data/module/user/service.dart';
+import 'package:glint/app/data/module/user/user.dart';
+import 'package:glint/app/data/module/user/controller.dart';
 
 class UserPageController extends GetxController {
   final UserController userController = Get.find<UserController>();

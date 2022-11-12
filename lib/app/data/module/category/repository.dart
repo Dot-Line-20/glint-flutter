@@ -1,4 +1,4 @@
-import 'package:glint/app/data/models/category.dart';
+import 'package:glint/app/data/module/category/category.dart';
 import 'package:glint/app/data/provider/api_interface.dart';
 
 class CategoryRepository {

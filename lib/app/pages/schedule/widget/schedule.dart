@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
-import 'package:glint/app/data/models/schedule.dart';
+import 'package:glint/app/data/module/schedule/schedule.dart';
 
 class ScheduleList extends StatelessWidget {
   final List<Schedule> scheduleList;
@@ -61,7 +61,7 @@ class ScheduleList extends StatelessWidget {
           const SizedBox(height: 16),
           const Text("아직 일정이 없네요", style: AppTextTheme.T5),
           const SizedBox(height: 16),
-           Text.rich(
+          Text.rich(
             TextSpan(
               style: AppTextTheme.T7.copyWith(color: AppColorTheme.Gray2),
               children: const [

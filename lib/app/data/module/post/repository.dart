@@ -1,6 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
-import 'package:glint/app/data/models/post.dart';
+import 'package:glint/app/data/module/post/post.dart';
 import 'package:glint/app/data/provider/api_interface.dart';
 
 class PostRepository {

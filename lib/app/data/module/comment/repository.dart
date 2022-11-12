@@ -1,4 +1,4 @@
-import 'package:glint/app/data/models/comment.dart';
+import 'package:glint/app/data/module/comment/comment.dart';
 import 'package:glint/app/data/provider/api_interface.dart';
 
 class CommentRepository {

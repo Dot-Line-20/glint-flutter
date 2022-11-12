@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:glint/app/data/models/category.dart';
-import 'package:glint/app/data/module/category/service.dart';
+import 'package:glint/app/data/module/category/category.dart';
+import 'package:glint/app/data/module/category/controller.dart';
 
 class CategoryPageController extends GetxController with StateMixin {
   final CategoryController categoryController = Get.find<CategoryController>();

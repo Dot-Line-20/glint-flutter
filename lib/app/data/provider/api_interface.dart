@@ -1,10 +1,10 @@
 import 'package:file_picker/file_picker.dart';
-import 'package:glint/app/data/models/category.dart';
-import 'package:glint/app/data/models/chat.dart';
-import 'package:glint/app/data/models/comment.dart';
-import 'package:glint/app/data/models/post.dart';
-import 'package:glint/app/data/models/schedule.dart';
-import 'package:glint/app/data/models/user.dart';
+import 'package:glint/app/data/module/category/category.dart';
+import 'package:glint/app/data/service/chat/chat.dart';
+import 'package:glint/app/data/module/comment/comment.dart';
+import 'package:glint/app/data/module/post/post.dart';
+import 'package:glint/app/data/module/schedule/schedule.dart';
+import 'package:glint/app/data/module/user/user.dart';
 
 abstract class GTApiInterface {
   // AUTH

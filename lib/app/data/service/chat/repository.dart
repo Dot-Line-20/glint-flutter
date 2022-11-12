@@ -1,4 +1,4 @@
-import 'package:glint/app/data/models/chat.dart';
+import 'package:glint/app/data/service/chat/chat.dart';
 import 'package:glint/app/data/provider/api_interface.dart';
 
 class ChatRepository {

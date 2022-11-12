@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:glint/app/data/models/category.dart';
+import 'package:glint/app/data/module/category/category.dart';
 import 'package:glint/app/data/module/category/repository.dart';
 
 class CategoryController extends GetxController {

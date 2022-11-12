@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:glint/app/data/models/user.dart';
+import 'package:glint/app/data/module/user/user.dart';
 import 'package:glint/app/data/module/user/repository.dart';
 
 class UserController extends GetxController with StateMixin<User> {

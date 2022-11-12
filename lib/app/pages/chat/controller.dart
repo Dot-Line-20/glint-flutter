@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:glint/app/data/models/chat.dart';
+import 'package:glint/app/data/service/chat/chat.dart';
 import 'package:glint/app/data/service/auth/service.dart';
 import 'package:glint/app/data/service/chat/service.dart';
 import 'package:glint/app/pages/chat/view/chat.dart';
