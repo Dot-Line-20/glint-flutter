@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
+import 'package:glint/app/core/util/constant.dart';
 import 'package:glint/app/data/models/post.dart';
 import 'package:glint/app/data/models/user.dart';
 import 'package:glint/app/data/module/post/service.dart';
@@ -58,7 +59,8 @@ class _PostItemState extends State<PostItem> {
                   color: AppColorTheme.BUTTON1,
                   image: DecorationImage(
                     image: NetworkImage(
-                        "https://cdn.h2o.vg/images/${user.value?.media?.name ?? ""}.${user.value?.media?.type ?? ""}"),
+                      user.value?.profile ?? LOADING,
+                    ),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -232,7 +234,7 @@ class _PostItemState extends State<PostItem> {
       return AspectRatio(
         aspectRatio: 16 / 9,
         child: Image.network(
-          "https://cdn.h2o.vg/images/${e.media.name}.${e.media.type}",
+          e.url(),
           fit: BoxFit.cover,
         ),
       );
@@ -241,7 +243,7 @@ class _PostItemState extends State<PostItem> {
     return AspectRatio(
       aspectRatio: 16 / 9,
       child: VideoPlayerWidget(
-        url: "https://cdn.h2o.vg/videos/${e.media.name}.${e.media.type}",
+        url: e.url(isVideo: true),
       ),
     );
   }

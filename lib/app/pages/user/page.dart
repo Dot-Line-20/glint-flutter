@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
+import 'package:glint/app/core/util/constant.dart';
 import 'package:glint/app/data/module/user/service.dart';
 import 'package:glint/app/data/service/auth/service.dart';
 import 'package:glint/app/routes/route.dart';
@@ -92,8 +93,8 @@ class UserPage extends StatelessWidget {
               shape: BoxShape.circle,
               color: AppColorTheme.BUTTON1,
               image: DecorationImage(
-                image: NetworkImage(
-                    "https://cdn.h2o.vg/images/${userController.userInfo?.media?.name ?? ""}.${userController.userInfo?.media?.type ?? ""}"),
+                image:
+                    NetworkImage(userController.userInfo?.profile ?? LOADING),
                 fit: BoxFit.cover,
               ),
             ),

@@ -107,8 +107,7 @@ class CommentPage extends GetView<CommentPageController> {
                       shape: BoxShape.circle,
                       color: Colors.grey,
                       image: DecorationImage(
-                        image: NetworkImage(
-                            "https://cdn.h2o.vg/images/${user.media?.name ?? ""}.${user.media?.type ?? ""}"),
+                        image: NetworkImage(user.profile!),
                         fit: BoxFit.cover,
                       ),
                     ),

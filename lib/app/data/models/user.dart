@@ -15,6 +15,14 @@ class User {
   String? image;
   DateTime createdAt;
   Media? media;
+
+  String? get profile {
+    if (media != null) {
+      return "https://cdn.h2o.vg/images/${media?.name ?? ""}.${media?.type ?? ""}";
+    }
+    return null;
+  }
+
   User({
     required this.id,
     required this.email,

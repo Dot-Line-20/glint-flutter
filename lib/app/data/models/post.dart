@@ -32,6 +32,13 @@ class Medias {
   int index;
   Media media;
 
+  String url({isVideo = false}) {
+    if (isVideo) {
+      return "https://cdn.h2o.vg/videos/${media.name}.${media.type}";
+    }
+    return "https://cdn.h2o.vg/images/${media.name}.${media.type}";
+  }
+
   Medias({
     required this.index,
     required this.media,

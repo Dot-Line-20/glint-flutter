@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
+import 'package:glint/app/core/util/constant.dart';
 import 'package:glint/app/data/module/user/service.dart';
 import 'package:glint/app/pages/sns/controller.dart';
 import 'package:glint/app/pages/sns/widget/post.dart';
@@ -63,8 +64,8 @@ class SnsPage extends StatelessWidget {
               borderRadius: BorderRadius.circular(100),
               color: AppColorTheme.BUTTON1,
               image: DecorationImage(
-                image: NetworkImage(
-                    "https://cdn.h2o.vg/images/${userController.userInfo?.media?.name ?? ""}.${userController.userInfo?.media?.type ?? ""}"),
+                image:
+                    NetworkImage(userController.userInfo?.profile ?? LOADING),
                 fit: BoxFit.cover,
               ),
             ),
