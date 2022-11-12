@@ -166,9 +166,13 @@ class _PostItemState extends State<PostItem> {
                         : "assets/images/like.svg", onTap: () {
                   like(isLiked);
                 }),
+                Text(widget.post.count.likes.toString(),
+                    style: AppTextTheme.Explain),
                 GTIconButton("assets/images/small_message.svg", onTap: () {
                   Get.toNamed("/sns/${widget.post.id}");
                 }),
+                Text(widget.post.count.comments.toString(),
+                    style: AppTextTheme.Explain),
               ],
             ),
             GTIconButton("assets/images/share.svg", onTap: () {
