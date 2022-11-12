@@ -38,7 +38,6 @@ class SnsPage extends StatelessWidget {
                     controller: controller.scrollController,
                     child: Column(
                       children: [
-                        stories(),
                         Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
                             child: body()),
