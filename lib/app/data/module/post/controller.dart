@@ -75,7 +75,7 @@ class PostController extends GetxController with StateMixin {
     try {
       await repository.likePost(postId);
     } on DioError catch (_) {
-      //print(e.response!.data);
+      print(_.response!.data);
     }
   }
 
@@ -83,7 +83,7 @@ class PostController extends GetxController with StateMixin {
     try {
       await repository.unlikePost(postId);
     } on DioError catch (_) {
-      //print(e.response!.data);
+      print(_.response!.data);
     }
   }
 }

@@ -224,7 +224,7 @@ class _PostItemState extends State<PostItem> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               child: Text(
-                widget.post.categories[index].category.name,
+                widget.post.categories[index].categoryId.toString(),
                 style: AppTextTheme.T6.copyWith(color: AppColorTheme.white),
               ),
             ),

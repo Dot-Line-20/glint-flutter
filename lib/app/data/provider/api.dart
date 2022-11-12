@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
@@ -95,6 +96,8 @@ class GTApiProvider implements GTApiInterface {
 
   GTApiProvider() {
     dio.options.baseUrl = baseUrl;
+    dio.options.contentType = "application/json";
+
     dio.interceptors.add(LogInterceptor());
     dio.interceptors.add(JWTInterceptor(dio));
   }
@@ -183,17 +186,26 @@ class GTApiProvider implements GTApiInterface {
 
   // SCHEDULE
   @override
-  Future<Map> makeSchedule(
-      String name, String startingAt, String endingAt) async {
+  Future<Schedule> makeSchedule(
+    String name,
+    String content,
+    String startingAt,
+    String endingAt,
+    List<int> categoryIds,
+  ) async {
     String url = '/schedules';
     Map<String, dynamic> body = {
       "parentScheduleId": null,
       "name": name,
+      "type": 0,
+      "content": content,
       "startingAt": startingAt,
       "endingAt": endingAt,
+      "categoryIds": categoryIds,
+      "repetitions": []
     };
     Response response = await dio.post(url, data: body);
-    return response.data;
+    return Schedule.fromJson(response.data["data"]);
   }
 
   @override
@@ -312,13 +324,13 @@ class GTApiProvider implements GTApiInterface {
   @override
   Future<void> likePost(int postId) async {
     String url = "/posts/$postId/likes";
-    await dio.post(url, data: {});
+    await dio.post(url);
   }
 
   @override
   Future<void> unlikePost(int postId) async {
     String url = "/posts/$postId/likes";
-    await dio.delete(url, data: {});
+    await dio.delete(url, data: null);
   }
 
   // MEDIA

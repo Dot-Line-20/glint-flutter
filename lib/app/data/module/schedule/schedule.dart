@@ -12,6 +12,7 @@ class Schedule {
   int userId;
   String? parentScheduleId;
   String name;
+  String content;
   DateTime startingAt;
   DateTime endingAt;
   bool isSuccess;
@@ -24,6 +25,7 @@ class Schedule {
     required this.userId,
     required this.parentScheduleId,
     required this.name,
+    required this.content,
     required this.startingAt,
     required this.endingAt,
     required this.isSuccess,

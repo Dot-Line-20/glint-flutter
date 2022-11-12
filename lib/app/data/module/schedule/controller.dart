@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/data/module/schedule/schedule.dart';
 import 'package:glint/app/data/module/schedule/repository.dart';
+import 'package:glint/app/widgets/snackbar.dart';
 
 class ScheduleController extends GetxController
     with StateMixin<List<Schedule>> {
@@ -13,27 +14,39 @@ class ScheduleController extends GetxController
 
   @override
   void onInit() {
-    //fetchScheduleList();
+    fetchScheduleList();
     super.onInit();
   }
 
   Future fetchScheduleList() async {
     try {
       _scheduleList.value = await repository.getScheduleList();
-    } on DioError {
-      rethrow;
+    } on DioError catch (e) {
+      GTSnackBar.open(e.message);
     }
   }
 
   //add
-  Future addSchedule(String name, String startingAt, String endingAt) async {
+  Future addSchedule(
+    String name,
+    String content,
+    String startingAt,
+    String endingAt,
+    List<int> categoryIds,
+  ) async {
     try {
-      Map result = await repository.makeSchedule(name, startingAt, endingAt);
-      if (result["status"] == "success") {
-        fetchScheduleList();
-      }
-    } on DioError {
-      rethrow;
+      Schedule result = await repository.makeSchedule(
+        name,
+        content,
+        startingAt,
+        endingAt,
+        categoryIds,
+      );
+      _scheduleList.value.add(result);
+      _scheduleList.refresh();
+    } on DioError catch (e) {
+      print(e.response!.data);
+      GTSnackBar.open(e.message);
     }
   }
 }

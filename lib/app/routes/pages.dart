@@ -28,7 +28,7 @@ class AppPages {
   static final pages = [
     GetPage(
       name: Routes.home,
-      page: () => const HomePage(),
+      page: () => HomePage(),
       binding: HomePageBinding(),
       middlewares: [LoginMiddleware()],
     ),

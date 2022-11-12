@@ -28,55 +28,26 @@ class UserPage extends StatelessWidget {
               header(),
               const SizedBox(height: 20),
               followInfo(),
+              // const SizedBox(height: 20),
+              // stories(),
               const SizedBox(height: 20),
-              stories(),
+              const Text("나의 달성 성격", style: AppTextTheme.T2),
+              const SizedBox(height: 10),
+              const UserItem(
+                asset: "assets/images/goal.svg",
+                title: "ENTP 성향처럼 미루지 않아요",
+              ),
+              const SizedBox(height: 10),
+              UserItem(
+                asset: "assets/images/goal.svg",
+                title: "계획 달성률이 ${userController.successRate}%입니다.",
+              ),
               const SizedBox(height: 20),
-              successRate(),
               const Expanded(child: SizedBox()),
-              GTMediumTextButton(
-                  text: "로그아웃",
-                  onTap: () {
-                    authService.logout();
-                    Get.offNamed(Routes.login);
-                  }),
             ],
           ),
         ),
       ),
-    );
-  }
-
-  Widget successRate() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "목표 성취 확률",
-              style: AppTextTheme.T3,
-            ),
-            const SizedBox(height: 20),
-            Text.rich(
-              TextSpan(
-                style: AppTextTheme.Main,
-                children: [
-                  const TextSpan(text: "이 유저는 ", style: AppTextTheme.Main),
-                  TextSpan(
-                      text: "${userController.successRate}%",
-                      style: AppTextTheme.T5),
-                  const TextSpan(text: "확률로\n", style: AppTextTheme.Main),
-                  const TextSpan(text: "목표 달성할 ", style: AppTextTheme.Main),
-                  const TextSpan(text: "가능성이 높습니다.", style: AppTextTheme.T5),
-                ],
-              ),
-              textAlign: TextAlign.start,
-            ),
-          ],
-        ),
-        SvgPicture.asset("assets/images/goal.svg")
-      ],
     );
   }
 
@@ -150,35 +121,29 @@ class UserPage extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget stories() {
-    return SizedBox(
-      height: 100,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true,
-        itemCount: 10,
-        itemBuilder: (context, index) => _storyItem(),
+class UserItem extends StatelessWidget {
+  final String asset;
+  final String title;
+
+  const UserItem({Key? key, required this.asset, required this.title})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: AppColorTheme.Gray5,
       ),
-    );
-  }
-
-  Widget _storyItem() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 9),
-      child: Column(
-        children: [
-          Container(
-            height: 64,
-            width: 64,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(100),
-              color: AppColorTheme.BUTTON1,
-            ),
-          ),
-          const SizedBox(height: 8),
-          const Text("EXAMPLE")
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(children: [
+          SvgPicture.asset(asset),
+          const SizedBox(width: 10),
+          Text(title, style: AppTextTheme.T4),
+        ]),
       ),
     );
   }

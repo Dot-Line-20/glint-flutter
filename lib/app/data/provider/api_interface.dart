@@ -21,7 +21,13 @@ abstract class GTApiInterface {
   Future<int> getSuccessRate();
 
   //SCHEDULE
-  Future<Map> makeSchedule(String name, String startingAt, String endingAt);
+  Future<Schedule> makeSchedule(
+    String name,
+    String content,
+    String startingAt,
+    String endingAt,
+    List<int> categoryIds,
+  );
   Future<List<Schedule>> getScheduleList();
   Future<Map> getSchedule(String scheduleId);
   Future<Map> updateSchedule(String scheduleId, String name, String startingAt,

@@ -16,7 +16,7 @@ class UserController extends GetxController with StateMixin<User> {
   @override
   void onInit() {
     getUserInfo();
-    getSucessRate();
+    //getSucessRate();
     super.onInit();
   }
 
