@@ -157,7 +157,7 @@ class PostPage extends GetView<PostPageController> {
       return const Center(
         child: Text(
           "동영상 미리보기는 웹에서 지원하지 않습니다.",
-          style: AppTextTheme.boldGray2_14,
+          style: AppTextTheme.T6,
         ),
       );
     }
