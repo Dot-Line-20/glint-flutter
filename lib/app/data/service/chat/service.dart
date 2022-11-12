@@ -1,4 +1,9 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
+import 'package:glint/app/data/models/chat.dart';
+import 'package:glint/app/data/service/auth/service.dart';
+import 'package:glint/app/data/service/chat/repository.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 enum SocketStatus { connecting, connected, disconnecting, disconnected }
@@ -31,23 +36,33 @@ extension SocketEventExtension on SocketEvent {
   }
 }
 
-class ChatService extends GetxController {
-  final io = IO.io("https://h2o.vg/socket.io");
+class ChatService extends GetxService {
+  ChatRepository repository;
+  ChatService(this.repository);
 
-  @override
-  void onInit() {
-    super.onInit();
+  final io = IO.io("https://h2o.vg", <String, dynamic>{
+    "transports": ["websocket"],
+    "autoConnect": false,
+  });
+
+  Rx<List<Message>> messages = Rx([]);
+
+  Future<ChatService> init() async {
+    log("[CHAT SERVICE] init");
+
     io.connect();
+    io.onConnect((id) {
+      log("[CHAT SERVICE] connected");
+    });
 
     // Handle Socket Status
     io.on(SocketEvent.authLogin.value, (data) {
-      print("auth:login");
+      log("[CHAT SERVICE] authLogin");
       print(data);
     });
 
     io.on(SocketEvent.chatJoin.value, (data) {
       print("chat:join");
-      print(data);
     });
 
     io.on(SocketEvent.chatLeave.value, (data) {
@@ -57,7 +72,9 @@ class ChatService extends GetxController {
 
     io.on(SocketEvent.messageCreate.value, (data) {
       print("message:create");
-      print(data);
+      Message message = Message.fromJson(data["data"]);
+      messages.value.add(message);
+      messages.refresh();
     });
 
     io.on(SocketEvent.messageDelete.value, (data) {
@@ -69,13 +86,17 @@ class ChatService extends GetxController {
       print("message:update");
       print(data);
     });
+
+    log("[CHAT SERVICE] init done");
+
+    return this;
   }
 
   void authLogin(String accessToken) {
     io.emit(SocketEvent.authLogin.value, {"accessToken": accessToken});
   }
 
-  void enterChatRoom(String roomId) {
+  void enterChatRoom(int roomId) {
     io.emit(SocketEvent.chatJoin.value, {"id": roomId});
   }
 
@@ -83,10 +104,23 @@ class ChatService extends GetxController {
     io.emit(SocketEvent.chatLeave.value, roomId);
   }
 
-  void sendMessage(String roomId, String message) {
+  void sendMessage(String message) {
     io.emit(SocketEvent.messageCreate.value, {
-      "roomId": roomId,
-      "message": message,
+      "content": message,
     });
+  }
+
+  Future<List<ChatRoom>> getChatRooms() async {
+    return repository.getChatRoomList();
+  }
+
+  Future<List<ChatMessage>> getChatMessages(int roomId) async {
+    return repository.getChatMessage(roomId);
+  }
+
+  @override
+  void onClose() {
+    io.disconnect();
+    super.onClose();
   }
 }

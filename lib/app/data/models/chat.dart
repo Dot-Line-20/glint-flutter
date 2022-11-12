@@ -8,7 +8,7 @@ part 'chat.g.dart';
 
 @JsonSerializable()
 class Users {
-  List<User> user;
+  User user;
 
   Users({
     required this.user,
@@ -22,7 +22,7 @@ class Users {
 class ChatRoom {
   int id;
   String name;
-  Users users;
+  List<Users> users;
 
   ChatRoom({
     required this.id,
@@ -39,13 +39,11 @@ class ChatRoom {
 class ChatMessage {
   int id;
   String content;
-  DateTime createdAt;
   User user;
 
   ChatMessage({
     required this.id,
     required this.content,
-    required this.createdAt,
     required this.user,
   });
 
