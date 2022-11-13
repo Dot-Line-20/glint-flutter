@@ -10,21 +10,19 @@ class CommentController extends GetxController with StateMixin {
   final CommentRepository repository;
   CommentController(this.repository);
 
+  static CommentController get to => Get.find();
+
   final UserController userController = Get.find<UserController>();
 
   final Rx<List<Comment>> _commentList = Rx([]);
-  final Rx<List<User>> _userList = Rx([]);
 
   List<Comment> get commentList => _commentList.value;
-  List<User> get userList => _userList.value;
 
   Future<void> getComments(int postId) async {
     change(null, status: RxStatus.loading());
 
     try {
       _commentList.value = await repository.getComments(postId);
-      _userList.value = await userController.getUserList(
-          _commentList.value.map((comment) => comment.userId).toList());
     } on DioError catch (e) {
       GTSnackBar.open(e.message);
       print(e.response!.data);
@@ -38,6 +36,7 @@ class CommentController extends GetxController with StateMixin {
     try {
       Comment comment = await repository.createComment(postId, content);
       _commentList.value.add(comment);
+      _commentList.refresh();
     } on DioError catch (e) {
       GTSnackBar.open(e.message);
       print(e.response!.data);
@@ -46,11 +45,18 @@ class CommentController extends GetxController with StateMixin {
     }
   }
 
-  Future<void> updateComment(int postId, int commentId, String content) async {
-    await repository.updateComment(postId, commentId, content);
-  }
-
   Future<void> deleteComment(int postId, int commentId) async {
-    await repository.deleteComment(postId, commentId);
+    change(null, status: RxStatus.loading());
+    try {
+      await repository.deleteComment(postId, commentId);
+      _commentList.value.removeWhere((comment) => comment.id == commentId);
+      print("Comment deleted ${commentList}");
+      _commentList.refresh();
+    } on DioError catch (e) {
+      GTSnackBar.open(e.message);
+      print(e.response!.data);
+    } finally {
+      change(null, status: RxStatus.success());
+    }
   }
 }

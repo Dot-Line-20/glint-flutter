@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
@@ -34,12 +33,13 @@ class JWTInterceptor extends Interceptor {
       options.path = "/users/${authService.userId}";
     }
 
-    if (options.path.startsWith("/schedules") || options.path.startsWith("/metadata")) {
+    if (options.path.startsWith("/schedules") ||
+        options.path.startsWith("/metadata")) {
       options.path = "/users/${authService.userId}${options.path}";
     }
 
     if (options.path.startsWith("/posts") && options.method == "DELETE") {
-      options.path += "/${authService.userId}";
+      //options.path += "/${authService.userId}";
     }
 
     return handler.next(options);
