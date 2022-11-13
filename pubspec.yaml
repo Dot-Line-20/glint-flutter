@@ -25,6 +25,7 @@ dependencies:
   get_storage: ^2.0.3   
   hive: ^2.2.3
   shared_preferences: ^2.0.15
+  flutter_secure_storage: ^6.0.0
 
   # Image File
   flutter_svg: ^1.1.1+1
@@ -49,26 +50,25 @@ dependencies:
 
   # HTTP
   dio: ^4.0.6
+  socket_io_client: ^2.0.0
 
   # WIDGET
   fluttertoast: ^8.0.9
   shimmer: ^2.0.0
+  pin_code_fields: ^7.4.0
+  video_thumbnail: ^0.5.3
+  carousel_slider: ^4.1.1
+  scroll_date_picker: ^3.6.0
+  video_player: ^2.4.7
 
   # UTILL
   intl: ^0.17.0
   uuid: ^3.0.6
   flutter_keyboard_visibility: ^5.3.0
-  scroll_date_picker: ^3.6.0
-  pin_code_fields: ^7.4.0
-  flutter_secure_storage: ^6.0.0
   jwt_decoder: ^2.0.1
   file_picker: ^5.2.1
   share_plus: ^6.0.0
-  carousel_slider: ^4.1.1
-  video_thumbnail: ^0.5.3
-  video_player: ^2.4.7
   flutter_web_frame: ^0.0.3
-  socket_io_client: ^2.0.0
 
 dev_dependencies:
   flutter_test:

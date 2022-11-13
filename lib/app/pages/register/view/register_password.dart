@@ -2,8 +2,10 @@ import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:glint/app/core/util/constant.dart';
 import 'package:glint/app/pages/register/controller.dart';
 import 'package:glint/app/widgets/button.dart';
+import 'package:glint/app/widgets/constant.dart';
 import 'package:glint/app/widgets/textfield.dart';
 
 class RegisterPasswordPage extends GetView<RegisterPageController> {
@@ -31,8 +33,9 @@ class RegisterPasswordPage extends GetView<RegisterPageController> {
                 children: [
                   const Text("회원가입", style: AppTextTheme.Title),
                   const SizedBox(height: 8),
-                   Text("비밀번호는 8자리 이상, 특수문자를 포함해야해요",
-                      style: AppTextTheme.T6.copyWith(color: AppColorTheme.Gray2)),
+                  Text("비밀번호는 8자리 이상, 특수문자를 포함해야해요",
+                      style:
+                          AppTextTheme.T6.copyWith(color: AppColorTheme.Gray2)),
                   const SizedBox(height: 50),
                   Form(
                     key: controller.secondFormKey,
@@ -104,8 +107,7 @@ class RegisterPasswordPage extends GetView<RegisterPageController> {
                   onTap: controller.moveToThirdPage,
                   child: Text(
                     "다음",
-                    style: AppTextTheme.T4
-                        .copyWith(color: AppColorTheme.white),
+                    style: AppTextTheme.T4.copyWith(color: AppColorTheme.white),
                   ),
                 ),
               ),
@@ -114,10 +116,7 @@ class RegisterPasswordPage extends GetView<RegisterPageController> {
                 child: SizedBox(
                   height: 20,
                   width: 20,
-                  child: CircularProgressIndicator(
-                    color: AppColorTheme.white,
-                    strokeWidth: 2,
-                  ),
+                  child: LOADINGINDICATOR,
                 ),
               ),
             ),

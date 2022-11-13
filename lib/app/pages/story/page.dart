@@ -4,6 +4,7 @@ import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/pages/story/controller.dart';
 import 'package:glint/app/pages/story/widget/bottomsheet.dart';
+import 'package:glint/app/widgets/constant.dart';
 
 class StoryPage extends StatelessWidget {
   StoryPage({Key? key}) : super(key: key);
@@ -25,8 +26,7 @@ class StoryPage extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-              onLoading: const Center(
-                  child: CircularProgressIndicator(color: AppColorTheme.Blue)),
+              onLoading: LOADINGINDICATOR,
             ),
             Padding(
               padding: const EdgeInsets.all(24),
@@ -64,19 +64,19 @@ class StoryPage extends StatelessWidget {
                           const SizedBox(width: 16),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children:  [
+                            children: [
                               Text(
                                 "EXAMPLE",
-                                style: AppTextTheme.T4.copyWith(
-                                    color: AppColorTheme.white),
+                                style: AppTextTheme.T4
+                                    .copyWith(color: AppColorTheme.white),
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 2,
                               ),
                               const SizedBox(height: 4),
                               Text(
                                 "EXAMPLE",
-                                style: AppTextTheme.T7.copyWith(
-                                    color: AppColorTheme.white),
+                                style: AppTextTheme.T7
+                                    .copyWith(color: AppColorTheme.white),
                               ),
                             ],
                           ),

@@ -8,6 +8,7 @@ import 'package:glint/app/core/theme/text_theme.dart';
 
 import 'package:glint/app/pages/post/controller.dart';
 import 'package:glint/app/widgets/button.dart';
+import 'package:glint/app/widgets/constant.dart';
 import 'package:glint/app/widgets/textfield.dart';
 
 class PostPage extends GetView<PostPageController> {
@@ -116,13 +117,9 @@ class PostPage extends GetView<PostPageController> {
                           children: <Widget>[
                             const Center(
                               child: SizedBox(
-                                width: 100,
-                                height: 100,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 5,
-                                  color: AppColorTheme.Blue,
-                                ),
-                              ),
+                                  width: 100,
+                                  height: 100,
+                                  child: LOADINGINDICATOR),
                             ),
                             Center(
                                 child: Text(

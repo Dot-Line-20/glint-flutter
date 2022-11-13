@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
+import 'package:glint/app/core/util/constant.dart';
 import 'package:glint/app/data/module/comment/comment.dart';
 import 'package:glint/app/data/module/user/user.dart';
 import 'package:glint/app/data/module/user/controller.dart';
 import 'package:glint/app/pages/comment/controller.dart';
 import 'package:glint/app/pages/comment/widget/bottomsheet.dart';
 import 'package:glint/app/widgets/button.dart';
+import 'package:glint/app/widgets/constant.dart';
+import 'package:glint/app/widgets/empty.dart';
 import 'package:glint/app/widgets/textfield.dart';
 
 class CommentPage extends GetView<CommentPageController> {
@@ -49,22 +52,9 @@ class CommentPage extends GetView<CommentPageController> {
               const SizedBox(height: 16),
               controller.obx(
                 (_) => Expanded(
-                  child: Obx(
-                    () => ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: controller.commentList.length,
-                      itemBuilder: (context, index) {
-                        return item(controller.userList[index],
-                            controller.commentList[index]);
-                      },
-                    ),
-                  ),
+                  child: _commentItem(),
                 ),
-                onLoading: const Expanded(
-                  child: Center(
-                    child: CircularProgressIndicator(color: AppColorTheme.Blue),
-                  ),
-                ),
+                onLoading: const Expanded(child: LOADINGINDICATOR),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -87,6 +77,23 @@ class CommentPage extends GetView<CommentPageController> {
         ),
       ),
     );
+  }
+
+  Obx _commentItem() {
+    return Obx(() {
+      if (controller.commentList.isEmpty) {
+        return const Empty(title: "댓글 없음", description: "첫 댓글을 작성해주세요!");
+      }
+
+      return ListView.builder(
+        shrinkWrap: true,
+        itemCount: controller.commentList.length,
+        itemBuilder: (context, index) {
+          return item(
+              controller.userList[index], controller.commentList[index]);
+        },
+      );
+    });
   }
 
   Widget item(User user, Comment comment) {

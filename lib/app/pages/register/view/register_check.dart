@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/pages/register/controller.dart';
 import 'package:glint/app/widgets/button.dart';
+import 'package:glint/app/widgets/constant.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class RegisterCheckPage extends GetView<RegisterPageController> {
@@ -32,8 +33,7 @@ class RegisterCheckPage extends GetView<RegisterPageController> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(height: 70),
-                  const Text("이메일로 온 4자리 숫자를 입력해주세요.",
-                      style: AppTextTheme.T3),
+                  const Text("이메일로 온 4자리 숫자를 입력해주세요.", style: AppTextTheme.T3),
                   const SizedBox(height: 40),
                   SizedBox(
                     width: 300,
@@ -71,14 +71,7 @@ class RegisterCheckPage extends GetView<RegisterPageController> {
               ),
               onLoading: const GTKeyboardReactiveButton(
                 disabled: false,
-                child: SizedBox(
-                  height: 20,
-                  width: 20,
-                  child: CircularProgressIndicator(
-                    color: AppColorTheme.white,
-                    strokeWidth: 2,
-                  ),
-                ),
+                child: SizedBox(height: 20, width: 20, child: LOADINGINDICATOR),
               ),
             ),
             const SizedBox(height: 18),

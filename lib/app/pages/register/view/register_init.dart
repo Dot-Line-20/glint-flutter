@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/pages/register/controller.dart';
 import 'package:glint/app/widgets/button.dart';
+import 'package:glint/app/widgets/constant.dart';
 import 'package:glint/app/widgets/textfield.dart';
 
 class RegisterInitPage extends GetView<RegisterPageController> {
@@ -101,14 +102,7 @@ class RegisterInitPage extends GetView<RegisterPageController> {
               ),
               onLoading: const GTKeyboardReactiveButton(
                 disabled: false,
-                child: SizedBox(
-                  height: 20,
-                  width: 20,
-                  child: CircularProgressIndicator(
-                    color: AppColorTheme.white,
-                    strokeWidth: 2,
-                  ),
-                ),
+                child: SizedBox(height: 20, width: 20, child: LOADINGINDICATOR),
               ),
             ),
           ],

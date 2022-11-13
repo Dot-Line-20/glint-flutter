@@ -4,6 +4,8 @@ import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/core/util/constant.dart';
 import 'package:glint/app/data/service/chat/chat.dart';
 import 'package:glint/app/pages/chat/controller.dart';
+import 'package:glint/app/widgets/constant.dart';
+import 'package:glint/app/widgets/empty.dart';
 
 class ChatRoomListPage extends GetView<ChatController> {
   const ChatRoomListPage({Key? key}) : super(key: key);
@@ -24,17 +26,24 @@ class ChatRoomListPage extends GetView<ChatController> {
           child: Column(
         children: [
           Expanded(
-            child: controller.obx(
-              (_) => ListView.builder(
-                itemCount: controller.chatRooms.value.length,
-                itemBuilder: (context, index) {
-                  return _chatRoomItem(controller.chatRooms.value[index]);
-                },
-              ),
-            ),
+            child: controller.obx((_) => _chatRoomItems(),
+                onLoading: LOADINGINDICATOR),
           ),
         ],
       )),
+    );
+  }
+
+  Widget _chatRoomItems() {
+    if (controller.chatRooms.value.isEmpty) {
+      return const Empty(title: "채팅 없음", description: "다른 사람과 채팅을 시작해보세요");
+    }
+
+    return ListView.builder(
+      itemCount: controller.chatRooms.value.length,
+      itemBuilder: (context, index) {
+        return _chatRoomItem(controller.chatRooms.value[index]);
+      },
     );
   }
 

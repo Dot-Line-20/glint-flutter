@@ -4,6 +4,7 @@ import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/pages/register/controller.dart';
 import 'package:glint/app/widgets/button.dart';
+import 'package:glint/app/widgets/constant.dart';
 
 class EmailCheckPage extends GetView<RegisterPageController> {
   const EmailCheckPage({Key? key}) : super(key: key);
@@ -49,21 +50,16 @@ class EmailCheckPage extends GetView<RegisterPageController> {
                   (_) => GTKeyboardReactiveButton(
                     disabled: true,
                     onTap: controller.moveToThirdPage,
-                    child:  Text(
+                    child: Text(
                       "다시 인증하기",
-                      style: AppTextTheme.T4.copyWith(color: AppColorTheme.white),
+                      style:
+                          AppTextTheme.T4.copyWith(color: AppColorTheme.white),
                     ),
                   ),
                   onLoading: const GTKeyboardReactiveButton(
                     disabled: false,
                     child: SizedBox(
-                      height: 20,
-                      width: 20,
-                      child: CircularProgressIndicator(
-                        color: AppColorTheme.white,
-                        strokeWidth: 2,
-                      ),
-                    ),
+                        height: 20, width: 20, child: LOADINGINDICATOR),
                   ),
                 ),
               ],

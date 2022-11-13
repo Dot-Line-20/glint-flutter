@@ -7,6 +7,7 @@ import 'package:glint/app/data/module/user/user.dart';
 import 'package:glint/app/data/service/chat/chat.dart';
 import 'package:glint/app/pages/chat/controller.dart';
 import 'package:glint/app/widgets/button.dart';
+import 'package:glint/app/widgets/empty.dart';
 import 'package:glint/app/widgets/textfield.dart';
 
 class ChatPage extends GetView<ChatController> {
@@ -31,30 +32,9 @@ class ChatPage extends GetView<ChatController> {
           children: [
             Expanded(
               child: controller.obx(
-                (_) => SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: controller.messages.value.length,
-                        itemBuilder: (context, index) {
-                          return _chatBubble(controller.messages.value[index]);
-                        },
-                      ),
-                      Obx(
-                        () => ListView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount:
-                              controller.chatService.messages.value.length,
-                          itemBuilder: (context, index) {
-                            return _chatBubble(
-                                controller.chatService.messages.value[index]);
-                          },
-                        ),
-                      ),
-                    ],
+                (_) => Center(
+                  child: SingleChildScrollView(
+                    child: _chatMessages(),
                   ),
                 ),
               ),
@@ -78,6 +58,36 @@ class ChatPage extends GetView<ChatController> {
           ],
         ),
       )),
+    );
+  }
+
+  Widget _chatMessages() {
+    if (controller.messages.value.isEmpty &&
+        controller.chatService.messages.value.isEmpty) {
+      return const Empty(title: '채팅 없음', description: '채팅을 시작해보세요');
+    }
+
+    return Column(
+      children: [
+        ListView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: controller.messages.value.length,
+          itemBuilder: (context, index) {
+            return _chatBubble(controller.messages.value[index]);
+          },
+        ),
+        Obx(
+          () => ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: controller.chatService.messages.value.length,
+            itemBuilder: (context, index) {
+              return _chatBubble(controller.chatService.messages.value[index]);
+            },
+          ),
+        ),
+      ],
     );
   }
 

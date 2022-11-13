@@ -6,6 +6,8 @@ import 'package:glint/app/pages/sns/controller.dart';
 import 'package:glint/app/pages/sns/widget/post.dart';
 import 'package:glint/app/routes/route.dart';
 import 'package:glint/app/widgets/button.dart';
+import 'package:glint/app/widgets/constant.dart';
+import 'package:glint/app/widgets/empty.dart';
 
 class SnsPage extends StatelessWidget {
   SnsPage({Key? key}) : super(key: key);
@@ -28,14 +30,16 @@ class SnsPage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Expanded(
-              child: SingleChildScrollView(
-                controller: controller.scrollController,
-                child: Column(
-                  children: [
-                    Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: body()),
-                  ],
+              child: Center(
+                child: SingleChildScrollView(
+                  controller: controller.scrollController,
+                  child: Column(
+                    children: [
+                      Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: _postBody()),
+                    ],
+                  ),
                 ),
               ),
             )
@@ -120,9 +124,13 @@ class SnsPage extends StatelessWidget {
     );
   }
 
-  Widget body() {
-    return Obx(
-      () => Column(
+  Widget _postBody() {
+    return Obx(() {
+      if (controller.posts.isEmpty) {
+        //포스트가 없어요
+        return const Empty(title: "포스트 없음", description: "첫 작성자가 되어보세요!");
+      }
+      return Column(
         children: [
           ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
@@ -131,9 +139,9 @@ class SnsPage extends StatelessWidget {
             itemBuilder: (context, index) =>
                 PostItem(post: controller.posts[index]),
           ),
-          if (controller.isLoading) const CircularProgressIndicator()
+          if (controller.isLoading) LOADINGINDICATOR
         ],
-      ),
-    );
+      );
+    });
   }
 }
