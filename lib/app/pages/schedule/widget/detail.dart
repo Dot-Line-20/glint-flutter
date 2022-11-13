@@ -12,12 +12,8 @@ class DetailSchedule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        foregroundColor: Colors.black,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
         title: Text(
           schedule.name,
-          style: AppTextTheme.T4,
         ),
         actions: [
           IconButton(

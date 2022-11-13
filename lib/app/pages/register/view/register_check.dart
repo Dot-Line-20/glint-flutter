@@ -14,11 +14,8 @@ class RegisterCheckPage extends GetView<RegisterPageController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        foregroundColor: AppColorTheme.black,
-        elevation: 0,
-        centerTitle: true,
-        title: const Text("본인 인증", style: AppTextTheme.T4),
+ 
+        title: const Text("본인 인증"),
       ),
       body: SafeArea(
           child: Padding(

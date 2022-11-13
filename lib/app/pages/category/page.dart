@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/pages/category/controller.dart';
-import 'package:glint/app/widgets/button.dart';
 import 'package:glint/app/widgets/empty.dart';
 import 'package:glint/app/widgets/textfield.dart';
 
@@ -16,12 +15,8 @@ class CategoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        foregroundColor: Colors.black,
-        backgroundColor: Colors.white,
-        centerTitle: true,
         title: const Text(
           "카테고리",
-          style: AppTextTheme.T4,
         ),
         actions: [
           TextButton(

@@ -14,9 +14,7 @@ class RegisterInitPage extends GetView<RegisterPageController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        foregroundColor: AppColorTheme.black,
-        elevation: 0,
+      
       ),
       body: SafeArea(
           child: Padding(

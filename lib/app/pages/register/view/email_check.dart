@@ -13,11 +13,7 @@ class EmailCheckPage extends GetView<RegisterPageController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          foregroundColor: AppColorTheme.black,
-          elevation: 0,
-          centerTitle: true,
-          title: const Text("이메일 확인", style: AppTextTheme.T4),
+          title: const Text("이메일 확인"),
         ),
         body: SafeArea(
           child: Padding(

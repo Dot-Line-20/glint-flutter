@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_web_frame/flutter_web_frame.dart';
+import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/data/initalize.dart';
 import 'package:glint/app/routes/pages.dart';
 import 'package:glint/app/routes/route.dart';
@@ -22,7 +23,16 @@ void main() async {
       builder: (_) => GetMaterialApp(
         initialRoute: Routes.home,
         getPages: AppPages.pages,
-        theme: ThemeData(fontFamily: "Pretendard"),
+        theme: ThemeData(
+          fontFamily: "Pretendard",
+          appBarTheme: const AppBarTheme(
+            elevation: 0,
+            centerTitle: true,
+            foregroundColor: Colors.black,
+            backgroundColor: Colors.transparent,
+            titleTextStyle: AppTextTheme.T4,
+          ),
+        ),
         locale: GetCurrentLocale.currentDeviceLocale,
         fallbackLocale: GetCurrentLocale.fallBackLocale,
       ),

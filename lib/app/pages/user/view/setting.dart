@@ -14,12 +14,8 @@ class SettingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        foregroundColor: Colors.black,
-        backgroundColor: Colors.white,
-        centerTitle: true,
         title: const Text(
           "설정",
-          style: AppTextTheme.T4,
         ),
       ),
       body: SafeArea(
