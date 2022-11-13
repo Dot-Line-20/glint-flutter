@@ -56,13 +56,17 @@ class SnsPage extends StatelessWidget {
           children: [
             Text(
               "GLINT",
-              style: AppTextTheme.T1
-                  .copyWith(color: AppColorTheme.BUTTON1, fontFamily: "Tenada"),
+              style: AppTextTheme.T1.copyWith(
+                  color: AppColorTheme.BUTTON1,
+                  fontFamily: "Tenada",
+                  height: 1.4),
             ),
             Image.asset("assets/images/icon.png", width: 36, height: 36),
           ],
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             GTIconButton("assets/images/post.svg", onTap: () {
               Get.toNamed(Routes.post);

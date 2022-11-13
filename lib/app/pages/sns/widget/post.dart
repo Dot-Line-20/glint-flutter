@@ -95,7 +95,7 @@ class _PostItemState extends State<PostItem> {
               child: Container(
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
-                    color: AppColorTheme.Gray3,
+                    color: AppColorTheme.Gray4,
                   ),
                   width: 32,
                   height: 32,

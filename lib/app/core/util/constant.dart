@@ -5,4 +5,4 @@ const String IMAGEURL = "https://cdn.h2o.vg/images";
 const String VIDEOURL = "https://cdn.h2o.vg/videos";
 
 const String LOADING =
-    "https://media.tenor.com/UnFx-k_lSckAAAAM/amalie-steiness.gif";
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwGsNv23K5shKblMsKePA8o6M2kqBH39PZqA&usqp=CAU";

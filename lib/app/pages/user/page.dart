@@ -69,8 +69,8 @@ class UserPage extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                height: 44,
-                width: 44,
+                height: 36,
+                width: 36,
               ),
               const SizedBox(width: 10),
               Text(
