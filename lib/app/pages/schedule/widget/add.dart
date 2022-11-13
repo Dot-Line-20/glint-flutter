@@ -151,14 +151,26 @@ class PickSchedule {
   Row _categoryPicker() {
     return Row(
       children: [
+        GTIconButton(
+          "assets/images/rabbi.svg",
+          onTap: controller.getCategory,
+        ),
         Expanded(
           child: ConstrainedBox(
             constraints: const BoxConstraints(
               minHeight: 25,
               maxHeight: 30,
             ),
-            child: Obx(
-              () => ListView.builder(
+            child: Obx(() {
+              if (controller.categories.value.isEmpty) {
+                return const Center(
+                    child: Text(
+                  "카테고리가 없습니다.",
+                  textAlign: TextAlign.start,
+                ));
+              }
+
+              return ListView.builder(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 itemCount: controller.categories.value.length,
@@ -172,24 +184,23 @@ class PickSchedule {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 4),
-                      child: Text(
-                        controller.categories.value[index].name,
-                        style: AppTextTheme.T6
-                            .copyWith(color: AppColorTheme.white),
+                        horizontal: 8,
+                      ),
+                      child: Center(
+                        child: Text(
+                          controller.categories.value[index].name,
+                          style: AppTextTheme.T6
+                              .copyWith(color: AppColorTheme.white),
+                        ),
                       ),
                     ),
                   );
                 },
-              ),
-            ),
+              );
+            }),
           ),
         ),
         // add iconbutton
-        GTIconButton(
-          "assets/images/rabbi.svg",
-          onTap: controller.getCategory,
-        ),
       ],
     );
   }
