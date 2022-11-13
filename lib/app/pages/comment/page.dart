@@ -50,11 +50,8 @@ class CommentPage extends GetView<CommentPageController> {
             children: [
               header(),
               const SizedBox(height: 16),
-              controller.obx(
-                (_) => Expanded(
-                  child: _commentItem(),
-                ),
-                onLoading: const Expanded(child: LOADINGINDICATOR),
+              Expanded(
+                child: _commentItem(),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -79,8 +76,8 @@ class CommentPage extends GetView<CommentPageController> {
     );
   }
 
-  Obx _commentItem() {
-    return Obx(() {
+  Widget _commentItem() {
+    return controller.obx((_) {
       if (controller.commentList.isEmpty) {
         return const Empty(title: "댓글 없음", description: "첫 댓글을 작성해주세요!");
       }
@@ -93,7 +90,7 @@ class CommentPage extends GetView<CommentPageController> {
               controller.userList[index], controller.commentList[index]);
         },
       );
-    });
+    }, onLoading: LOADINGINDICATOR);
   }
 
   Widget item(User user, Comment comment) {
@@ -114,7 +111,7 @@ class CommentPage extends GetView<CommentPageController> {
                       shape: BoxShape.circle,
                       color: Colors.grey,
                       image: DecorationImage(
-                        image: NetworkImage(user.profile!),
+                        image: NetworkImage(user.profile ?? LOADING),
                         fit: BoxFit.cover,
                       ),
                     ),
