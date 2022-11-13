@@ -7,20 +7,20 @@ import 'package:glint/app/core/util/constant.dart';
 import 'package:glint/app/data/module/post/post.dart';
 import 'package:glint/app/data/module/post/controller.dart';
 import 'package:glint/app/data/module/user/controller.dart';
-import 'package:glint/app/pages/sns/widget/video_player.dart';
+import 'package:glint/app/pages/feed/widget/video_player.dart';
 import 'package:glint/app/widgets/bottom_sheet.dart';
 import 'package:glint/app/widgets/button.dart';
 import 'package:share_plus/share_plus.dart';
 
-class PostItem extends StatefulWidget {
-  const PostItem({Key? key, required this.post}) : super(key: key);
+class FeedItem extends StatefulWidget {
+  const FeedItem({Key? key, required this.post}) : super(key: key);
   final Post post;
 
   @override
-  State<PostItem> createState() => _PostItemState();
+  State<FeedItem> createState() => _FeedItemState();
 }
 
-class _PostItemState extends State<PostItem> {
+class _FeedItemState extends State<FeedItem> {
   int index = 0;
   bool isMore = true;
   bool isLiked = false;

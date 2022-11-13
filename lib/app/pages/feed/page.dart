@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
-import 'package:glint/app/pages/sns/controller.dart';
-import 'package:glint/app/pages/sns/widget/post.dart';
+import 'package:glint/app/pages/feed/controller.dart';
+import 'package:glint/app/pages/feed/widget/feed.dart';
 import 'package:glint/app/routes/route.dart';
 import 'package:glint/app/widgets/button.dart';
 import 'package:glint/app/widgets/constant.dart';
 import 'package:glint/app/widgets/empty.dart';
 
-class SnsPage extends StatelessWidget {
-  SnsPage({Key? key}) : super(key: key);
+class FeedPage extends StatelessWidget {
+  FeedPage({Key? key}) : super(key: key);
 
-  final SnsPageController controller = Get.find<SnsPageController>();
+  final FeedPageController controller = Get.find<FeedPageController>();
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +137,7 @@ class SnsPage extends StatelessWidget {
             shrinkWrap: true,
             itemCount: controller.posts.length,
             itemBuilder: (context, index) =>
-                PostItem(post: controller.posts[index]),
+                FeedItem(post: controller.posts[index]),
           ),
           if (controller.isLoading) LOADINGINDICATOR
         ],

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:glint/app/data/module/post/post.dart';
 import 'package:glint/app/data/module/post/controller.dart';
 
-class SnsPageController extends GetxController {
+class FeedPageController extends GetxController {
   final PostController postController = Get.find<PostController>();
 
   final int _limit = 2;

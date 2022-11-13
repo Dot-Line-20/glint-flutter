@@ -10,7 +10,7 @@ import 'package:glint/app/data/module/user/controller.dart';
 import 'package:glint/app/data/provider/api.dart';
 import 'package:glint/app/pages/home/controller.dart';
 import 'package:glint/app/pages/schedule/controller.dart';
-import 'package:glint/app/pages/sns/controller.dart';
+import 'package:glint/app/pages/feed/controller.dart';
 import 'package:glint/app/pages/user/controller.dart';
 
 class HomePageBinding extends Bindings {
@@ -24,7 +24,7 @@ class HomePageBinding extends Bindings {
     Get.put<CategoryController>(
         CategoryController(CategoryRepository(GTApiProvider())));
 
-    Get.lazyPut<SnsPageController>(() => SnsPageController());
+    Get.lazyPut<FeedPageController>(() => FeedPageController());
     Get.lazyPut<SchedulePageController>(() => SchedulePageController());
     Get.lazyPut<UserPageController>(() => UserPageController());
   }

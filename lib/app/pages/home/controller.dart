@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/data/service/orientation/service.dart';
 import 'package:glint/app/pages/schedule/page.dart';
-import 'package:glint/app/pages/sns/page.dart';
+import 'package:glint/app/pages/feed/page.dart';
 import 'package:glint/app/pages/user/page.dart';
 import 'package:glint/app/routes/route.dart';
 
@@ -15,13 +15,13 @@ class HomePageController extends GetxController {
   bool get hideBottomBar => pageIndex == 1 && OrientationService.to.isLandscape;
 
   final _pages = [
-    Routes.sns,
+    Routes.feed,
     Routes.schedule,
     Routes.user,
   ];
 
   List<Widget> pages = [
-    SnsPage(),
+    FeedPage(),
     SchedulePage(),
     UserPage(),
   ];

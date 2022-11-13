@@ -9,8 +9,8 @@ import 'package:glint/app/pages/home/binding.dart';
 import 'package:glint/app/pages/home/page.dart';
 import 'package:glint/app/pages/post/binding.dart';
 import 'package:glint/app/pages/post/page.dart';
-import 'package:glint/app/pages/sns/binding.dart';
-import 'package:glint/app/pages/sns/page.dart';
+import 'package:glint/app/pages/feed/binding.dart';
+import 'package:glint/app/pages/feed/page.dart';
 import 'package:glint/app/pages/login/binding.dart';
 import 'package:glint/app/pages/login/page.dart';
 import 'package:glint/app/pages/register/binding.dart';
@@ -46,9 +46,9 @@ class AppPages {
       middlewares: [LoginMiddleware()],
     ),
     GetPage(
-      name: Routes.sns,
-      page: () => SnsPage(),
-      binding: SnsPageBinding(),
+      name: Routes.feed,
+      page: () => FeedPage(),
+      binding: FeedPageBinding(),
       middlewares: [LoginMiddleware()],
     ),
     GetPage(

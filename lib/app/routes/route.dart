@@ -2,7 +2,7 @@
 
 abstract class Routes {
   static const home = "/";
-  static const sns = "/sns";
+  static const feed = "/feed";
   static const post = "/post";
   static const story = "/story";
   static const comment = "/sns/:id";
