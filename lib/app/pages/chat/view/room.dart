@@ -7,6 +7,7 @@ import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/core/util/constant.dart';
 import 'package:glint/app/data/service/chat/chat.dart';
 import 'package:glint/app/pages/chat/controller.dart';
+import 'package:glint/app/widgets/bottom_sheet.dart';
 import 'package:glint/app/widgets/constant.dart';
 import 'package:glint/app/widgets/empty.dart';
 
@@ -49,19 +50,37 @@ class ChatRoomListPage extends GetView<ChatController> {
   Widget _chatRoomItem(ChatRoom chatRoom) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
-      child: GestureDetector(
-        onTap: () {
-          controller.enterChatRoom(chatRoom.users, chatRoom.id);
-        },
-        child: Row(
-          children: [
-            const SizedBox(width: 10),
-            ChatRoomProfile(users: chatRoom.users),
-            const SizedBox(width: 10),
-            Text("${chatRoom.name} (${chatRoom.users.length})",
-                style: AppTextTheme.Main.copyWith(fontSize: 16)),
-          ],
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          GestureDetector(
+            onTap: () {
+              controller.enterChatRoom(chatRoom.users, chatRoom.id);
+            },
+            child: Row(
+              children: [
+                const SizedBox(width: 10),
+                ChatRoomProfile(users: chatRoom.users),
+                const SizedBox(width: 10),
+                Text("${chatRoom.name} (${chatRoom.users.length})",
+                    style: AppTextTheme.Main.copyWith(fontSize: 16)),
+              ],
+            ),
+          ),
+
+          //button with setting icon
+          IconButton(
+            icon: const Icon(Icons.more_horiz_sharp),
+            onPressed: () async {
+              GTActionType? result = await GTBottomSheet([
+                GTActionType.delete,
+              ]).show();
+              if (result == GTActionType.delete) {
+                //controller.deleteChatRoom(chatRoom.id);
+              }
+            },
+          ),
+        ],
       ),
     );
   }

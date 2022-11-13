@@ -37,7 +37,7 @@ extension GTActionTypeExtension on GTActionType {
       case GTActionType.delete:
         return "assets/images/rabbi.svg";
       case GTActionType.edit:
-        return "assets/icons/ic_edit.svg";
+        return "assets/images/search.svg";
       case GTActionType.report:
         return "assets/images/spam.svg";
     }

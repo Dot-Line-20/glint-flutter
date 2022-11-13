@@ -29,7 +29,7 @@ class DetailSchedule extends StatelessWidget {
                 ScheduleController.to.deleteSchedule(schedule.id);
               }
             },
-            icon: const Icon(Icons.settings),
+            icon: const Icon(Icons.more_horiz),
           ),
         ],
       ),

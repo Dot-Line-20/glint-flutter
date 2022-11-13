@@ -22,9 +22,6 @@ class ChatController extends GetxController with StateMixin<List<ChatRoom>> {
   void onInit() async {
     super.onInit();
     change(null, status: RxStatus.loading());
-
-    chatService.io.connect();
-
     chatService.authLogin(authService.accessToken!);
     chatRooms.value = await chatService.getChatRooms();
     change(null, status: RxStatus.success());
@@ -36,15 +33,10 @@ class ChatController extends GetxController with StateMixin<List<ChatRoom>> {
         users.value[user.user.id] = user.user;
       }
     }
-
     messages.value = await chatService.getChatMessages(chatRoomId);
     chatService.enterChatRoom(chatRoomId);
-    Get.to(() => const ChatPage());
-  }
-
-  void leaveChatRoom(int chatRoomId) {
-    chatService.leaveChatRoom(chatRoomId);
-    Get.back();
+    await Get.to(() => const ChatPage());
+    chatService.leaveChatRoom();
   }
 
   void sendMessage() async {
@@ -53,5 +45,19 @@ class ChatController extends GetxController with StateMixin<List<ChatRoom>> {
     }
     chatService.sendMessage(messageController.text);
     messageController.clear();
+  }
+
+  void deleteMessage(int messageId, messageType) {
+    chatService.deleteMessage(messageId);
+
+    if (messageType) {
+      messages.value
+          .removeWhere((ChatMessage message) => message.id == messageId);
+      messages.refresh();
+    } else {
+      chatService.messages.value
+          .removeWhere((Message message) => message.id == messageId);
+      chatService.messages.refresh();
+    }
   }
 }

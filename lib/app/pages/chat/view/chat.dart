@@ -6,6 +6,7 @@ import 'package:glint/app/core/util/constant.dart';
 import 'package:glint/app/data/module/user/user.dart';
 import 'package:glint/app/data/service/chat/chat.dart';
 import 'package:glint/app/pages/chat/controller.dart';
+import 'package:glint/app/widgets/bottom_sheet.dart';
 import 'package:glint/app/widgets/button.dart';
 import 'package:glint/app/widgets/empty.dart';
 import 'package:glint/app/widgets/textfield.dart';
@@ -17,7 +18,6 @@ class ChatPage extends GetView<ChatController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-  
         title: const Text(
           "채팅방",
         ),
@@ -66,13 +66,15 @@ class ChatPage extends GetView<ChatController> {
 
     return Column(
       children: [
-        ListView.builder(
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemCount: controller.messages.value.length,
-          itemBuilder: (context, index) {
-            return _chatBubble(controller.messages.value[index]);
-          },
+        Obx(
+          () => ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: controller.messages.value.length,
+            itemBuilder: (context, index) {
+              return _chatBubble(controller.messages.value[index]);
+            },
+          ),
         ),
         Obx(
           () => ListView.builder(
@@ -101,59 +103,69 @@ class ChatPage extends GetView<ChatController> {
 
     bool isMe = user!.id == int.tryParse(controller.authService.userId ?? "");
 
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (!isMe)
-            Row(
-              children: [
-                Container(
-                  width: 24,
-                  height: 24,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.grey,
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(user.profile ?? LOADING),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 6),
-              ],
-            ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment:
-                  isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (!isMe)
-                  Text(
-                    user.name,
-                    style: AppTextTheme.T6,
-                  ),
-                Container(
+    return GestureDetector(
+      onLongPress: () async {
+        GTActionType? result =
+            await GTBottomSheet([GTActionType.delete, GTActionType.edit])
+                .show();
+        if (result == GTActionType.delete) {
+          controller.deleteMessage(message.id as int, message is ChatMessage);
+        }
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 8),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (!isMe)
+              Row(
+                children: [
+                  Container(
+                    width: 24,
+                    height: 24,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: isMe ? AppColorTheme.Blue : AppColorTheme.Gray5,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 8.0, horizontal: 10),
-                      child: Text(
-                        content,
-                        style: isMe
-                            ? AppTextTheme.Main.copyWith(color: Colors.white)
-                            : AppTextTheme.Main,
+                      shape: BoxShape.circle,
+                      color: Colors.grey,
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(user.profile ?? LOADING),
                       ),
-                    )),
-              ],
+                    ),
+                  ),
+                  const SizedBox(width: 6),
+                ],
+              ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment:
+                    isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (!isMe)
+                    Text(
+                      user.name,
+                      style: AppTextTheme.T6,
+                    ),
+                  Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: isMe ? AppColorTheme.Blue : AppColorTheme.Gray5,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 10),
+                        child: Text(
+                          content,
+                          style: isMe
+                              ? AppTextTheme.Main.copyWith(color: Colors.white)
+                              : AppTextTheme.Main,
+                        ),
+                      )),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
