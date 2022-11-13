@@ -69,7 +69,14 @@ class PostController extends GetxController with StateMixin {
   }
 
   Future<void> deletePost(int postId) async {
-    await repository.deletePost(postId);
+    try {
+      await repository.deletePost(postId);
+      _posts.value.removeWhere((post) => post.id == postId);
+      _posts.refresh();
+    } on DioError catch (e) {
+      GTSnackBar.open(e.message);
+      print(e.response!.data);
+    }
   }
 
   Future<void> likePost(int postId) async {

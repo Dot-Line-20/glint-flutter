@@ -7,8 +7,8 @@ import 'package:glint/app/core/util/constant.dart';
 import 'package:glint/app/data/module/post/post.dart';
 import 'package:glint/app/data/module/post/controller.dart';
 import 'package:glint/app/data/module/user/controller.dart';
-import 'package:glint/app/pages/sns/widget/bottomsheet.dart';
 import 'package:glint/app/pages/sns/widget/video_player.dart';
+import 'package:glint/app/widgets/bottom_sheet.dart';
 import 'package:glint/app/widgets/button.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -188,8 +188,12 @@ class _PostItemState extends State<PostItem> {
           ),
         ),
         GestureDetector(
-          onTap: () {
-            PostBottomSheet().bottomSheet();
+          onTap: () async {
+            GTActionType? result =
+                await GTBottomSheet([GTActionType.delete]).show();
+            if (result == GTActionType.delete) {
+              await PostController.to.deletePost(widget.post.id);
+            }
           },
           child: Container(
               decoration: const BoxDecoration(

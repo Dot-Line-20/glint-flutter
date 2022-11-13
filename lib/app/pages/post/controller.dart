@@ -64,31 +64,6 @@ class PostPageController extends GetxController with StateMixin {
     }
   }
 
-  void uploadFile() async {
-    // if (filePickerResult.value == null) {
-    //   return;
-    // }
-
-    isUploading.value = true;
-    //print("UPLOAD FILE ${isUploading.value}");
-    _uploadImageCount.value = 0;
-    _uploadImageTotal.value = 100;
-
-    // List<int> upload = filePickerResult.value!.isSinglePick
-    //     ? await postController.uploadFile(filePickerResult.value!)
-    //     : await postController.uploadManyFiles(filePickerResult.value!);
-
-    // 1plus 1sec
-    // Timer timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-    //   _uploadImageCount.value += 10;
-    //   if (_uploadImageCount.value == 100) {
-    //     isUploading.value = false;
-    //     timer.cancel();
-    //     print("END");
-    //   }
-    // });
-  }
-
   int get fileCount => filePickerResult.value?.files.length ?? 0;
   String filePath(int index) => filePickerResult.value?.files[index].path ?? "";
   Uint8List fileBytes(int index) =>

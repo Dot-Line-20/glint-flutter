@@ -39,7 +39,9 @@ class JWTInterceptor extends Interceptor {
     }
 
     if (options.path.startsWith("/posts") && options.method == "DELETE") {
-      //options.path += "/${authService.userId}";
+      if (options.path.contains("/likes")) {
+        options.path += "/${authService.userId}";
+      }
     }
 
     return handler.next(options);
