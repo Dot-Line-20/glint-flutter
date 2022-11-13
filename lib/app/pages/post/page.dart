@@ -18,12 +18,8 @@ class PostPage extends GetView<PostPageController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          foregroundColor: Colors.black,
-          backgroundColor: Colors.white,
-          centerTitle: true,
           title: const Text(
             "새 게시물",
-            style: AppTextTheme.T4,
           ),
           actions: [
             TextButton(
@@ -37,78 +33,21 @@ class PostPage extends GetView<PostPageController> {
         ),
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(24),
+            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
             child: Stack(
               fit: StackFit.expand,
               children: [
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    _imageSelector(),
                     GTTextFormField(
                       controller: controller.contentController,
                       maxLines: 5,
-                      hintText: "내용을 적어주세요",
+                      hintText: "문구 입력...",
                     ),
-                    const SizedBox(height: 8),
-                    // horizonatal scrollable
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ConstrainedBox(
-                            constraints: const BoxConstraints(
-                              minHeight: 25,
-                              maxHeight: 30,
-                            ),
-                            child: Obx(
-                              () => ListView.builder(
-                                shrinkWrap: true,
-                                scrollDirection: Axis.horizontal,
-                                itemCount: controller.categories.value.length,
-                                itemBuilder: (context, index) {
-                                  // radius random color
-                                  return Container(
-                                    margin: const EdgeInsets.only(right: 8),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(100),
-                                      color: AppColorTheme.BUTTON1,
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8, vertical: 4),
-                                      child: Text(
-                                        controller.categories.value[index].name,
-                                        style: AppTextTheme.T6.copyWith(
-                                            color: AppColorTheme.white),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                          ),
-                        ),
-                        // add iconbutton
-                        GTIconButton(
-                          "assets/images/rabbi.svg",
-                          onTap: controller.getCategory,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    Obx(
-                      () => Expanded(
-                        child: GridView.count(
-                          shrinkWrap: true,
-                          crossAxisCount: 3,
-                          children:
-                              List.generate(controller.fileCount, (index) {
-                            return pickedFile(index);
-                          }),
-                        ),
-                      ),
-                    ),
-                    GTMediumTextButton(
-                        text: "사진/동영상", onTap: controller.getFileFromPicker),
+                    //const SizedBox(height: 8),
+                    //_categorySelector(),
                   ],
                 ),
                 Obx(() => controller.isUploading.isTrue
@@ -134,6 +73,73 @@ class PostPage extends GetView<PostPageController> {
             ),
           ),
         ));
+  }
+
+  Obx _imageSelector() {
+    return Obx(
+      () => Expanded(
+        child: GridView.count(
+          shrinkWrap: true,
+          crossAxisCount: 2,
+          children: List.generate(controller.fileCount, (index) {
+            return pickedFile(index);
+          }),
+        ),
+      ),
+    );
+  }
+
+  Row _categorySelector() {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Expanded(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(
+              minHeight: 25,
+              maxHeight: 30,
+            ),
+            child: Obx(() {
+              if (controller.categories.value.isEmpty) {
+                return const Center(
+                  child: Text("카테고리를 선택하여 자신만의 피드를 만들어보세요",
+                      style: AppTextTheme.Explain),
+                );
+              }
+              return ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: controller.categories.value.length,
+                itemBuilder: (context, index) {
+                  // radius random color
+                  return Container(
+                    margin: const EdgeInsets.only(right: 8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: AppColorTheme.BUTTON1,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
+                      child: Text(
+                        controller.categories.value[index].name,
+                        style: AppTextTheme.T6
+                            .copyWith(color: AppColorTheme.white),
+                      ),
+                    ),
+                  );
+                },
+              );
+            }),
+          ),
+        ),
+        // add iconbutton
+        GTIconButton(
+          "assets/images/rabbi.svg",
+          onTap: controller.getCategory,
+        ),
+      ],
+    );
   }
 
   Widget pickedFile(int index) {

@@ -24,6 +24,12 @@ class PostPageController extends GetxController with StateMixin {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController contentController = TextEditingController();
 
+  @override
+  void onInit() async {
+    getFileFromPicker();
+    super.onInit();
+  }
+
   void getFileFromPicker() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       allowMultiple: true,
@@ -34,7 +40,7 @@ class PostPageController extends GetxController with StateMixin {
     if (result != null) {
       filePickerResult.value = result;
     } else {
-      // User canceled the picker
+      Get.back();
     }
   }
 
