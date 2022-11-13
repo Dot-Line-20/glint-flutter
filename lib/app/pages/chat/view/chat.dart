@@ -12,14 +12,16 @@ import 'package:glint/app/widgets/empty.dart';
 import 'package:glint/app/widgets/textfield.dart';
 
 class ChatPage extends GetView<ChatController> {
-  const ChatPage({Key? key}) : super(key: key);
+  final String chatRoomName;
+
+  const ChatPage({Key? key, required this.chatRoomName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "채팅방",
+        title: Text(
+          chatRoomName,
         ),
       ),
       body: SafeArea(

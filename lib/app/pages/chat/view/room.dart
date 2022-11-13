@@ -55,7 +55,8 @@ class ChatRoomListPage extends GetView<ChatController> {
         children: [
           GestureDetector(
             onTap: () {
-              controller.enterChatRoom(chatRoom.users, chatRoom.id);
+              controller.enterChatRoom(
+                  chatRoom.users, chatRoom.id, chatRoom.name);
             },
             child: Row(
               children: [

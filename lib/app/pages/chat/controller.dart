@@ -27,7 +27,8 @@ class ChatController extends GetxController with StateMixin<List<ChatRoom>> {
     change(null, status: RxStatus.success());
   }
 
-  void enterChatRoom(List<Users> userIds, int chatRoomId) async {
+  void enterChatRoom(
+      List<Users> userIds, int chatRoomId, String chatRoomName) async {
     for (Users user in userIds) {
       if (!users.value.containsKey(user.user.id)) {
         users.value[user.user.id] = user.user;
@@ -35,7 +36,7 @@ class ChatController extends GetxController with StateMixin<List<ChatRoom>> {
     }
     messages.value = await chatService.getChatMessages(chatRoomId);
     chatService.enterChatRoom(chatRoomId);
-    await Get.to(() => const ChatPage());
+    await Get.to(() => ChatPage(chatRoomName: chatRoomName));
     chatService.leaveChatRoom();
   }
 
