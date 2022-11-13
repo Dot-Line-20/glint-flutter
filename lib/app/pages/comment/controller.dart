@@ -22,6 +22,7 @@ class CommentPageController extends GetxController with StateMixin {
     if (commentTextController.text.isNotEmpty) {
       await commentController.createComment(postId, commentTextController.text);
       commentTextController.clear();
+      change(null, status: RxStatus.success());
     }
   }
 
