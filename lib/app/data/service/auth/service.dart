@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -26,9 +27,15 @@ class AuthService extends GetxService {
   AuthService(this.repository);
 
   Future<AuthService> init() async {
-    _userId.value = await _storage.read(key: 'userId');
-    _accessToken.value = await _storage.read(key: 'accessToken');
-    _refreshToken.value = await _storage.read(key: 'refreshToken');
+    log('[AUTH SERVICE] init');
+    try {
+      _userId.value = await _storage.read(key: 'userId');
+      _accessToken.value = await _storage.read(key: 'accessToken');
+      _refreshToken.value = await _storage.read(key: 'refreshToken');
+      log('[AUTH SERVICE] Done');
+    } catch (e) {
+      log('AuthService init error: ${e}');
+    }
     return this;
   }
 
