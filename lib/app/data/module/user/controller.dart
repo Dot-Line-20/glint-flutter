@@ -8,6 +8,8 @@ class UserController extends GetxController with StateMixin<User> {
   final UserRepository repository;
   UserController(this.repository);
 
+  static UserController get to => Get.find();
+
   final Rx<User?> _userInfo = Rx(null);
   final Rx<MetaData?> _metaData = Rx(null);
   final Rx<int> _successRate = Rx(0);

@@ -7,8 +7,9 @@ import 'package:glint/app/widgets/snackbar.dart';
 
 class PostController extends GetxController with StateMixin {
   final PostRepository repository;
-
   PostController(this.repository);
+
+  static PostController get to => Get.find();
 
   final Rx<List<Post>> _posts = Rx([]);
   final Rx<bool> hasNextPage = true.obs;
