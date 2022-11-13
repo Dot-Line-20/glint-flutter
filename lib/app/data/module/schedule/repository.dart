@@ -24,4 +24,7 @@ class ScheduleRepository {
         endingAt,
         categoryIds,
       );
+
+  //delete
+  Future deleteSchedule(int scheduleId) => api.deleteSchedule(scheduleId);
 }

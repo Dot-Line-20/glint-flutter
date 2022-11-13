@@ -250,7 +250,7 @@ class GTApiProvider implements GTApiInterface {
   }
 
   @override
-  Future<void> deleteSchedule(String scheduleId) async {
+  Future<void> deleteSchedule(int scheduleId) async {
     String url = '/schedules/$scheduleId';
     await dio.delete(url);
   }

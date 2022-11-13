@@ -9,6 +9,8 @@ class ScheduleController extends GetxController
   final ScheduleRepository repository;
   ScheduleController(this.repository);
 
+  static ScheduleController get to => Get.find();
+
   final Rx<List<Schedule>> _scheduleList = Rx<List<Schedule>>([]);
   List<Schedule> get scheduleList => _scheduleList.value;
 
@@ -28,8 +30,7 @@ class ScheduleController extends GetxController
 
   //add
   Future addSchedule(
-        int? parentScheduleId,
-
+    int? parentScheduleId,
     String name,
     String content,
     String startingAt,
@@ -38,8 +39,7 @@ class ScheduleController extends GetxController
   ) async {
     try {
       Schedule result = await repository.makeSchedule(
-            parentScheduleId,
-
+        parentScheduleId,
         name,
         content,
         startingAt,
@@ -50,6 +50,16 @@ class ScheduleController extends GetxController
       _scheduleList.refresh();
     } on DioError catch (e) {
       print(e.response!.data);
+      GTSnackBar.open(e.message);
+    }
+  }
+
+  Future deleteSchedule(int scheduleId) async {
+    try {
+      await repository.deleteSchedule(scheduleId);
+      _scheduleList.value.removeWhere((element) => element.id == scheduleId);
+      _scheduleList.refresh();
+    } on DioError catch (e) {
       GTSnackBar.open(e.message);
     }
   }

@@ -34,7 +34,7 @@ abstract class GTApiInterface {
   Future<Map> getSchedule(String scheduleId);
   Future<Map> updateSchedule(String scheduleId, String name, String startingAt,
       String endingAt, bool isSuccess);
-  Future<void> deleteSchedule(String scheduleId);
+  Future<void> deleteSchedule(int scheduleId);
 
   // POST
   Future<void> createPost(
