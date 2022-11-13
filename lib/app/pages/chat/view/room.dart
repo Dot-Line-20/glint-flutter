@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/core/util/constant.dart';
 import 'package:glint/app/data/service/chat/chat.dart';
@@ -52,15 +55,57 @@ class ChatRoomListPage extends GetView<ChatController> {
         },
         child: Row(
           children: [
-            const SizedBox(width: 20),
-            CircleAvatar(
-              radius: 20,
-              backgroundImage:
-                  NetworkImage(chatRoom.users.first.user.profile ?? LOADING),
-            ),
-            const SizedBox(width: 20),
-            Text(chatRoom.name, style: AppTextTheme.T3),
+            const SizedBox(width: 10),
+            ChatRoomProfile(users: chatRoom.users),
+            const SizedBox(width: 10),
+            Text("${chatRoom.name} (${chatRoom.users.length})",
+                style: AppTextTheme.Main.copyWith(fontSize: 16)),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class ChatRoomProfile extends StatelessWidget {
+  const ChatRoomProfile({Key? key, required this.users}) : super(key: key);
+
+  final List<Users> users;
+
+  // random double 0 ~ 24
+  double getRandomInt() {
+    return (Random().nextDouble() * 24).roundToDouble();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 48,
+      height: 48,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12), color: AppColorTheme.Gray3),
+      child: Stack(
+        children: [
+          for (int i = 0; i < users.length; i++)
+            _userProfileItem(getRandomInt(), getRandomInt(), i)
+        ],
+      ),
+    );
+  }
+
+  Positioned _userProfileItem(left, top, index) {
+    return Positioned(
+      left: left,
+      top: top,
+      child: Container(
+        width: 24,
+        height: 24,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          image: DecorationImage(
+            image: NetworkImage(users[index].user.profile ?? LOADING),
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );
