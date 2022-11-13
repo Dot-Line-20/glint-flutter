@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/data/module/schedule/schedule.dart';
@@ -215,6 +216,10 @@ class TimeLineChart extends StatelessWidget {
                     children: [
                       IconButton(
                           onPressed: () {
+                            if (GetPlatform.isWeb) {
+                              Get.back();
+                            }
+
                             SystemChrome.setPreferredOrientations([
                               DeviceOrientation.portraitUp,
                               DeviceOrientation.portraitDown,

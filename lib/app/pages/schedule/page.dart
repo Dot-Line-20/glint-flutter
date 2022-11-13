@@ -50,6 +50,19 @@ class SchedulePage extends GetView<SchedulePageController> {
                       children: [
                         IconButton(
                             onPressed: () {
+                              if (GetPlatform.isWeb) {
+                                Get.to(() => Scaffold(
+                                      body: TimeLineChart(
+                                        animationController:
+                                            controller.animationController,
+                                        fromDate: controller.now
+                                            .subtract(const Duration(days: 7)),
+                                        toDate: controller.now
+                                            .add(const Duration(days: 7)),
+                                        data: controller.scheduleList,
+                                      ),
+                                    ));
+                              }
                               SystemChrome.setPreferredOrientations([
                                 DeviceOrientation.landscapeLeft,
                                 DeviceOrientation.landscapeRight,
