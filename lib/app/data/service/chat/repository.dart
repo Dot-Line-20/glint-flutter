@@ -10,6 +10,7 @@ class ChatRepository {
   Future<ChatRoom> creatChatRoom(String name, List<int> userIds) =>
       api.createChatRoom(name, userIds);
 
-  Future<List<ChatMessage>> getChatMessage(int chatRoomId) =>
-      api.getChatMessages(chatRoomId);
+  Future<List<ChatMessage>> getChatMessage(int chatRoomId,
+          {int index = 0, int size = 10}) =>
+      api.getChatMessages(chatRoomId, index: index, size: size);
 }

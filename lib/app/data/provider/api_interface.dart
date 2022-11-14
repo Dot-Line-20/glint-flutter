@@ -72,5 +72,6 @@ abstract class GTApiInterface {
   //CHAT
   Future<ChatRoom> createChatRoom(String name, List<int> userIds);
   Future<List<ChatRoom>> getChatRooms();
-  Future<List<ChatMessage>> getChatMessages(int chatId);
+  Future<List<ChatMessage>> getChatMessages(int chatId,
+      {int index = 0, int size = 10});
 }

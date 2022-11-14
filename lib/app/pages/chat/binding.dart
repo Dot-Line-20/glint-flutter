@@ -4,6 +4,6 @@ import 'package:glint/app/pages/chat/controller.dart';
 class ChatBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<ChatController>(() => ChatController());
+    Get.lazyPut<ChatPageController>(() => ChatPageController());
   }
 }

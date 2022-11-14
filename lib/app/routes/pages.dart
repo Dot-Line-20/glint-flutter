@@ -2,6 +2,7 @@ import 'package:glint/app/core/middleware/login.dart';
 import 'package:glint/app/pages/category/binding.dart';
 import 'package:glint/app/pages/category/page.dart';
 import 'package:glint/app/pages/chat/binding.dart';
+import 'package:glint/app/pages/chat/view/chat.dart';
 import 'package:glint/app/pages/chat/view/room.dart';
 import 'package:glint/app/pages/comment/binding.dart';
 import 'package:glint/app/pages/comment/page.dart';
@@ -34,7 +35,12 @@ class AppPages {
     ),
     GetPage(
       name: Routes.chat,
-      page: () => const ChatRoomListPage(),
+      page: () => ChatRoomListPage(),
+      middlewares: [LoginMiddleware()],
+    ),
+    GetPage(
+      name: Routes.chatRoom,
+      page: () => ChatPage(),
       binding: ChatBinding(),
       middlewares: [LoginMiddleware()],
     ),

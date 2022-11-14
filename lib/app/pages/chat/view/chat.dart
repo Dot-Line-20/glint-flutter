@@ -4,6 +4,7 @@ import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/core/util/constant.dart';
 import 'package:glint/app/data/module/user/user.dart';
+import 'package:glint/app/data/service/auth/service.dart';
 import 'package:glint/app/data/service/chat/chat.dart';
 import 'package:glint/app/pages/chat/controller.dart';
 import 'package:glint/app/widgets/bottom_sheet.dart';
@@ -11,17 +12,15 @@ import 'package:glint/app/widgets/button.dart';
 import 'package:glint/app/widgets/empty.dart';
 import 'package:glint/app/widgets/textfield.dart';
 
-class ChatPage extends GetView<ChatController> {
-  final String chatRoomName;
-
-  const ChatPage({Key? key, required this.chatRoomName}) : super(key: key);
+class ChatPage extends GetView<ChatPageController> {
+  const ChatPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          chatRoomName,
+          controller.chatRoom.name,
         ),
       ),
       body: SafeArea(
@@ -30,11 +29,10 @@ class ChatPage extends GetView<ChatController> {
         child: Column(
           children: [
             Expanded(
-              child: controller.obx(
-                (_) => Center(
-                  child: SingleChildScrollView(
-                    child: _chatMessages(),
-                  ),
+              child: Obx(
+                () => SingleChildScrollView(
+                  controller: controller.scrollController,
+                  child: _chatMessages(),
                 ),
               ),
             ),
@@ -67,6 +65,7 @@ class ChatPage extends GetView<ChatController> {
     }
 
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Obx(
           () => ListView.builder(
@@ -103,7 +102,7 @@ class ChatPage extends GetView<ChatController> {
       user = controller.users.value[message.userId];
     }
 
-    bool isMe = user!.id == int.tryParse(controller.authService.userId ?? "");
+    bool isMe = user!.id == int.tryParse(Get.find<AuthService>().userId ?? "");
 
     return GestureDetector(
       onLongPress: () async {

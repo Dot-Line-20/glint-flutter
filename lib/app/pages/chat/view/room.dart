@@ -6,13 +6,15 @@ import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/core/util/constant.dart';
 import 'package:glint/app/data/service/chat/chat.dart';
-import 'package:glint/app/pages/chat/controller.dart';
+import 'package:glint/app/data/service/chat/service.dart';
 import 'package:glint/app/widgets/bottom_sheet.dart';
 import 'package:glint/app/widgets/constant.dart';
 import 'package:glint/app/widgets/empty.dart';
 
-class ChatRoomListPage extends GetView<ChatController> {
-  const ChatRoomListPage({Key? key}) : super(key: key);
+class ChatRoomListPage extends StatelessWidget {
+  ChatRoomListPage({Key? key}) : super(key: key);
+
+  final ChatService chatService = Get.find<ChatService>();
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +28,7 @@ class ChatRoomListPage extends GetView<ChatController> {
           child: Column(
         children: [
           Expanded(
-            child: controller.obx((_) => _chatRoomItems(),
-                onLoading: LOADINGINDICATOR),
+            child: Obx(() => _chatRoomItems()),
           ),
         ],
       )),
@@ -35,14 +36,14 @@ class ChatRoomListPage extends GetView<ChatController> {
   }
 
   Widget _chatRoomItems() {
-    if (controller.chatRooms.value.isEmpty) {
+    if (chatService.chatRooms.value.isEmpty) {
       return const Empty(title: "채팅 없음", description: "다른 사람과 채팅을 시작해보세요");
     }
 
     return ListView.builder(
-      itemCount: controller.chatRooms.value.length,
+      itemCount: chatService.chatRooms.value.length,
       itemBuilder: (context, index) {
-        return _chatRoomItem(controller.chatRooms.value[index]);
+        return _chatRoomItem(chatService.chatRooms.value[index]);
       },
     );
   }
@@ -55,8 +56,10 @@ class ChatRoomListPage extends GetView<ChatController> {
         children: [
           GestureDetector(
             onTap: () {
-              controller.enterChatRoom(
-                  chatRoom.users, chatRoom.id, chatRoom.name);
+              Get.toNamed(
+                "/chat/${chatRoom.id}",
+                arguments: chatRoom,
+              );
             },
             child: Row(
               children: [

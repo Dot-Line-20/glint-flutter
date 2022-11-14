@@ -12,4 +12,5 @@ abstract class Routes {
   static const user = "/user";
   static const category = "/category";
   static const chat = "/chat";
+  static const chatRoom = "/chat/:id";
 }

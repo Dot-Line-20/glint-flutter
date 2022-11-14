@@ -469,8 +469,10 @@ class GTApiProvider implements GTApiInterface {
   }
 
   @override
-  Future<List<ChatMessage>> getChatMessages(int chatId) async {
-    String url = "/chats/$chatId/messages?page[order]=asc";
+  Future<List<ChatMessage>> getChatMessages(int chatId,
+      {int index = 0, int size = 10}) async {
+    String url =
+        "/chats/$chatId/messages?page[order]=asc&page[size]=$size&page[index]=$index";
     Response response = await dio.get(url);
     return (response.data["data"] as List)
         .map<ChatMessage>((e) => ChatMessage.fromJson(e))

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:get/get.dart';
+import 'package:glint/app/data/service/auth/service.dart';
 import 'package:glint/app/data/service/chat/chat.dart';
 import 'package:glint/app/data/service/chat/repository.dart';
 // ignore: library_prefixes
@@ -45,6 +46,7 @@ class ChatService extends GetxService {
     "autoConnect": false,
   });
 
+  final Rx<List<ChatRoom>> chatRooms = Rx([]);
   Rx<List<Message>> messages = Rx([]);
 
   Future<ChatService> init() async {
@@ -83,6 +85,9 @@ class ChatService extends GetxService {
       log("[CHAT SERVICE] messageUpdate");
     });
 
+    chatRooms.value = await getChatRooms();
+    authLogin(Get.find<AuthService>().accessToken!);
+
     log("[CHAT SERVICE] init done");
 
     return this;
@@ -118,8 +123,9 @@ class ChatService extends GetxService {
     return repository.getChatRoomList();
   }
 
-  Future<List<ChatMessage>> getChatMessages(int roomId) async {
-    return repository.getChatMessage(roomId);
+  Future<List<ChatMessage>> getChatMessages(int roomId,
+      {int index = 0, int size = 10}) async {
+    return repository.getChatMessage(roomId, index: index, size: size);
   }
 
   @override

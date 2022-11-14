@@ -12,6 +12,8 @@ class AppInitalizer {
 
     await Future.wait([
       Get.putAsync(() => AuthService(AuthRepository(GTApiProvider())).init()),
+    ]);
+    await Future.wait([
       Get.putAsync(() => ChatService(ChatRepository(GTApiProvider())).init())
     ]);
 
