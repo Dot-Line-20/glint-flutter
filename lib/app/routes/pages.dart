@@ -47,7 +47,7 @@ class AppPages {
     //user page
     GetPage(
       name: Routes.user,
-      page: () => UserPage(),
+      page: () => UserProfilePage(),
       binding: UserPageBinding(),
       middlewares: [LoginMiddleware()],
     ),

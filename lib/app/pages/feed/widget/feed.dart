@@ -34,7 +34,7 @@ class _FeedItemState extends State<FeedItem> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: UserController.to.getOtherUserInfo(widget.post.userId),
+        future: UserController.to.getUserInfo(widget.post.userId),
         builder: (contexnt, snapshot) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -154,17 +154,22 @@ class _FeedItemState extends State<FeedItem> {
   Row _postHeader(user) {
     return Row(
       children: [
-        Container(
-          height: 40,
-          width: 40,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: AppColorTheme.BUTTON1,
-            image: DecorationImage(
-              image: NetworkImage(
-                user.profile ?? LOADING,
+        GestureDetector(
+          onTap: () {
+            Get.toNamed("/user/${widget.post.userId}");
+          },
+          child: Container(
+            height: 40,
+            width: 40,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: AppColorTheme.BUTTON1,
+              image: DecorationImage(
+                image: NetworkImage(
+                  user.profile ?? LOADING,
+                ),
+                fit: BoxFit.cover,
               ),
-              fit: BoxFit.cover,
             ),
           ),
         ),

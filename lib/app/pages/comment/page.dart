@@ -87,8 +87,8 @@ class CommentItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<User>(
-        future: UserController.to.getOtherUserInfo(comment.userId),
+    return FutureBuilder<User?>(
+        future: UserController.to.getUserInfo(comment.userId),
         builder: (context, snapshot) {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 20),

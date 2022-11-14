@@ -5,15 +5,66 @@ import 'package:glint/app/core/theme/color_theme.dart';
 import 'package:glint/app/core/theme/text_theme.dart';
 import 'package:glint/app/core/util/constant.dart';
 import 'package:glint/app/data/module/user/controller.dart';
-import 'package:glint/app/data/service/auth/service.dart';
+import 'package:glint/app/pages/user/controller.dart';
 import 'package:glint/app/pages/user/view/setting.dart';
-import 'package:glint/app/routes/route.dart';
 import 'package:glint/app/widgets/button.dart';
 
-class UserPage extends StatelessWidget {
-  UserPage({Key? key}) : super(key: key);
+class UserProfilePage extends GetView<UserPageController> {
+  const UserProfilePage({Key? key}) : super(key: key);
 
-  final AuthService authService = Get.find<AuthService>();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+          child: Column(
+            children: [
+              header(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget header() {
+    return Obx(
+      () => Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColorTheme.BUTTON1,
+                  image: DecorationImage(
+                    image:
+                        NetworkImage(controller.userInfo?.profile ?? LOADING),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                height: 36,
+                width: 36,
+              ),
+              const SizedBox(width: 10),
+              Text(
+                controller.userInfo?.name ?? "",
+                style: AppTextTheme.Title,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class MyProfilePage extends StatelessWidget {
+  MyProfilePage({Key? key}) : super(key: key);
   final UserController userController = Get.find<UserController>();
 
   @override
@@ -27,21 +78,6 @@ class UserPage extends StatelessWidget {
             children: [
               header(),
               const SizedBox(height: 20),
-              followInfo(),
-              // const SizedBox(height: 20),
-              // stories(),
-              const SizedBox(height: 20),
-              const Text("나의 달성 성격", style: AppTextTheme.T2),
-              const SizedBox(height: 10),
-              const UserItem(
-                asset: "assets/images/goal.svg",
-                title: "ENTP 성향처럼 미루지 않아요",
-              ),
-              const SizedBox(height: 10),
-              UserItem(
-                asset: "assets/images/goal.svg",
-                title: "계획 달성률이 ${userController.successRate}%입니다.",
-              ),
               const SizedBox(height: 20),
               const Expanded(child: SizedBox()),
             ],
@@ -86,8 +122,15 @@ class UserPage extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget followInfo() {
+class MetaDataItem extends StatelessWidget {
+  const MetaDataItem({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),

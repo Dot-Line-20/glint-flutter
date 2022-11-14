@@ -13,10 +13,9 @@ class UserRepository {
   ///[name] is the name of the user
   ///[email] is the email of the user
   ///[birth] is the birth of the user
-  Future<User> getUserInfo() => api.getUser();
-  Future<User> getOtherUserInfo(int userId) => api.getOtherUser(userId);
+  Future<User> getUserInfo(int userId) => api.getUser(userId);
 
   ///returns the user successRate
   Future<int> getSuccessRate() => api.getSuccessRate();
-  Future<MetaData> getMetaData() => api.getMetaData();
+  Future<MetaData> getMetaData(int userId) => api.getMetaData(userId);
 }

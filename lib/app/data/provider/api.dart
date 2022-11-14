@@ -29,12 +29,7 @@ class JWTInterceptor extends Interceptor {
       options.headers['Authorization'] = 'Bearer ${authService.accessToken}';
     }
 
-    if (options.path == "/users" && options.method != "POST") {
-      options.path = "/users/${authService.userId}";
-    }
-
-    if (options.path.startsWith("/schedules") ||
-        options.path.startsWith("/metadata")) {
+    if (options.path.startsWith("/schedules")) {
       options.path = "/users/${authService.userId}${options.path}";
     }
 
@@ -142,14 +137,7 @@ class GTApiProvider implements GTApiInterface {
 
   // USER
   @override
-  Future<User> getUser() async {
-    String url = '/users';
-    Response response = await dio.get(url);
-    return User.fromJson(response.data["data"]);
-  }
-
-  @override
-  Future<User> getOtherUser(int userId) async {
+  Future<User> getUser(int userId) async {
     String url = '/users/$userId';
     Response response = await dio.get(url);
     return User.fromJson(response.data["data"]);
@@ -187,8 +175,8 @@ class GTApiProvider implements GTApiInterface {
   }
 
   @override
-  Future<MetaData> getMetaData() async {
-    String url = "/metadata";
+  Future<MetaData> getMetaData(int userId) async {
+    String url = "/users/$userId/metadata";
     Response response = await dio.get(url);
     return MetaData.fromJson(response.data["data"]);
   }

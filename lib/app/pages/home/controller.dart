@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glint/app/data/service/orientation/service.dart';
@@ -23,7 +21,7 @@ class HomePageController extends GetxController {
   List<Widget> pages = [
     FeedPage(),
     SchedulePage(),
-    UserPage(),
+    MyProfilePage(),
   ];
 
   void changePage(int index) {

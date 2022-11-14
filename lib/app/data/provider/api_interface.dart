@@ -13,13 +13,12 @@ abstract class GTApiInterface {
       String email, String password, String name, String birth);
   Future<Map> refreshToken(String refreshToken);
   // USER
-  Future<User> getUser();
-  Future<User> getOtherUser(int userId);
+  Future<User> getUser(int userId);
   Future<Map> updateUser(
       String email, String password, String name, String birth, String image);
   Future<void> deleteUser(String userId);
   Future<int> getSuccessRate();
-  Future<MetaData> getMetaData();
+  Future<MetaData> getMetaData(int userId);
 
   //SCHEDULE
   Future<Schedule> makeSchedule(

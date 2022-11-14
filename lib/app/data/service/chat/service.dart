@@ -54,7 +54,8 @@ class ChatService extends GetxService {
 
     io.connect();
     io.onConnect((id) {
-      log("[CHAT SERVICE] connected");
+      log("[CHAT SERVICE] connected :id $id");
+      authLogin();
     });
 
     // Handle Socket Status
@@ -86,14 +87,14 @@ class ChatService extends GetxService {
     });
 
     chatRooms.value = await getChatRooms();
-    authLogin(Get.find<AuthService>().accessToken!);
 
     log("[CHAT SERVICE] init done");
 
     return this;
   }
 
-  void authLogin(String accessToken) {
+  void authLogin() async {
+    String accessToken = Get.find<AuthService>().accessToken!;
     io.emit(SocketEvent.authLogin.value, {"accessToken": accessToken});
   }
 
